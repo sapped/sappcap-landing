@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { ArrowRight, BarChart, Building, Globe, Mail, Linkedin } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { MobileNav } from '@/components/mobile-nav'
 
 export default function LandingPage() {
   return (
@@ -19,7 +20,10 @@ export default function LandingPage() {
                 <li><a href="#contact" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a></li>
               </ul>
             </nav>
-            <ThemeToggle />
+            <MobileNav />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </header>
