@@ -149,7 +149,7 @@ export default function LandingPage() {
                 We stand at the intersection of strategic real estate investment and sophisticated financial structuring. Our substantial experience in the American real estate market is inherited from deep institutional backgrounds, defining our nuanced understanding of market conditions and business strategy.
               </p>
               <p className="text-lg dark:text-gray-300">
-                Sapp Capital Advisors is not just a consultancy; we are a dedicated partner invested in your success. Our years of institutional experience have been honed to deliver user-friendly tools, models, and strategies that are not only sophisticated but also accessible and practical.
+                We are a dedicated partner invested in your success. Our years of institutional experience have been honed to deliver user-friendly tools, models, and strategies that are not only sophisticated but also accessible and practical.
               </p>
             </div>
           </div>
