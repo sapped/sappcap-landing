@@ -160,7 +160,7 @@ export default function LandingPage() {
             <h2 className="text-3xl font-bold mb-6">Let's Connect</h2>
             <p className="text-xl mb-8">Ready to drive growth and achieve your business goals? Contact us today to explore how Sapp Capital Advisors can partner with you.</p>
             <div className="flex justify-center space-x-6">
-              <a href="mailto:business@sapp.capital" className="flex items-center bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-50 transition duration-300">
+              <a href="https://blog.sapp.capital/contact/" className="flex items-center bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-50 transition duration-300">
                 <Mail className="w-5 h-5 mr-2" />
                 Email Us
               </a>
