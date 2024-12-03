@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ArrowRight, BarChart, Building, Globe, Mail } from 'lucide-react'
+import { ArrowRight, BarChart, Building, Globe, Mail, Linkedin } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function LandingPage() {
@@ -91,12 +91,14 @@ export default function LandingPage() {
                 title="Principal Consultant"
                 description="Over 7 years of experience in commercial real estate, prior positions as Vice President at Brookfield and Credit Suisse. Extensive expertise across multiple asset classes and investment strategies."
                 imageSrc="/images/edward.jpeg"
+                linkedinUrl="https://www.linkedin.com/in/edwardsapp/"
               />
               <TeamMember
                 name="Gabriel Rodriguez"
                 title="Senior Analyst"
                 description="Extensive expertise in financial modeling, strategic planning, and asset management across banking and real estate sectors. Known for client-centered, customized financial solutions and hands-on problem-solving."
                 imageSrc="/images/gabriel.jpg"
+                linkedinUrl="https://www.linkedin.com/in/ggrodriguezm/"
               />
             </div>
           </div>
@@ -201,11 +203,12 @@ interface TeamMemberProps {
   title: string;
   description: string;
   imageSrc: string;
+  linkedinUrl?: string;
 }
 
-function TeamMember({ name, title, description, imageSrc }: TeamMemberProps) {
+function TeamMember({ name, title, description, imageSrc, linkedinUrl }: TeamMemberProps) {
   return (
-    <div className="bg-white bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <div className="mb-4">
         <Image
           src={imageSrc}
@@ -215,7 +218,20 @@ function TeamMember({ name, title, description, imageSrc }: TeamMemberProps) {
           className="rounded-lg mx-auto"
         />
       </div>
-      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{name}</h3>
+      <div className="flex items-center gap-2 mb-2">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{name}</h3>
+        {linkedinUrl && (
+          <a 
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
+            aria-label={`${name}'s LinkedIn profile`}
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
+        )}
+      </div>
       <h4 className="text-lg text-gray-600 dark:text-gray-300 mb-4">{title}</h4>
       <p className="text-gray-600 dark:text-gray-300">{description}</p>
     </div>
