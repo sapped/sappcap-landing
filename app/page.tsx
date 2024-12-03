@@ -106,24 +106,34 @@ export default function LandingPage() {
 
         <section id="pricing" className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4 max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Pricing Structure</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Engagement Options</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <PricingCard
-                title="Hourly Consulting"
+                title="Project-Based Consulting"
                 items={[
-                  "Principal Consultant - $275/hr",
-                  "Analyst - $125/hr",
-                  "Invoiced monthly (first invoice after month one)"
+                  "Tailored solutions for specific projects",
+                  "Clear scope and deliverables",
+                  "Flexible timeline to meet your needs",
+                  "Contact us for custom pricing"
                 ]}
               />
               <PricingCard
-                title="Flexible Discounted Monthly Retainer"
+                title="Ongoing Advisory Partnership"
                 items={[
-                  "Option to switch between hourly and discounted retainer plans monthly",
-                  "Adaptable to various engagement levels",
-                  "Ideal for clients with ongoing demand"
+                  "Monthly retainer options available",
+                  "Priority access to our team",
+                  "Regular strategy sessions",
+                  "Discounted rates for long-term engagement"
                 ]}
               />
+            </div>
+            <div className="text-center mt-12">
+              <a 
+                href="https://blog.sapp.capital/contact/" 
+                className="inline-flex items-center justify-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+              >
+                Request Pricing Details
+              </a>
             </div>
           </div>
         </section>
