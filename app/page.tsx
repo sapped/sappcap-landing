@@ -11,6 +11,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-6">
             <nav className="hidden md:block">
               <ul className="flex space-x-6">
+                <li><a href="https://blog.sapp.capital" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Blog</a></li>
                 <li><a href="#services" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Services</a></li>
                 <li><a href="#clients" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Clients</a></li>
                 <li><a href="#team" className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Team</a></li>
@@ -60,7 +61,7 @@ export default function LandingPage() {
         <section id="clients" className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Who We Help</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <ClientCard
                 title="Global Hedge Fund"
                 description="A major hedge fund (~$18B AUM), focused on distressed debt and loan-to-own strategies across various sectors."
@@ -75,7 +76,7 @@ export default function LandingPage() {
               />
               <ClientCard
                 title="Additional Partnerships"
-                description="TX based verticalized developer and operator of industrial real estate, land aggregator in TX developing automated offer pricing algorithm, and more."
+                description="TX based industrial and retail developer, southwest land aggregator, self-storage fund manager, OH based construction CFO, Bay Area student housing developer, proprietary demographic market selelection, and more."
               />
             </div>
           </div>
@@ -84,7 +85,7 @@ export default function LandingPage() {
         <section id="team" className="py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Our Team</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <TeamMember
                 name="Edward Sapp"
                 title="Principal Consultant"
@@ -102,7 +103,7 @@ export default function LandingPage() {
         </section>
 
         <section id="pricing" className="bg-gray-50 dark:bg-black py-20">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">Pricing Structure</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <PricingCard
@@ -128,7 +129,7 @@ export default function LandingPage() {
         <section id="about" className="py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">About Us</h2>
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto">
               <p className="text-lg mb-6 dark:text-gray-300">
                 At the heart of Sapp Capital Advisors is a relentless drive to solve problems. Our analytical skills shine brightest when applied to unraveling the knots of complex real estate challenges. We are not just thinkers but doers, providing concrete solutions that have tangible impacts on our clients' ventures.
               </p>
@@ -143,7 +144,7 @@ export default function LandingPage() {
         </section>
 
         <section id="contact" className="bg-black text-white py-20">
-          <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">Let's Connect</h2>
             <p className="text-xl mb-8">Ready to drive growth and achieve your business goals? Contact us today to explore how Sapp Capital Advisors can partner with you.</p>
             <div className="flex justify-center space-x-6">
