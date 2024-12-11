@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import { ArrowRight, BarChart, Building, Globe, Mail, Linkedin } from 'lucide-react'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { MobileNav } from '@/components/mobile-nav'
 import { Navbar } from '@/components/navbar'
 
 export default function LandingPage() {
