@@ -153,8 +153,30 @@ export default function LandingPage() {
       </main>
 
       <footer className="bg-gray-900 dark:bg-black text-white py-6">
-        <div className="container mx-auto px-4 text-center text-sm">
-          <p>&copy; 2024 Sapp Capital Advisors LLC. All rights reserved.</p>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-sm">&copy; 2024 Sapp Capital Advisors LLC. All rights reserved.</p>
+            <div className="flex space-x-6 text-sm">
+              <a 
+                href="/privacy" 
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a 
+                href="/terms" 
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Terms of Service
+              </a>
+              <a 
+                href="/cookies" 
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Cookie Policy
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </>
