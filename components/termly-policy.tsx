@@ -54,10 +54,12 @@ export default function TermlyPolicy({ policyId }: TermlyPolicyProps) {
           View Direct Policy Link
         </a>
       </div>
-      {/* eslint-disable-next-line react/no-unknown-property */}
       <div 
-        name="termly-embed"
-        data-id={policyId}
+        {...{
+          // This tells TypeScript it's okay to have these custom attributes
+          'name': 'termly-embed',
+          'data-id': policyId
+        } as React.HTMLAttributes<HTMLDivElement>}
         className="p-6 text-gray-900 dark:text-gray-100"
       />
     </>
