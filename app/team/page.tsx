@@ -18,15 +18,22 @@ export default function TeamPage() {
                 name="Edward Sapp"
                 title="Principal Consultant"
                 description="Over 7 years of experience in commercial real estate, prior positions as Vice President at Brookfield and Credit Suisse. Extensive expertise across multiple asset classes and investment strategies."
-                imageSrc="/images/edward.jpeg"
+                imageSrc="/images/edward_blue.jpeg"
                 linkedinUrl="https://www.linkedin.com/in/edwardsapp/"
               />
               <TeamMember
                 name="Gabriel Rodriguez"
                 title="Senior Analyst"
                 description="Extensive expertise in financial modeling, strategic planning, and asset management across banking and real estate sectors. Known for client-centered, customized financial solutions and hands-on problem-solving."
-                imageSrc="/images/gabriel.jpg"
+                imageSrc="/images/gabriel_blue.jpg"
                 linkedinUrl="https://www.linkedin.com/in/ggrodriguezm/"
+              />
+              <TeamMember
+                name="Baltazar Buelna"
+                title="Junior Analyst"
+                description="Extensive background in portfolio strategy and data-driven underwriting, combining advanced Excel modeling with hands-on process improvements. Skilled in distilling complex insights into investor-ready presentations and optimizing workflows for faster, more accurate decision-making. Certified in Bloomberg Market Concepts, advanced financial analysis (ITESM), and Excel (ITESM), with additional coursework at LSE and Copenhagen Business School."
+                imageSrc="/images/baltazar_blue.jpg"
+                linkedinUrl="https://www.linkedin.com/in/jose-baltazar-buelna-garrido-3840172b2/"
               />
             </div>
 
@@ -48,7 +55,7 @@ export default function TeamPage() {
 
               <div className="mt-12">
                 <a
-                  href="/#contact"
+                  href="https://blog.sapp.capital/contact"
                   className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg text-lg font-medium"
                 >
                   Work With Our Team
