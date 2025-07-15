@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 export default function BookPage() {
   // This function will run on the server when this page is requested
   redirect(
-    "https://outlook.office.com/book/SappCapitalAdvisorsBookings@demographiq.ai/"
+    "https://cal.com/sappcapital"
   );
 
   // The below code won't run because redirect throws an error
