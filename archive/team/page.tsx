@@ -22,13 +22,6 @@ export default function TeamPage() {
                 linkedinUrl="https://www.linkedin.com/in/edwardsapp/"
               />
               <TeamMember
-                name="Gabriel Rodriguez"
-                title="Senior Analyst"
-                description="Extensive expertise in financial modeling, strategic planning, and asset management across banking and real estate sectors. Known for client-centered, customized financial solutions and hands-on problem-solving."
-                imageSrc="/images/gabriel_blue.jpg"
-                linkedinUrl="https://www.linkedin.com/in/ggrodriguezm/"
-              />
-              <TeamMember
                 name="Baltazar Buelna"
                 title="Junior Analyst"
                 description="Extensive background in portfolio strategy and data-driven underwriting, combining advanced Excel modeling with hands-on process improvements. Skilled in distilling complex insights into investor-ready presentations and optimizing workflows for faster, more accurate decision-making. Certified in Bloomberg Market Concepts, advanced financial analysis (ITESM), and Excel (ITESM), with additional coursework at LSE and Copenhagen Business School."
@@ -115,14 +108,14 @@ function TeamMember({
   linkedinUrl,
 }: TeamMemberProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-      <div className="mb-4">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group">
+      <div className="mb-4 overflow-hidden rounded-lg">
         <Image
           src={imageSrc}
           alt={name}
           width={200}
           height={200}
-          className="rounded-lg mx-auto"
+          className="rounded-lg mx-auto transition-transform duration-300 group-hover:scale-110"
         />
       </div>
       <div className="flex items-center gap-2 mb-2">
