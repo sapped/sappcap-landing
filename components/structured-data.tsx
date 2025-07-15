@@ -4,8 +4,8 @@ export function StructuredData() {
     "@type": "ProfessionalService",
     "name": "Sapp Capital Advisors",
     "description": "Bespoke Commercial Real Estate Services - Investment solutions for all sizes, sectors, geographies, and strategies.",
-    "url": "https://www.drivingforcedigital.com",
-    "logo": "https://www.drivingforcedigital.com/images/SCA Logo - Black BG Square.png",
+    "url": "https://sapp.capital",
+    "logo": "https://sapp.capital/images/SCA Logo - Black BG Square.png",
     "telephone": "",
     "address": {
       "@type": "PostalAddress",
