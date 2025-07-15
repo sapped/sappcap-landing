@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'Sapp Capital Advisors',
     images: [
       {
-        url: 'https://sapp.capital/images/SCA Logo - Black BG Square.png',
+        url: 'https://sapp.capital/images/SCA%20Logo%20-%20Black%20BG%20Square.png',
         width: 1200,
         height: 1200,
         alt: 'Sapp Capital Advisors',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sapp Capital Advisors',
     description: 'Bespoke Commercial Real Estate Services',
-    images: ['https://sapp.capital/images/SCA Logo - Black BG Square.png'],
+    images: ['https://sapp.capital/images/SCA%20Logo%20-%20Black%20BG%20Square.png'],
   },
   icons: {
     icon: '/images/favicon.ico',
