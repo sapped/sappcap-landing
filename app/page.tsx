@@ -1,5 +1,6 @@
 import { ArrowRight, BarChart, Building, Globe, Mail } from "lucide-react";
 import { Navbar } from "@/components/navbar";
+import { FadeIn } from "@/components/fade-in";
 
 export default function LandingPage() {
   return (
@@ -33,51 +34,69 @@ export default function LandingPage() {
 
         <section id="services" className="py-20">
           <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className="text-2xl font-medium text-center mb-12 dark:text-white">
-              Core Services
-            </h2>
+            <FadeIn>
+              <h2 className="text-2xl font-medium text-center mb-12 dark:text-white">
+                Core Services
+              </h2>
+            </FadeIn>
             <div className="grid md:grid-cols-3 gap-8">
-              <ServiceCard
-                icon={<BarChart className="w-8 h-8" />}
-                title="Investment Modeling"
-                description="Tailor-made financial models for individual investments up to complex corporate structures."
-              />
-              <ServiceCard
-                icon={<Globe className="w-8 h-8" />}
-                title="Informed Advisory"
-                description="Actively engaged on large and small-scale projects across geographies and sectors."
-              />
-              <ServiceCard
-                icon={<Building className="w-8 h-8" />}
-                title="Market Analysis"
-                description="Sophisticated methodologies for top-down market identification and bottom-up comparables."
-              />
+              <FadeIn delay={100}>
+                <ServiceCard
+                  icon={<BarChart className="w-8 h-8" />}
+                  title="Investment Modeling"
+                  description="Tailor-made financial models for individual investments up to complex corporate structures."
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <ServiceCard
+                  icon={<Globe className="w-8 h-8" />}
+                  title="Informed Advisory"
+                  description="Actively engaged on large and small-scale projects across geographies and sectors."
+                />
+              </FadeIn>
+              <FadeIn delay={300}>
+                <ServiceCard
+                  icon={<Building className="w-8 h-8" />}
+                  title="Market Analysis"
+                  description="Sophisticated methodologies for top-down market identification and bottom-up comparables."
+                />
+              </FadeIn>
             </div>
           </div>
         </section>
 
         <section id="clients" className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-              Who We Help
-            </h2>
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
+                Who We Help
+              </h2>
+            </FadeIn>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <ClientCard
-                title="Global Hedge Fund"
-                description="A major hedge fund (~$18B AUM), focused on distressed debt and loan-to-own strategies across various sectors."
-              />
-              <ClientCard
-                title="Large Mall Operator"
-                description="A prominent retail-focused real estate firm (160+ properties). Our work includes strategic initiatives directly with the office of the CIO."
-              />
-              <ClientCard
-                title="Multifamily Development Firm"
-                description="Currently active on large-scale projects, including one development with ~150 individual units and another with ~180 apartments in two buildings, both with complex capital structures."
-              />
-              <ClientCard
-                title="Additional Partnerships"
-                description="TX based industrial and retail developer, southwest land aggregator, self-storage fund manager, OH based construction CFO, Bay Area student housing developer, proprietary demographic market selelection, and more."
-              />
+              <FadeIn delay={100}>
+                <ClientCard
+                  title="Global Hedge Fund"
+                  description="A major hedge fund (~$18B AUM), focused on distressed debt and loan-to-own strategies across various sectors."
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <ClientCard
+                  title="Large Mall Operator"
+                  description="A prominent retail-focused real estate firm (160+ properties). Our work includes strategic initiatives directly with the office of the CIO."
+                />
+              </FadeIn>
+              <FadeIn delay={300}>
+                <ClientCard
+                  title="Multifamily Development Firm"
+                  description="Currently active on large-scale projects, including one development with ~150 individual units and another with ~180 apartments in two buildings, both with complex capital structures."
+                />
+              </FadeIn>
+              <FadeIn delay={400}>
+                <ClientCard
+                  title="Additional Partnerships"
+                  description="TX based industrial and retail developer, southwest land aggregator, self-storage fund manager, OH based construction CFO, Bay Area student housing developer, proprietary demographic market selelection, and more."
+                />
+              </FadeIn>
             </div>
           </div>
         </section>
@@ -121,31 +140,39 @@ export default function LandingPage() {
 
         <section id="about" className="py-20">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-              About Us
-            </h2>
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
+                About Us
+              </h2>
+            </FadeIn>
             <div className="max-w-3xl mx-auto">
-              <p className="text-lg mb-6 dark:text-gray-300">
-                At the heart of Sapp Capital Advisors is a relentless drive to
-                solve problems. Our analytical skills shine brightest when
-                applied to unraveling the knots of complex real estate
-                challenges. We are not just thinkers but doers, providing
-                concrete solutions that have tangible impacts on our clients'
-                ventures.
-              </p>
-              <p className="text-lg mb-6 dark:text-gray-300">
-                We stand at the intersection of strategic real estate investment
-                and sophisticated financial structuring. Our substantial
-                experience in the American real estate market is inherited from
-                deep institutional backgrounds, defining our nuanced
-                understanding of market conditions and business strategy.
-              </p>
-              <p className="text-lg dark:text-gray-300">
-                We are a dedicated partner invested in your success. Our years
-                of institutional experience have been honed to deliver
-                user-friendly tools, models, and strategies that are not only
-                sophisticated but also accessible and practical.
-              </p>
+              <FadeIn delay={100}>
+                <p className="text-lg mb-6 dark:text-gray-300">
+                  At the heart of Sapp Capital Advisors is a relentless drive to
+                  solve problems. Our analytical skills shine brightest when
+                  applied to unraveling the knots of complex real estate
+                  challenges. We are not just thinkers but doers, providing
+                  concrete solutions that have tangible impacts on our clients'
+                  ventures.
+                </p>
+              </FadeIn>
+              <FadeIn delay={200}>
+                <p className="text-lg mb-6 dark:text-gray-300">
+                  We stand at the intersection of strategic real estate investment
+                  and sophisticated financial structuring. Our substantial
+                  experience in the American real estate market is inherited from
+                  deep institutional backgrounds, defining our nuanced
+                  understanding of market conditions and business strategy.
+                </p>
+              </FadeIn>
+              <FadeIn delay={300}>
+                <p className="text-lg dark:text-gray-300">
+                  We are a dedicated partner invested in your success. Our years
+                  of institutional experience have been honed to deliver
+                  user-friendly tools, models, and strategies that are not only
+                  sophisticated but also accessible and practical.
+                </p>
+              </FadeIn>
             </div>
           </div>
         </section>
@@ -211,8 +238,8 @@ interface ServiceCardProps {
 
 function ServiceCard({ icon, title, description }: ServiceCardProps) {
   return (
-    <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow border-t-4 border-blue-500">
-      <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-full inline-block mb-6 text-blue-600 dark:text-blue-400">
+    <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-blue-500 hover:scale-105 hover:border-blue-600 group">
+      <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-full inline-block mb-6 text-blue-600 dark:text-blue-400 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
         {icon}
       </div>
       <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -230,11 +257,11 @@ interface ClientCardProps {
 
 function ClientCard({ title, description }: ClientCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-blue-500">
+    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600 hover:scale-[1.02] group">
       <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
         {title}
       </h3>
-      <div className="h-1 w-16 bg-blue-500 mb-4 rounded-full"></div>
+      <div className="h-1 w-16 bg-blue-500 mb-4 rounded-full transition-all duration-300 group-hover:w-24 group-hover:bg-blue-600"></div>
       <p className="text-gray-600 dark:text-gray-300">{description}</p>
     </div>
   );

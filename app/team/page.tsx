@@ -115,14 +115,14 @@ function TeamMember({
   linkedinUrl,
 }: TeamMemberProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-      <div className="mb-4">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group">
+      <div className="mb-4 overflow-hidden rounded-lg">
         <Image
           src={imageSrc}
           alt={name}
           width={200}
           height={200}
-          className="rounded-lg mx-auto"
+          className="rounded-lg mx-auto transition-transform duration-300 group-hover:scale-110"
         />
       </div>
       <div className="flex items-center gap-2 mb-2">
