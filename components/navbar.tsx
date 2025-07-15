@@ -25,18 +25,10 @@ export function Navbar() {
             <ul className="flex space-x-6">
               <li>
                 <a
-                  href="/book"
+                  href="/#services"
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  Book a Meeting
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://blog.sapp.capital/contact/"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Contact
+                  Services
                 </a>
               </li>
               <li>
@@ -49,34 +41,10 @@ export function Navbar() {
               </li>
               <li>
                 <a
-                  href="/#services"
+                  href="/book"
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#clients"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Clients
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/team"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Team
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#pricing"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Pricing
+                  Schedule an Appointment
                 </a>
               </li>
             </ul>

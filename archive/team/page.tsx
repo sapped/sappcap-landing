@@ -22,13 +22,6 @@ export default function TeamPage() {
                 linkedinUrl="https://www.linkedin.com/in/edwardsapp/"
               />
               <TeamMember
-                name="Gabriel Rodriguez"
-                title="Senior Analyst"
-                description="Extensive expertise in financial modeling, strategic planning, and asset management across banking and real estate sectors. Known for client-centered, customized financial solutions and hands-on problem-solving."
-                imageSrc="/images/gabriel_blue.jpg"
-                linkedinUrl="https://www.linkedin.com/in/ggrodriguezm/"
-              />
-              <TeamMember
                 name="Baltazar Buelna"
                 title="Junior Analyst"
                 description="Extensive background in portfolio strategy and data-driven underwriting, combining advanced Excel modeling with hands-on process improvements. Skilled in distilling complex insights into investor-ready presentations and optimizing workflows for faster, more accurate decision-making. Certified in Bloomberg Market Concepts, advanced financial analysis (ITESM), and Excel (ITESM), with additional coursework at LSE and Copenhagen Business School."

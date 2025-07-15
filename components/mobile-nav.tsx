@@ -31,15 +31,6 @@ export function MobileNav() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="https://blog.sapp.capital"
-                    onClick={handleClose}
-                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="#services"
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
@@ -49,38 +40,20 @@ export function MobileNav() {
                 </li>
                 <li>
                   <a
-                    href="#clients"
+                    href="https://blog.sapp.capital"
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
-                    Clients
+                    Blog
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/team"
+                    href="/book"
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
-                    Team
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#pricing"
-                    onClick={handleClose}
-                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    onClick={handleClose}
-                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Contact
+                    Schedule an Appointment
                   </a>
                 </li>
               </ul>
