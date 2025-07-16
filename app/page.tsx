@@ -18,43 +18,81 @@ export default function LandingPage() {
                 Institutional Expertise Without The Red Tape
               </h2>
               <p className="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
-                Complex deal modeling that actually closes
+                CRE experts. 9+ years. $40B+ buy-side transactions. All assets
+                and strategies. Faster than fire drills.
               </p>
               <a
                 href="https://cal.com/sappcapital"
                 className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
               >
-                Get Your Deal Reviewed{" "}
-                <ArrowRight className="ml-2 w-5 h-5" />
+                Get Your Deal Reviewed <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
           </div>
         </section>
 
         <section className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
               <FadeIn>
                 <div className="space-y-3">
-                  <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">9+</h3>
-                  <p className="text-gray-900 dark:text-gray-100 font-semibold">Years Experience</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Institutional & Boutique</p>
+                  <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
+                    9+
+                  </h3>
+                  <p className="text-gray-900 dark:text-gray-100 font-semibold">
+                    Years Experience
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Institutional & Boutique
+                  </p>
                 </div>
               </FadeIn>
               <FadeIn delay={100}>
-                <div className="space-y-3">
-                  <a href="https://www.upwork.com/freelancers/~01cad6d58a031067ce" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform inline-block">
-                    <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">100%</h3>
-                    <p className="text-gray-900 dark:text-gray-100 font-semibold">Job Success ↗</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Top Rated Plus on Upwork</p>
-                  </a>
-                </div>
+                <a
+                  href="https://www.upwork.com/freelancers/~01cad6d58a031067ce"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block hover:scale-105 transition-transform"
+                >
+                  <div className="space-y-3">
+                    <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                      100%
+                    </h3>
+                    <p className="text-gray-900 dark:text-gray-100 font-semibold">
+                      Job Success ↗
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Top Rated Plus on Upwork
+                    </p>
+                  </div>
+                </a>
               </FadeIn>
               <FadeIn delay={200}>
                 <div className="space-y-3">
-                  <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">$40B+</h3>
-                  <p className="text-gray-900 dark:text-gray-100 font-semibold">Deal Experience</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">M&A • LBOs • Portfolio Sales</p>
+                  <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
+                    $40B+
+                  </h3>
+                  <p className="text-gray-900 dark:text-gray-100 font-semibold">
+                    Deal Experience
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Acquisitions • M&A • LBOs • Debt Restructuring • Value Add •
+                    Development
+                  </p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={300}>
+                <div className="space-y-3">
+                  <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
+                    All Assets
+                  </h3>
+                  <p className="text-gray-900 dark:text-gray-100 font-semibold">
+                    Every Property Type
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Multifamily • Industrial • Retail • Self Storage • Office •
+                    Everything In Between
+                  </p>
                 </div>
               </FadeIn>
             </div>
@@ -177,26 +215,32 @@ export default function LandingPage() {
             <div className="max-w-3xl mx-auto">
               <FadeIn delay={100}>
                 <p className="text-lg mb-6 dark:text-gray-300">
-                  Sapp Capital Advisors brings institutional-caliber expertise to every engagement. With over 
-                  9 years analyzing complex real estate transactions across all major asset classes, we've 
-                  developed sophisticated methodologies that deliver actionable insights for institutional 
-                  investors, developers, and fund managers.
+                  Sapp Capital Advisors brings institutional-caliber expertise
+                  to every engagement. With over 9 years analyzing complex real
+                  estate transactions across all major asset classes, we've
+                  developed sophisticated methodologies that deliver actionable
+                  insights for institutional investors, developers, and fund
+                  managers.
                 </p>
               </FadeIn>
               <FadeIn delay={200}>
                 <p className="text-lg mb-6 dark:text-gray-300">
-                  Our track record includes first-hand experience on transformative transactions: $11.4B public REIT 
-                  privatization, $3.5B life science portfolio sale, $1.2B self storage acquisition, and $27.5B luxury 
-                  retail portfolio management. We excel at complex financial modeling, from back-of-envelope calculations 
-                  to 200+ asset corporate models with sophisticated waterfall structures.
+                  Our track record includes first-hand experience on
+                  transformative transactions: $11.4B public REIT privatization,
+                  $3.5B life science portfolio sale, $1.2B self storage
+                  acquisition, and $27.5B luxury retail portfolio management. We
+                  excel at complex financial modeling, from back-of-envelope
+                  calculations to 200+ asset corporate models with sophisticated
+                  waterfall structures.
                 </p>
               </FadeIn>
               <FadeIn delay={300}>
                 <p className="text-lg dark:text-gray-300">
-                  Whether you're a hedge fund evaluating distressed opportunities, a developer structuring 
-                  complex capital stacks, or an investor seeking market intelligence, we deliver the same 
-                  institutional-quality analysis and strategic thinking that drives success at the world's 
-                  leading real estate firms.
+                  Whether you're a hedge fund evaluating distressed
+                  opportunities, a developer structuring complex capital stacks,
+                  or an investor seeking market intelligence, we deliver the
+                  same institutional-quality analysis and strategic thinking
+                  that drives success at the world's leading real estate firms.
                 </p>
               </FadeIn>
             </div>
