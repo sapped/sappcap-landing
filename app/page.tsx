@@ -22,10 +22,10 @@ export default function LandingPage() {
                 and strategies. Faster than fire drills.
               </p>
               <a
-                href="https://cal.com/sappcapital"
+                href="https://underwriting.sapp.capital"
                 className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
               >
-                Get Your Deal Reviewed <ArrowRight className="ml-2 w-5 h-5" />
+                Let's Connect <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
           </div>
@@ -112,6 +112,10 @@ export default function LandingPage() {
                   icon={<BarChart className="w-8 h-8" />}
                   title="Bulletproof Modeling"
                   description="Don't lose money on broken formulas. We've caught every modeling error imaginable - from circular references killing returns to waterfalls that leak cash."
+                  link={{
+                    text: "See our model templates",
+                    href: "https://underwriting.sapp.capital/docs/multifamily"
+                  }}
                 />
               </FadeIn>
               <FadeIn delay={200}>
@@ -195,10 +199,10 @@ export default function LandingPage() {
             </div>
             <div className="text-center mt-12">
               <a
-                href="https://cal.com/sappcapital"
+                href="https://underwriting.sapp.capital"
                 className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg text-lg font-medium"
               >
-                Claim Your Strategy Session{" "}
+                Let's Connect{" "}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
@@ -256,11 +260,11 @@ export default function LandingPage() {
             </p>
             <div className="flex justify-center space-x-6">
               <a
-                href="https://cal.com/sappcapital"
+                href="https://underwriting.sapp.capital"
                 className="flex items-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
                 <Calendar className="w-5 h-5 mr-2" />
-                Get Your Deal Reviewed
+                Let's Connect
               </a>
             </div>
           </div>
@@ -304,18 +308,32 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  link?: {
+    text: string;
+    href: string;
+  };
 }
 
-function ServiceCard({ icon, title, description }: ServiceCardProps) {
+function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
   return (
-    <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-blue-500 hover:scale-105 hover:border-blue-600 group">
-      <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-full inline-block mb-6 text-blue-600 dark:text-blue-400 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
+    <div className="h-full flex flex-col p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-blue-500 hover:scale-105 hover:border-blue-600 group">
+      <div className="w-16 h-16 flex items-center justify-center bg-blue-50 dark:bg-blue-900/20 rounded-full mb-6 text-blue-600 dark:text-blue-400 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
         {icon}
       </div>
       <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-300">{description}</p>
+      <p className="text-gray-600 dark:text-gray-300 flex-grow">{description}</p>
+      {link ? (
+        <a
+          href={link.href}
+          className="inline-flex items-center mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+        >
+          → {link.text}
+        </a>
+      ) : (
+        <div className="mt-4 h-6" />
+      )}
     </div>
   );
 }

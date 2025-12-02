@@ -41,10 +41,10 @@ export function Navbar() {
               </li>
               <li>
                 <a
-                  href="/book"
+                  href="https://underwriting.sapp.capital/docs/multifamily"
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  Schedule an Appointment
+                  Browse Templates
                 </a>
               </li>
             </ul>

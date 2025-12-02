@@ -28,9 +28,9 @@ export function FloatingCTA() {
 
   return (
     <a
-      href="https://cal.com/sappcapital"
+      href="https://underwriting.sapp.capital"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110 md:hidden animate-bounce"
-      aria-label="Schedule an appointment"
+      aria-label="Let's Connect"
     >
       <Calendar className="w-6 h-6" />
     </a>
