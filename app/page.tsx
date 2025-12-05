@@ -13,14 +13,14 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 max-w-4xl text-center">
             <div className="relative z-10">
               <span className="inline-block px-4 py-1 bg-blue-600/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
-                Institutional Experience • Entrepreneurial Agility
+                $40B+ Transaction Experience
               </span>
               <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Institutional Expertise Without The Red Tape
               </h2>
               <p className="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
-                CRE experts. 9+ years. $40B+ buy-side transactions. All assets
-                and strategies. Faster than fire drills.
+                CRE experts. 9+ years. All assets and strategies.
+                Delivered in weeks, not months.
               </p>
               <a
                 href="https://underwriting.sapp.capital"
@@ -100,43 +100,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="services" className="py-20">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <FadeIn>
-              <h2 className="text-2xl font-medium text-center mb-12 dark:text-white">
-                Core Services
-              </h2>
-            </FadeIn>
-            <div className="grid md:grid-cols-3 gap-8">
-              <FadeIn delay={100}>
-                <ServiceCard
-                  icon={<BarChart className="w-8 h-8" />}
-                  title="Bulletproof Modeling"
-                  description="Don't lose money on broken formulas. We've caught every modeling error imaginable - from circular references killing returns to waterfalls that leak cash."
-                  link={{
-                    text: "See our model templates",
-                    href: "https://underwriting.sapp.capital/docs/multifamily"
-                  }}
-                />
-              </FadeIn>
-              <FadeIn delay={200}>
-                <ServiceCard
-                  icon={<Globe className="w-8 h-8" />}
-                  title="Deal Strategy"
-                  description="Stop leaving money on the table. Our institutional playbooks identify value others miss and structure deals to maximize returns."
-                />
-              </FadeIn>
-              <FadeIn delay={300}>
-                <ServiceCard
-                  icon={<Building className="w-8 h-8" />}
-                  title="Market Intelligence"
-                  description="Don't invest blind. Access the same data and insights that $100B+ funds use to identify markets before they peak."
-                />
-              </FadeIn>
-            </div>
-          </div>
-        </section>
-
         <section id="clients" className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4">
             <FadeIn>
@@ -163,6 +126,52 @@ export default function LandingPage() {
                   company="Washington Prime Group"
                   logo="/clients/wpg-logo.webp"
                   url="https://wpgus.com/"
+                />
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" className="py-20">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <FadeIn>
+              <h2 className="text-2xl font-medium text-center mb-4 dark:text-white">
+                Core Services
+              </h2>
+            </FadeIn>
+            <FadeIn delay={50}>
+              <div className="flex flex-wrap justify-center gap-2 mb-12">
+                {['Multifamily', 'Industrial', 'Office', 'Retail', 'Self Storage', 'Hospitality', 'Life Science', 'SFR', 'Senior Housing', 'Student Housing', 'NNN', 'Mixed-Use'].map((asset) => (
+                  <span key={asset} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700">
+                    {asset}
+                  </span>
+                ))}
+              </div>
+            </FadeIn>
+            <div className="grid md:grid-cols-3 gap-8">
+              <FadeIn delay={100}>
+                <ServiceCard
+                  icon={<BarChart className="w-8 h-8" />}
+                  title="Bulletproof Modeling"
+                  description="Don't lose money on broken formulas. We've caught every modeling error imaginable - from circular references killing returns to waterfalls that leak cash."
+                  link={{
+                    text: "See our model templates",
+                    href: "https://underwriting.sapp.capital/docs/multifamily"
+                  }}
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <ServiceCard
+                  icon={<Globe className="w-8 h-8" />}
+                  title="Deal Strategy"
+                  description="Stop leaving money on the table. Our institutional playbooks identify value others miss and structure deals to maximize returns."
+                />
+              </FadeIn>
+              <FadeIn delay={300}>
+                <ServiceCard
+                  icon={<Building className="w-8 h-8" />}
+                  title="Market Intelligence"
+                  description="Don't invest blind. Access the same data and insights that $100B+ funds use to identify markets before they peak."
                 />
               </FadeIn>
             </div>
