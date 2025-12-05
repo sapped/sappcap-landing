@@ -1,4 +1,5 @@
 import { ArrowRight, BarChart, Building, Globe, Calendar } from "lucide-react";
+import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 
@@ -143,29 +144,25 @@ export default function LandingPage() {
                 Trusted By Industry Leaders
               </h2>
             </FadeIn>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <FadeIn delay={100}>
-                <ClientCard
-                  title="Global Hedge Fund"
-                  description="A major hedge fund (~$18B AUM), focused on distressed debt and loan-to-own strategies across various sectors."
+                <TestimonialCard
+                  quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
+                  name="Chris Malooly"
+                  title="President"
+                  company="EPX Construction"
+                  logo="/clients/epx-logo.png"
+                  url="https://epxconstruction.com/"
                 />
               </FadeIn>
               <FadeIn delay={200}>
-                <ClientCard
-                  title="Large Mall Operator"
-                  description="A prominent retail-focused real estate firm (160+ properties). Our work includes strategic initiatives directly with the office of the CIO."
-                />
-              </FadeIn>
-              <FadeIn delay={300}>
-                <ClientCard
-                  title="Multifamily Development Firm"
-                  description="Currently active on large-scale projects, including one development with ~150 individual units and another with ~180 apartments in two buildings, both with complex capital structures."
-                />
-              </FadeIn>
-              <FadeIn delay={400}>
-                <ClientCard
-                  title="Additional Partnerships"
-                  description="TX based industrial and retail developer, southwest land aggregator, self-storage fund manager, OH based construction CFO, Bay Area student housing developer, proprietary demographic market selelection, and more."
+                <TestimonialCard
+                  quote="Sapp Capital Advisors designed and built our ~170 asset corporate model from scratch, and they've been invaluable for knowledge redundancy and ongoing support ever since."
+                  name="David Keane"
+                  title="Chief Investment Officer"
+                  company="Washington Prime Group"
+                  logo="/clients/wpg-logo.webp"
+                  url="https://wpgus.com/"
                 />
               </FadeIn>
             </div>
@@ -338,19 +335,36 @@ function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
   );
 }
 
-interface ClientCardProps {
+interface TestimonialCardProps {
+  quote: string;
+  name: string;
   title: string;
-  description: string;
+  company: string;
+  logo: string;
+  url: string;
 }
 
-function ClientCard({ title, description }: ClientCardProps) {
+function TestimonialCard({ quote, name, title, company, logo, url }: TestimonialCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600 hover:scale-[1.02] group">
-      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-        {title}
-      </h3>
-      <div className="h-1 w-16 bg-blue-500 mb-4 rounded-full transition-all duration-300 group-hover:w-24 group-hover:bg-blue-600"></div>
-      <p className="text-gray-600 dark:text-gray-300">{description}</p>
+    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600 hover:scale-[1.02] group flex flex-col h-full">
+      <p className="text-gray-600 dark:text-gray-300 italic text-lg flex-grow mb-6">
+        "{quote}"
+      </p>
+      <div className="flex items-center justify-between mt-auto">
+        <div>
+          <p className="font-semibold text-gray-900 dark:text-white">{name}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
+        </div>
+        <a href={url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+          <Image
+            src={logo}
+            alt={company}
+            height={32}
+            width={120}
+            className="h-8 w-auto object-contain"
+          />
+        </a>
+      </div>
     </div>
   );
 }
