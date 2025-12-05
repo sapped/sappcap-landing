@@ -32,6 +32,38 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="clients" className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+          <div className="container mx-auto px-4">
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
+                Trusted By Industry Leaders
+              </h2>
+            </FadeIn>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <FadeIn delay={100}>
+                <TestimonialCard
+                  quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
+                  name="Chris Malooly"
+                  title="President"
+                  company="EPX Construction"
+                  logo="/clients/epx-logo.png"
+                  url="https://epxconstruction.com/"
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <TestimonialCard
+                  quote="Sapp Capital Advisors designed and built our ~170 asset corporate model from scratch, and they've been invaluable for knowledge redundancy and ongoing support ever since."
+                  name="David Keane"
+                  title="Chief Investment Officer"
+                  company="Washington Prime Group"
+                  logo="/clients/wpg-logo.webp"
+                  url="https://wpgus.com/"
+                />
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
@@ -95,38 +127,6 @@ export default function LandingPage() {
                     Everything In Between
                   </p>
                 </div>
-              </FadeIn>
-            </div>
-          </div>
-        </section>
-
-        <section id="clients" className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-          <div className="container mx-auto px-4">
-            <FadeIn>
-              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-                Trusted By Industry Leaders
-              </h2>
-            </FadeIn>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <FadeIn delay={100}>
-                <TestimonialCard
-                  quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
-                  name="Chris Malooly"
-                  title="President"
-                  company="EPX Construction"
-                  logo="/clients/epx-logo.png"
-                  url="https://epxconstruction.com/"
-                />
-              </FadeIn>
-              <FadeIn delay={200}>
-                <TestimonialCard
-                  quote="Sapp Capital Advisors designed and built our ~170 asset corporate model from scratch, and they've been invaluable for knowledge redundancy and ongoing support ever since."
-                  name="David Keane"
-                  title="Chief Investment Officer"
-                  company="Washington Prime Group"
-                  logo="/clients/wpg-logo.webp"
-                  url="https://wpgus.com/"
-                />
               </FadeIn>
             </div>
           </div>
