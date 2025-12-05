@@ -132,10 +132,10 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="services" className="py-20">
+        <section id="services" className="py-12">
           <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
-              <h2 className="text-2xl font-medium text-center mb-12 dark:text-white">
+              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
                 Core Services
               </h2>
             </FadeIn>
@@ -178,7 +178,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="about" className="py-20">
+        <section id="about" className="py-12">
           <div className="container mx-auto px-4">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
