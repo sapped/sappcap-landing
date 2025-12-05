@@ -1,4 +1,5 @@
 import { ArrowRight, BarChart, Building, Globe, Calendar } from "lucide-react";
+import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 
@@ -12,14 +13,14 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 max-w-4xl text-center">
             <div className="relative z-10">
               <span className="inline-block px-4 py-1 bg-blue-600/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
-                Institutional Experience • Entrepreneurial Agility
+                $40B+ Transaction Experience
               </span>
               <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Institutional Expertise Without The Red Tape
               </h2>
               <p className="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
-                CRE experts. 9+ years. $40B+ buy-side transactions. All assets
-                and strategies. Faster than fire drills.
+                CRE experts. 9+ years. All assets and strategies.
+                Delivered in weeks, not months.
               </p>
               <a
                 href="https://underwriting.sapp.capital"
@@ -31,7 +32,39 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <section id="clients" className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+          <div className="container mx-auto px-4">
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
+                Trusted By Industry Leaders
+              </h2>
+            </FadeIn>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <FadeIn delay={100}>
+                <TestimonialCard
+                  quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
+                  name="Chris Malooly"
+                  title="President"
+                  company="EPX Construction"
+                  logo="/clients/epx-logo.png"
+                  url="https://epxconstruction.com/"
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <TestimonialCard
+                  quote="Sapp Capital Advisors designed and built our ~170 asset corporate model from scratch, and they've been invaluable for knowledge redundancy and ongoing support ever since."
+                  name="David Keane"
+                  title="Chief Investment Officer"
+                  company="Washington Prime Group"
+                  logo="/clients/wpg-logo.webp"
+                  url="https://wpgus.com/"
+                />
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
               <FadeIn>
@@ -99,10 +132,10 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="services" className="py-20">
+        <section id="services" className="py-12">
           <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
-              <h2 className="text-2xl font-medium text-center mb-12 dark:text-white">
+              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
                 Core Services
               </h2>
             </FadeIn>
@@ -133,83 +166,19 @@ export default function LandingPage() {
                 />
               </FadeIn>
             </div>
-          </div>
-        </section>
-
-        <section id="clients" className="bg-gray-50 dark:bg-black py-20">
-          <div className="container mx-auto px-4">
-            <FadeIn>
-              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-                Trusted By Industry Leaders
-              </h2>
+            <FadeIn delay={400}>
+              <div className="flex flex-wrap justify-center gap-2 mt-12">
+                {['Multifamily', 'Industrial', 'Office', 'Retail', 'Self Storage', 'Hospitality', 'Life Science', 'SFR', 'Senior Housing', 'Student Housing', 'NNN', 'Mixed-Use'].map((asset) => (
+                  <span key={asset} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700">
+                    {asset}
+                  </span>
+                ))}
+              </div>
             </FadeIn>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <FadeIn delay={100}>
-                <ClientCard
-                  title="Global Hedge Fund"
-                  description="A major hedge fund (~$18B AUM), focused on distressed debt and loan-to-own strategies across various sectors."
-                />
-              </FadeIn>
-              <FadeIn delay={200}>
-                <ClientCard
-                  title="Large Mall Operator"
-                  description="A prominent retail-focused real estate firm (160+ properties). Our work includes strategic initiatives directly with the office of the CIO."
-                />
-              </FadeIn>
-              <FadeIn delay={300}>
-                <ClientCard
-                  title="Multifamily Development Firm"
-                  description="Currently active on large-scale projects, including one development with ~150 individual units and another with ~180 apartments in two buildings, both with complex capital structures."
-                />
-              </FadeIn>
-              <FadeIn delay={400}>
-                <ClientCard
-                  title="Additional Partnerships"
-                  description="TX based industrial and retail developer, southwest land aggregator, self-storage fund manager, OH based construction CFO, Bay Area student housing developer, proprietary demographic market selelection, and more."
-                />
-              </FadeIn>
-            </div>
           </div>
         </section>
 
-        <section id="pricing" className="bg-gray-50 dark:bg-black py-20">
-          <div className="container mx-auto px-4 max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-              Engagement Options
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <PricingCard
-                title="Project-Based Consulting"
-                items={[
-                  "Tailored solutions for specific projects",
-                  "Clear scope and deliverables",
-                  "Flexible timeline to meet your needs",
-                  "Contact us for custom pricing",
-                ]}
-              />
-              <PricingCard
-                title="Ongoing Advisory Partnership"
-                items={[
-                  "Monthly retainer options available",
-                  "Priority access to our team",
-                  "Regular strategy sessions",
-                  "Discounted rates for long-term engagement",
-                ]}
-              />
-            </div>
-            <div className="text-center mt-12">
-              <a
-                href="https://underwriting.sapp.capital"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg text-lg font-medium"
-              >
-                Let's Connect{" "}
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="py-20">
+        <section id="about" className="py-12">
           <div className="container mx-auto px-4">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
@@ -338,42 +307,37 @@ function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
   );
 }
 
-interface ClientCardProps {
+interface TestimonialCardProps {
+  quote: string;
+  name: string;
   title: string;
-  description: string;
+  company: string;
+  logo: string;
+  url: string;
 }
 
-function ClientCard({ title, description }: ClientCardProps) {
+function TestimonialCard({ quote, name, title, company, logo, url }: TestimonialCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600 hover:scale-[1.02] group">
-      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-        {title}
-      </h3>
-      <div className="h-1 w-16 bg-blue-500 mb-4 rounded-full transition-all duration-300 group-hover:w-24 group-hover:bg-blue-600"></div>
-      <p className="text-gray-600 dark:text-gray-300">{description}</p>
+    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600 hover:scale-[1.02] group flex flex-col h-full">
+      <p className="text-gray-600 dark:text-gray-300 italic text-lg flex-grow mb-6">
+        "{quote}"
+      </p>
+      <div className="flex items-center justify-between mt-auto">
+        <div>
+          <p className="font-semibold text-gray-900 dark:text-white">{name}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
+        </div>
+        <a href={url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+          <Image
+            src={logo}
+            alt={company}
+            height={32}
+            width={120}
+            className="h-8 w-auto object-contain"
+          />
+        </a>
+      </div>
     </div>
   );
 }
 
-interface PricingCardProps {
-  title: string;
-  items: string[];
-}
-
-function PricingCard({ title, items }: PricingCardProps) {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-      <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-        {title}
-      </h3>
-      <ul className="space-y-2">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-start">
-            <ArrowRight className="w-5 h-5 text-black dark:text-white mr-2 flex-shrink-0 mt-1" />
-            <span className="text-gray-900 dark:text-white">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
