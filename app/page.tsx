@@ -1,7 +1,42 @@
 import { ArrowRight, BarChart, Building, Globe, Calendar } from "lucide-react";
-import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
+import { TestimonialCarousel } from "@/components/testimonial-carousel";
+
+const testimonials = [
+  {
+    quote: "Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating.",
+    name: "Chris Malooly",
+    title: "President",
+    company: "EPX Construction",
+    logo: "/clients/epx-logo.png",
+    url: "https://epxconstruction.com/",
+  },
+  {
+    quote: "Sapp Capital Advisors designed and built our ~170 asset corporate model from scratch, and they've been invaluable for knowledge redundancy and ongoing support ever since.",
+    name: "David Keane",
+    title: "Chief Investment Officer",
+    company: "Washington Prime Group",
+    logo: "/clients/wpg-logo.webp",
+    url: "https://wpgus.com/",
+  },
+  {
+    quote: "SCA built our county-wide land pricing engine. Tens of thousands of parcels, offers out in days.",
+    name: "Robert Dow",
+    title: "Manager",
+    company: "Remarkable Land LLC",
+    logo: "/clients/remarkable-land-logo.png",
+    url: "https://remarkableland.com/",
+  },
+  {
+    quote: "No back-and-forth, no delays. Sapp Capital Advisors gets on a call and we knock it out together. They've delivered for me across office, hotels, and everything in between.",
+    name: "Jonathan Ikenna",
+    title: "Partner",
+    company: "Anambra Management LP",
+    logo: "/clients/anambra-logo.svg",
+    url: "https://www.anambra-lp.com/",
+  },
+];
 
 export default function LandingPage() {
   return (
@@ -39,48 +74,7 @@ export default function LandingPage() {
                 Trusted By Industry Leaders
               </h2>
             </FadeIn>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <FadeIn delay={100}>
-                <TestimonialCard
-                  quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
-                  name="Chris Malooly"
-                  title="President"
-                  company="EPX Construction"
-                  logo="/clients/epx-logo.png"
-                  url="https://epxconstruction.com/"
-                />
-              </FadeIn>
-              <FadeIn delay={200}>
-                <TestimonialCard
-                  quote="Sapp Capital Advisors designed and built our ~170 asset corporate model from scratch, and they've been invaluable for knowledge redundancy and ongoing support ever since."
-                  name="David Keane"
-                  title="Chief Investment Officer"
-                  company="Washington Prime Group"
-                  logo="/clients/wpg-logo.webp"
-                  url="https://wpgus.com/"
-                />
-              </FadeIn>
-              <FadeIn delay={300}>
-                <TestimonialCard
-                  quote="SCA built our county-wide land pricing engine. Tens of thousands of parcels, offers out in days."
-                  name="Robert Dow"
-                  title="Manager"
-                  company="Remarkable Land LLC"
-                  logo="/clients/remarkable-land-logo.png"
-                  url="https://remarkableland.com/"
-                />
-              </FadeIn>
-              <FadeIn delay={400}>
-                <TestimonialCard
-                  quote="No back-and-forth, no delays. Sapp Capital Advisors gets on a call and we knock it out together. They've delivered for me across office, hotels, and everything in between."
-                  name="Jonathan Ikenna"
-                  title="Partner"
-                  company="Anambra Management LP"
-                  logo="/clients/anambra-logo.svg"
-                  url="https://www.anambra-lp.com/"
-                />
-              </FadeIn>
-            </div>
+            <TestimonialCarousel testimonials={testimonials} />
           </div>
         </section>
 
@@ -327,37 +321,4 @@ function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
   );
 }
 
-interface TestimonialCardProps {
-  quote: string;
-  name: string;
-  title: string;
-  company: string;
-  logo: string;
-  url: string;
-}
-
-function TestimonialCard({ quote, name, title, company, logo, url }: TestimonialCardProps) {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600 hover:scale-[1.02] group flex flex-col h-full">
-      <p className="text-gray-600 dark:text-gray-300 italic text-lg flex-grow mb-6">
-        "{quote}"
-      </p>
-      <div className="flex items-center justify-between mt-auto">
-        <div>
-          <p className="font-semibold text-gray-900 dark:text-white">{name}</p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
-        </div>
-        <a href={url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-          <Image
-            src={logo}
-            alt={company}
-            height={32}
-            width={120}
-            className="h-8 w-auto object-contain"
-          />
-        </a>
-      </div>
-    </div>
-  );
-}
 
