@@ -39,7 +39,7 @@ export default function LandingPage() {
                 Trusted By Industry Leaders
               </h2>
             </FadeIn>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               <FadeIn delay={100}>
                 <TestimonialCard
                   quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
@@ -58,6 +58,16 @@ export default function LandingPage() {
                   company="Washington Prime Group"
                   logo="/clients/wpg-logo.webp"
                   url="https://wpgus.com/"
+                />
+              </FadeIn>
+              <FadeIn delay={300}>
+                <TestimonialCard
+                  quote="SCA built our county-wide land pricing engine. Tens of thousands of parcels, offers out in days."
+                  name="Robert Dow"
+                  title="Manager"
+                  company="Remarkable Land LLC"
+                  logo="/clients/remarkable-land-logo.png"
+                  url="https://remarkableland.com/"
                 />
               </FadeIn>
             </div>

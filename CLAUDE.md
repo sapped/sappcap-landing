@@ -34,9 +34,45 @@ Sapp Capital Advisors landing page - Commercial Real Estate advisory services
 ### Future Enhancements
 - [ ] Add case studies section (anonymized)
 - [ ] Implement A/B testing for headlines
-- [ ] Add client testimonials
+- [x] Add client testimonials
 - [ ] Create tiered service offerings page
 - [ ] Add blog integration from blog.sapp.capital
+
+## Adding Client Testimonials
+
+Source files are stored in OneDrive:
+- **Logos:** `/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Workstream Tracker/client logos/`
+- **URLs CSV:** Same folder, `client URLs.csv`
+
+### Steps to add a new testimonial:
+
+1. **Add logo to source folder** - Any format (PNG, WEBP, etc.). White-on-transparent works best for dark mode.
+
+2. **Update the CSV** with client name and website URL
+
+3. **Copy logo to project:**
+   ```bash
+   cp "/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Workstream Tracker/client logos/[logo-file]" public/clients/[client-name]-logo.[ext]
+   ```
+
+4. **Add TestimonialCard in `app/page.tsx`** inside the testimonials grid:
+   ```tsx
+   <FadeIn delay={N00}>
+     <TestimonialCard
+       quote="The testimonial quote text"
+       name="Contact Name"
+       title="Their Title"
+       company="Company Name"
+       logo="/clients/[client-name]-logo.[ext]"
+       url="https://their-website.com/"
+     />
+   </FadeIn>
+   ```
+
+5. **Adjust grid columns** if needed:
+   - 2 testimonials: `md:grid-cols-2 max-w-4xl`
+   - 3 testimonials: `md:grid-cols-3 max-w-6xl`
+   - 4+ testimonials: Consider `md:grid-cols-2 lg:grid-cols-4` or stacking rows
 
 ## Project Structure
 - Next.js 14 with TypeScript
