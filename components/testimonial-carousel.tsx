@@ -58,25 +58,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
   }, [isManualMode, goNext]);
 
   return (
-    <div className="relative max-w-6xl mx-auto px-12">
-      {/* Left arrow */}
-      <button
-        onClick={goPrev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-        aria-label="Previous testimonial"
-      >
-        <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-      </button>
-
-      {/* Right arrow */}
-      <button
-        onClick={() => { goNext(); setIsManualMode(true); }}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-        aria-label="Next testimonial"
-      >
-        <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-      </button>
-
+    <div className="relative max-w-4xl mx-auto px-4">
       {/* Cards container */}
       <div className="overflow-hidden">
         <div
@@ -90,8 +72,8 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
               key={`${testimonial.company}-${index}`}
               className="flex-shrink-0 w-full px-2"
             >
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md border-l-4 border-blue-500 flex flex-col h-full max-w-2xl mx-auto">
-                <p className="text-gray-600 dark:text-gray-300 italic text-lg flex-grow mb-6">
+              <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-md border-l-4 border-blue-500 flex flex-col h-full">
+                <p className="text-gray-600 dark:text-gray-300 italic text-base md:text-lg flex-grow mb-6">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div className="flex items-center justify-between mt-auto">
@@ -115,20 +97,38 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
         </div>
       </div>
 
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mt-6">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goTo(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex
-                ? "bg-blue-600 w-6"
-                : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
-            }`}
-            aria-label={`Go to testimonial ${index + 1}`}
-          />
-        ))}
+      {/* Navigation: arrows + dots */}
+      <div className="flex items-center justify-center gap-4 mt-6">
+        <button
+          onClick={goPrev}
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Previous testimonial"
+        >
+          <ChevronLeft className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+        </button>
+
+        <div className="flex gap-2">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goTo(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-blue-600 w-6"
+                  : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 w-2"
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => { goNext(); setIsManualMode(true); }}
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Next testimonial"
+        >
+          <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+        </button>
       </div>
     </div>
   );
