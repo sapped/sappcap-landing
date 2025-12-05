@@ -135,18 +135,9 @@ export default function LandingPage() {
         <section id="services" className="py-20">
           <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
-              <h2 className="text-2xl font-medium text-center mb-4 dark:text-white">
+              <h2 className="text-2xl font-medium text-center mb-12 dark:text-white">
                 Core Services
               </h2>
-            </FadeIn>
-            <FadeIn delay={50}>
-              <div className="flex flex-wrap justify-center gap-2 mb-12">
-                {['Multifamily', 'Industrial', 'Office', 'Retail', 'Self Storage', 'Hospitality', 'Life Science', 'SFR', 'Senior Housing', 'Student Housing', 'NNN', 'Mixed-Use'].map((asset) => (
-                  <span key={asset} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700">
-                    {asset}
-                  </span>
-                ))}
-              </div>
             </FadeIn>
             <div className="grid md:grid-cols-3 gap-8">
               <FadeIn delay={100}>
@@ -175,6 +166,15 @@ export default function LandingPage() {
                 />
               </FadeIn>
             </div>
+            <FadeIn delay={400}>
+              <div className="flex flex-wrap justify-center gap-2 mt-12">
+                {['Multifamily', 'Industrial', 'Office', 'Retail', 'Self Storage', 'Hospitality', 'Life Science', 'SFR', 'Senior Housing', 'Student Housing', 'NNN', 'Mixed-Use'].map((asset) => (
+                  <span key={asset} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700">
+                    {asset}
+                  </span>
+                ))}
+              </div>
+            </FadeIn>
           </div>
         </section>
 
