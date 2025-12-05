@@ -32,7 +32,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <section className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
               <FadeIn>
@@ -100,7 +100,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="clients" className="bg-gray-50 dark:bg-black py-20">
+        <section id="clients" className="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
           <div className="container mx-auto px-4">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
