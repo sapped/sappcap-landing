@@ -31,11 +31,11 @@ export function MobileNav() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="#services"
+                    href="https://underwriting.sapp.capital"
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
-                    Services
+                    Underwriting
                   </a>
                 </li>
                 <li>

@@ -25,10 +25,10 @@ export function Navbar() {
             <ul className="flex space-x-6">
               <li>
                 <a
-                  href="/#services"
+                  href="https://underwriting.sapp.capital"
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  Services
+                  Underwriting
                 </a>
               </li>
               <li>
