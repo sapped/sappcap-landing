@@ -9,17 +9,9 @@ Sapp Capital Advisors landing page - Commercial Real Estate advisory services
 - `npm run lint` - Run linting
 - `npm run typecheck` - Check TypeScript types
 
-## Current Branch: `uw-redesign`
-**Purpose:** Redirect all CTAs to the new underwriting site at https://underwriting.sapp.capital
-
-**Changes Made:**
-- Updated all "Get Your Deal Reviewed" / "Claim Your Strategy Session" buttons to "Let's Connect"
-- Changed all cal.com/sappcapital links to https://underwriting.sapp.capital
-- Updated floating CTA component
-- Updated /book redirect
-- Removed "Schedule an Appointment" from nav (desktop & mobile)
-- Added "Templates" nav item → https://underwriting.sapp.capital/docs/multifamily
-- Added "See our model templates" link to Bulletproof Modeling service card
+## Git Workflow
+- Work on `staging` branch, merge to `main` for production
+- **"sync main"** or **"pull main"** = fetch/pull main, stay on staging
 
 ## TODO List
 
