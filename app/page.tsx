@@ -169,43 +169,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="pricing" className="bg-gray-50 dark:bg-black py-20">
-          <div className="container mx-auto px-4 max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-              Engagement Options
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <PricingCard
-                title="Project-Based Consulting"
-                items={[
-                  "Tailored solutions for specific projects",
-                  "Clear scope and deliverables",
-                  "Flexible timeline to meet your needs",
-                  "Contact us for custom pricing",
-                ]}
-              />
-              <PricingCard
-                title="Ongoing Advisory Partnership"
-                items={[
-                  "Monthly retainer options available",
-                  "Priority access to our team",
-                  "Regular strategy sessions",
-                  "Discounted rates for long-term engagement",
-                ]}
-              />
-            </div>
-            <div className="text-center mt-12">
-              <a
-                href="https://underwriting.sapp.capital"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg text-lg font-medium"
-              >
-                Let's Connect{" "}
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </section>
-
         <section id="about" className="py-20">
           <div className="container mx-auto px-4">
             <FadeIn>
@@ -369,25 +332,3 @@ function TestimonialCard({ quote, name, title, company, logo, url }: Testimonial
   );
 }
 
-interface PricingCardProps {
-  title: string;
-  items: string[];
-}
-
-function PricingCard({ title, items }: PricingCardProps) {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-      <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-        {title}
-      </h3>
-      <ul className="space-y-2">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-start">
-            <ArrowRight className="w-5 h-5 text-black dark:text-white mr-2 flex-shrink-0 mt-1" />
-            <span className="text-gray-900 dark:text-white">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
