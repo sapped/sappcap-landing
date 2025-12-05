@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart, Building, Globe, Calendar } from "lucide-react";
+import { ArrowRight, BarChart, Building, Globe, MessageCircle } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
@@ -246,7 +246,7 @@ export default function LandingPage() {
                 href="https://underwriting.sapp.capital"
                 className="flex items-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
-                <Calendar className="w-5 h-5 mr-2" />
+                <MessageCircle className="w-5 h-5 mr-2" />
                 Let's Connect
               </a>
             </div>

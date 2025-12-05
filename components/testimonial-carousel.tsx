@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
 interface Testimonial {
@@ -16,19 +17,55 @@ interface TestimonialCarouselProps {
 }
 
 export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) {
-  // Duplicate testimonials for seamless infinite scroll
-  const duplicated = [...testimonials, ...testimonials];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isManualMode, setIsManualMode] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardWidth = 416; // 400px + 16px gap
+
+  // Auto-advance every 60 seconds unless in manual mode
+  useEffect(() => {
+    if (isManualMode) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [isManualMode, testimonials.length]);
+
+  // Switch to manual mode on interaction
+  const handleInteraction = () => {
+    setIsManualMode(true);
+  };
+
+  // Handle scroll/swipe
+  const handleScroll = () => {
+    if (!containerRef.current) return;
+    handleInteraction();
+  };
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="flex gap-6 animate-scroll hover:[animation-play-state:paused]">
-        {duplicated.map((testimonial, index) => (
+    <div
+      ref={containerRef}
+      className="relative overflow-x-auto scrollbar-hide"
+      onScroll={handleScroll}
+      onTouchStart={handleInteraction}
+      onMouseDown={handleInteraction}
+    >
+      <div
+        className="flex gap-4 transition-transform duration-500 ease-out px-4"
+        style={{
+          transform: isManualMode ? 'none' : `translateX(-${currentIndex * cardWidth}px)`,
+          width: isManualMode ? 'max-content' : undefined
+        }}
+      >
+        {testimonials.map((testimonial, index) => (
           <div
             key={`${testimonial.company}-${index}`}
             className="flex-shrink-0 w-[400px] bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border-l-4 border-blue-500 flex flex-col"
           >
             <p className="text-gray-600 dark:text-gray-300 italic text-base flex-grow mb-4">
-              "{testimonial.quote}"
+              &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex items-center justify-between mt-auto">
               <div>
