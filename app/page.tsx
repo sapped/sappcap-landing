@@ -39,7 +39,7 @@ export default function LandingPage() {
                 Trusted By Industry Leaders
               </h2>
             </FadeIn>
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <FadeIn delay={100}>
                 <TestimonialCard
                   quote="Sapp Capital Advisors handles everything from quick LOI models to full development underwriting – they've become our go-to for any deal we're evaluating."
@@ -68,6 +68,16 @@ export default function LandingPage() {
                   company="Remarkable Land LLC"
                   logo="/clients/remarkable-land-logo.png"
                   url="https://remarkableland.com/"
+                />
+              </FadeIn>
+              <FadeIn delay={400}>
+                <TestimonialCard
+                  quote="No back-and-forth, no delays. Sapp Capital Advisors gets on a call and we knock it out together. They've delivered for me across office, hotels, and everything in between."
+                  name="Jonathan Ikenna"
+                  title="Partner"
+                  company="Anambra Management LP"
+                  logo="/clients/anambra-logo.svg"
+                  url="https://www.anambra-lp.com/"
                 />
               </FadeIn>
             </div>
