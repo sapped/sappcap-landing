@@ -258,7 +258,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm">
-              &copy; 2025 Sapp Capital Advisors LLC. All rights reserved.
+              &copy; 2023-2025 Sapp Capital Advisors LLC. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <a
