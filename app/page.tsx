@@ -36,6 +36,14 @@ const testimonials = [
     logo: "/clients/anambra-logo.svg",
     url: "https://www.anambra-lp.com/",
   },
+  {
+    quote: "From serviced apartments in Jeddah to mixed-use in Makkah, SCA delivered institutional-grade models and a roadmap for our growth. They understand both the numbers and the strategy.",
+    name: "Omran Sheikh",
+    title: "CEO",
+    company: "ARK Projects",
+    logo: "/clients/ark-projects-logo.png",
+    url: "https://arkpm.com.sa/",
+  },
 ];
 
 export default function LandingPage() {
