@@ -79,7 +79,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                 <div className="flex items-center justify-between mt-auto">
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.title}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.title}, {testimonial.company}</p>
                   </div>
                   <a href={testimonial.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                     <Image
