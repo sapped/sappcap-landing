@@ -33,7 +33,7 @@ Sapp Capital Advisors landing page - Commercial Real Estate advisory services
 ## Adding Client Testimonials
 
 Source files are stored in OneDrive:
-- **Logos:** `/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Workstream Tracker/client logos/`
+- **Logos:** `/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Admin Register/client logos/`
 - **URLs CSV:** Same folder, `client URLs.csv`
 
 ### Steps to add a new testimonial:
@@ -44,27 +44,21 @@ Source files are stored in OneDrive:
 
 3. **Copy logo to project:**
    ```bash
-   cp "/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Workstream Tracker/client logos/[logo-file]" public/clients/[client-name]-logo.[ext]
+   cp "/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Admin Register/client logos/[logo-file]" public/clients/[client-name]-logo.[ext]
    ```
 
-4. **Add TestimonialCard in `app/page.tsx`** inside the testimonials grid:
-   ```tsx
-   <FadeIn delay={N00}>
-     <TestimonialCard
-       quote="The testimonial quote text"
-       name="Contact Name"
-       title="Their Title"
-       company="Company Name"
-       logo="/clients/[client-name]-logo.[ext]"
-       url="https://their-website.com/"
-     />
-   </FadeIn>
+4. **Append an entry to the `testimonials` array at the top of `app/page.tsx`:**
+   ```ts
+   {
+     quote: "The testimonial quote text",
+     name: "Contact Name",
+     title: "Their Title",
+     company: "Company Name",
+     logo: "/clients/[client-name]-logo.[ext]",
+     url: "https://their-website.com/",
+   },
    ```
-
-5. **Adjust grid columns** if needed:
-   - 2 testimonials: `md:grid-cols-2 max-w-4xl`
-   - 3 testimonials: `md:grid-cols-3 max-w-6xl`
-   - 4+ testimonials: Consider `md:grid-cols-2 lg:grid-cols-4` or stacking rows
+   The array is rendered by `<TestimonialCarousel>` — no grid-column or `FadeIn` wrapping needed.
 
 ## Project Structure
 - Next.js 14 with TypeScript
