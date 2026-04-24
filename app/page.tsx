@@ -35,6 +35,7 @@ const testimonials = [
     company: "Anambra Management LP",
     logo: "/clients/anambra-logo.svg",
     url: "https://www.anambra-lp.com/",
+    invertInDark: true,
   },
   {
     quote: "From serviced apartments in Jeddah to mixed-use in Makkah, SCA delivered institutional-grade models and a roadmap for our growth. They understand both the numbers and the strategy.",
@@ -43,6 +44,14 @@ const testimonials = [
     company: "ARK Projects",
     logo: "/clients/ark-projects-logo.png",
     url: "https://arkpm.com.sa/",
+  },
+  {
+    quote: "SCA has been a sounding board since our early student housing deals in the Bay Area. They audit our waterfalls, build our models, and help us think through the details.",
+    name: "Noah Lazarus",
+    title: "Partner",
+    company: "Elmwood Development",
+    logo: "/clients/elmwood-logo.png",
+    url: "https://elmwoodcg.com/",
   },
 ];
 

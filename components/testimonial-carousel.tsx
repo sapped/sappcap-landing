@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 interface Testimonial {
   quote: string;
@@ -11,6 +11,7 @@ interface Testimonial {
   company: string;
   logo: string;
   url: string;
+  invertInDark?: boolean;
 }
 
 interface TestimonialCarouselProps {
@@ -59,6 +60,33 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
 
   return (
     <div className="relative max-w-4xl mx-auto px-4">
+      {/* Logo tiles — each logo in its own card, acts as social proof + nav */}
+      <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 max-w-3xl mx-auto mb-8 md:mb-10">
+        {testimonials.map((testimonial, index) => (
+          <button
+            key={`${testimonial.company}-tab`}
+            onClick={() => goTo(index)}
+            aria-label={`View ${testimonial.company} testimonial`}
+            aria-current={index === currentIndex ? "true" : undefined}
+            className={`relative h-16 md:h-20 flex items-center justify-center rounded-xl border p-3 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+              index === currentIndex
+                ? "bg-white dark:bg-gray-800 border-blue-500 shadow-md"
+                : "bg-gray-50 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700 opacity-75 hover:opacity-100 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm"
+            }`}
+          >
+            <Image
+              src={testimonial.logo}
+              alt={testimonial.company}
+              height={60}
+              width={140}
+              className={`max-h-full w-auto max-w-full object-contain ${
+                testimonial.invertInDark ? "dark:invert" : ""
+              }`}
+            />
+          </button>
+        ))}
+      </div>
+
       {/* Cards container */}
       <div className="overflow-hidden">
         <div
@@ -76,20 +104,20 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                 <p className="text-gray-600 dark:text-gray-300 italic text-base md:text-lg flex-grow mb-6">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
-                <div className="flex items-center justify-between mt-auto">
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.title}, {testimonial.company}</p>
-                  </div>
-                  <a href={testimonial.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                    <Image
-                      src={testimonial.logo}
-                      alt={testimonial.company}
-                      height={32}
-                      width={120}
-                      className="h-8 w-auto object-contain"
-                    />
-                  </a>
+                <div className="mt-auto">
+                  <p className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {testimonial.title},{" "}
+                    <a
+                      href={testimonial.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 underline underline-offset-2 decoration-blue-600/40 dark:decoration-blue-400/40 hover:decoration-blue-600 dark:hover:decoration-blue-400 transition-colors"
+                    >
+                      {testimonial.company}
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -97,34 +125,18 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
         </div>
       </div>
 
-      {/* Navigation: arrows + dots */}
+      {/* Sequential cycling arrows */}
       <div className="flex items-center justify-center gap-4 mt-6">
         <button
           onClick={goPrev}
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="w-4 h-4 text-gray-600 dark:text-gray-300" />
         </button>
-
-        <div className="flex gap-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goTo(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "bg-blue-600 w-6"
-                  : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 w-2"
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
-
         <button
           onClick={() => { goNext(); setIsManualMode(true); }}
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           aria-label="Next testimonial"
         >
           <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-300" />
