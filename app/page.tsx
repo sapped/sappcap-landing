@@ -1,7 +1,8 @@
-import { ArrowRight, BarChart, Building, Globe, MessageCircle } from "lucide-react";
+import { ArrowRight, Gauge, Layers, Link2, MessageCircle } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
+import { HeroVideoCarousel } from "@/components/hero-video-carousel";
 
 const testimonials = [
   {
@@ -61,18 +62,24 @@ export default function LandingPage() {
       <Navbar />
 
       <main className="pt-16">
-        <section className="bg-gray-900 dark:bg-black text-white py-32">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+        <section className="relative bg-gray-900 dark:bg-black text-white py-32 overflow-hidden">
+          {/* Background video carousel. 4 landscape city aerials, self-hosted, CC0 from Pexels. */}
+          <HeroVideoCarousel />
+          {/* Minimal gradient overlay - mostly transparent in the middle so the city carries through */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"
+          />
+          <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
             <div className="relative z-10">
-              <span className="inline-block px-4 py-1 bg-blue-600/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-1 bg-blue-600/30 text-blue-200 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
                 $40B+ Transaction Experience
               </span>
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Institutional Expertise Without The Red Tape
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight [text-shadow:_0_2px_24px_rgba(0,0,0,0.6)]">
+                Complex CRE deals on short fuses.
               </h2>
-              <p className="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
-                CRE experts. 9+ years. All assets and strategies.
-                Delivered in weeks, not months.
+              <p className="text-xl mb-8 text-gray-100 max-w-2xl mx-auto [text-shadow:_0_2px_16px_rgba(0,0,0,0.6)]">
+                A boutique advisory. Special situations, M&amp;A, and institutional underwriting.
               </p>
               <a
                 href="https://underwriting.sapp.capital"
@@ -88,7 +95,7 @@ export default function LandingPage() {
           <div className="container mx-auto px-4">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-                Trusted By Industry Leaders
+                What clients say
               </h2>
             </FadeIn>
             <TestimonialCarousel testimonials={testimonials} />
@@ -97,7 +104,7 @@ export default function LandingPage() {
 
         <section className="bg-gray-50 dark:bg-black py-20">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
               <FadeIn>
                 <div className="space-y-3">
                   <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
@@ -112,26 +119,6 @@ export default function LandingPage() {
                 </div>
               </FadeIn>
               <FadeIn delay={100}>
-                <a
-                  href="https://www.upwork.com/freelancers/~01cad6d58a031067ce"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block hover:scale-105 transition-transform"
-                >
-                  <div className="space-y-3">
-                    <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300">
-                      100%
-                    </h3>
-                    <p className="text-gray-900 dark:text-gray-100 font-semibold">
-                      Job Success ↗
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Top Rated Plus on Upwork
-                    </p>
-                  </div>
-                </a>
-              </FadeIn>
-              <FadeIn delay={200}>
                 <div className="space-y-3">
                   <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
                     $40B+
@@ -145,7 +132,7 @@ export default function LandingPage() {
                   </p>
                 </div>
               </FadeIn>
-              <FadeIn delay={300}>
+              <FadeIn delay={200}>
                 <div className="space-y-3">
                   <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
                     All Assets
@@ -167,33 +154,33 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-                Core Services
+                Where we plug in
               </h2>
             </FadeIn>
             <div className="grid md:grid-cols-3 gap-8">
               <FadeIn delay={100}>
                 <ServiceCard
-                  icon={<BarChart className="w-8 h-8" />}
-                  title="Bulletproof Modeling"
-                  description="Don't lose money on broken formulas. We've caught every modeling error imaginable - from circular references killing returns to waterfalls that leak cash."
+                  icon={<Layers className="w-8 h-8" />}
+                  title="Strategic Leverage"
+                  description="Multiply your senior team's output. We fill execution gaps across the full deal lifecycle (underwriting, structuring, closing, asset management) so your senior people stay on the work that only they can do."
                   link={{
-                    text: "See our model templates",
+                    text: "See the model library",
                     href: "https://underwriting.sapp.capital/docs/multifamily"
                   }}
                 />
               </FadeIn>
               <FadeIn delay={200}>
                 <ServiceCard
-                  icon={<Globe className="w-8 h-8" />}
-                  title="Deal Strategy"
-                  description="Stop leaving money on the table. Our institutional playbooks identify value others miss and structure deals to maximize returns."
+                  icon={<Link2 className="w-8 h-8" />}
+                  title="Continuity Layer"
+                  description="Institutional knowledge that doesn't reset when your team does. The firm-level relationship carries through turnover, corporate takeouts, and rebuilds."
                 />
               </FadeIn>
               <FadeIn delay={300}>
                 <ServiceCard
-                  icon={<Building className="w-8 h-8" />}
-                  title="Market Intelligence"
-                  description="Don't invest blind. Access the same data and insights that $100B+ funds use to identify markets before they peak."
+                  icon={<Gauge className="w-8 h-8" />}
+                  title="On-Demand Bench"
+                  description="Move at deal-pace, not team-pace. We engage when deal flow exceeds your bench and scale back when your team catches up."
                 />
               </FadeIn>
             </div>
@@ -213,38 +200,38 @@ export default function LandingPage() {
           <div className="container mx-auto px-4">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-                About Us
+                About the firm
               </h2>
             </FadeIn>
             <div className="max-w-3xl mx-auto">
               <FadeIn delay={100}>
                 <p className="text-lg mb-6 dark:text-gray-300">
-                  Sapp Capital Advisors brings institutional-caliber expertise
-                  to every engagement. With over 9 years analyzing complex real
-                  estate transactions across all major asset classes, we've
-                  developed sophisticated methodologies that deliver actionable
-                  insights for institutional investors, developers, and fund
-                  managers.
+                  Sapp Capital Advisors is a boutique commercial real estate
+                  advisory practice. We work alongside institutional sponsors,
+                  owner-operators, and capital allocators on the deals that
+                  don't fit a template. Special situations, complex M&amp;A, and
+                  structured underwriting on tight timelines.
                 </p>
               </FadeIn>
               <FadeIn delay={200}>
                 <p className="text-lg mb-6 dark:text-gray-300">
-                  Our track record includes first-hand experience on
-                  transformative transactions: $11.4B public REIT privatization,
-                  $3.5B life science portfolio sale, $1.2B self storage
-                  acquisition, and $27.5B luxury retail portfolio management. We
-                  excel at complex financial modeling, from back-of-envelope
-                  calculations to 200+ asset corporate models with sophisticated
-                  waterfall structures.
+                  The firm operates as an extension of your senior team. The
+                  principal works every engagement, with an analyst layer for
+                  uniform build-out. The value we deliver is strategic
+                  leverage across the full deal lifecycle (underwriting,
+                  structuring, closing, asset management). We fill the
+                  execution gaps so your senior people stay on the
+                  highest-leverage work, and we absorb overflow when deal
+                  flow exceeds your bench.
                 </p>
               </FadeIn>
               <FadeIn delay={300}>
                 <p className="text-lg dark:text-gray-300">
-                  Whether you're a hedge fund evaluating distressed
-                  opportunities, a developer structuring complex capital stacks,
-                  or an investor seeking market intelligence, we deliver the
-                  same institutional-quality analysis and strategic thinking
-                  that drives success at the world's leading real estate firms.
+                  We work across asset classes (multifamily, retail, industrial,
+                  office, life science, self storage, hospitality, NNN) and
+                  structures (single-asset acquisitions, value-add, ground-up
+                  development, portfolio M&amp;A, REIT-scale corporate models
+                  with tiered waterfalls).
                 </p>
               </FadeIn>
             </div>
@@ -253,18 +240,26 @@ export default function LandingPage() {
 
         <section id="contact" className="bg-black text-white py-20">
           <div className="max-w-3xl container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">Let's Connect</h2>
-            <p className="text-xl mb-8">
-              Ready to drive growth and achieve your business goals? Contact us
-              today to explore how Sapp Capital Advisors can partner with you.
+            <h2 className="text-3xl font-bold mb-6">Get in touch.</h2>
+            <p className="text-xl mb-8 text-gray-300">
+              Reach out about a specific deal, or to scope an ongoing engagement.
             </p>
-            <div className="flex justify-center space-x-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="https://underwriting.sapp.capital"
-                className="flex items-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
+                href="https://cal.com/sappcapital"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Let's Connect
+                Book a 30-min call
+              </a>
+              <a
+                href="https://underwriting.sapp.capital"
+                className="flex items-center justify-center border border-gray-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-900 transition duration-300 text-lg"
+              >
+                See the underwriting practice
+                <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </div>
           </div>
