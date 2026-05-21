@@ -35,7 +35,7 @@ export function MobileNav() {
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
-                    Underwriting
+                    Cases
                   </a>
                 </li>
                 <li>
@@ -45,15 +45,6 @@ export function MobileNav() {
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
                     Blog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://underwriting.sapp.capital/docs/multifamily"
-                    onClick={handleClose}
-                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Browse Templates
                   </a>
                 </li>
               </ul>
