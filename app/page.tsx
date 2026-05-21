@@ -82,10 +82,12 @@ export default function LandingPage() {
                 A boutique advisory. Special situations, M&amp;A, and institutional underwriting.
               </p>
               <a
-                href="https://underwriting.sapp.capital"
+                href="https://cal.com/sappcapital"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
               >
-                Let's Connect <ArrowRight className="ml-2 w-5 h-5" />
+                Book a 30-min intro <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
           </div>
@@ -246,10 +248,12 @@ export default function LandingPage() {
             </p>
             <div className="flex justify-center">
               <a
-                href="https://underwriting.sapp.capital"
+                href="https://cal.com/sappcapital"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
-                Work with us
+                Book a 30-min intro
                 <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </div>
