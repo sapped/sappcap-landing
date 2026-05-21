@@ -1,4 +1,4 @@
-import { ArrowRight, Gauge, Layers, Link2, MessageCircle } from "lucide-react";
+import { ArrowRight, Gauge, Layers, Link2 } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
@@ -164,8 +164,8 @@ export default function LandingPage() {
                   title="Strategic Leverage"
                   description="Multiply your senior team's output. We fill execution gaps across the full deal lifecycle (underwriting, structuring, closing, asset management) so your senior people stay on the work that only they can do."
                   link={{
-                    text: "See the model library",
-                    href: "https://underwriting.sapp.capital/docs/multifamily"
+                    text: "See the practice",
+                    href: "https://underwriting.sapp.capital"
                   }}
                 />
               </FadeIn>
@@ -244,21 +244,12 @@ export default function LandingPage() {
             <p className="text-xl mb-8 text-gray-300">
               Reach out about a specific deal, or to scope an ongoing engagement.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="https://cal.com/sappcapital"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Book a 30-min call
-              </a>
+            <div className="flex justify-center">
               <a
                 href="https://underwriting.sapp.capital"
-                className="flex items-center justify-center border border-gray-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-900 transition duration-300 text-lg"
+                className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
-                See the underwriting practice
+                Work with us
                 <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </div>

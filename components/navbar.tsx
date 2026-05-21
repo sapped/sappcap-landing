@@ -28,7 +28,7 @@ export function Navbar() {
                   href="https://underwriting.sapp.capital"
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  Underwriting
+                  Cases
                 </a>
               </li>
               <li>
@@ -37,14 +37,6 @@ export function Navbar() {
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://underwriting.sapp.capital/docs/multifamily"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Browse Templates
                 </a>
               </li>
             </ul>
