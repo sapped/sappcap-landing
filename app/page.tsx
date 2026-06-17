@@ -1,4 +1,4 @@
-import { ArrowRight, Gauge, Layers, Link2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
@@ -152,40 +152,61 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="services" className="py-12">
+        <section
+          id="expertise"
+          className="py-12 border-b border-gray-200 dark:border-gray-800"
+        >
           <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
-              <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
-                Where we plug in
+              <h2 className="text-3xl font-bold text-center mb-4 dark:text-white">
+                Our expertise
               </h2>
             </FadeIn>
-            <div className="grid md:grid-cols-3 gap-8">
+            <FadeIn delay={100}>
+              <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl mx-auto mb-12">
+                Every asset class, and the structures that don&apos;t fit a
+                template. We&apos;ve advised on them before.
+              </p>
+            </FadeIn>
+            <div className="grid md:grid-cols-3 gap-6">
               <FadeIn delay={100}>
-                <ServiceCard
-                  icon={<Layers className="w-8 h-8" />}
-                  title="Strategic Leverage"
-                  description="Multiply your senior team's output. We fill execution gaps across the full deal lifecycle (underwriting, structuring, closing, asset management) so your senior people stay on the work that only they can do."
-                  link={{
-                    text: "See the practice",
-                    href: "https://underwriting.sapp.capital"
-                  }}
+                <ExpertiseCard
+                  title="Portfolio, REIT & corporate strategy"
+                  description="Multi-asset roll-ups, fund-level cash flows, and the entity-level reporting a board steers the company on."
                 />
               </FadeIn>
               <FadeIn delay={200}>
-                <ServiceCard
-                  icon={<Link2 className="w-8 h-8" />}
-                  title="Continuity Layer"
-                  description="Institutional knowledge that doesn't reset when your team does. The firm-level relationship carries through turnover, corporate takeouts, and rebuilds."
+                <ExpertiseCard
+                  title="Acquisition & development underwriting"
+                  description="Every deal type, from stabilized core to value-add to ground-up development."
                 />
               </FadeIn>
               <FadeIn delay={300}>
-                <ServiceCard
-                  icon={<Gauge className="w-8 h-8" />}
-                  title="On-Demand Bench"
-                  description="Move at deal-pace, not team-pace. We engage when deal flow exceeds your bench and scale back when your team catches up."
+                <ExpertiseCard
+                  title="Model audit & review"
+                  description="Independent reconciliation of a model before IC or close."
+                />
+              </FadeIn>
+              <FadeIn delay={100}>
+                <ExpertiseCard
+                  title="Asset management & reporting"
+                  description="Quarterly performance tracking and investor reporting for the life of the hold."
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <ExpertiseCard
+                  title="Waterfall & GP / LP structuring"
+                  description="Preferred return, promote tiers, and catch-up, tied out to the legal docs so your model IRR matches your lawyer's."
+                />
+              </FadeIn>
+              <FadeIn delay={300}>
+                <ExpertiseCard
+                  title="Debt, refinance & specialty"
+                  description="Bespoke capital structures, refinancing, foreclosures, hope notes, and other one-off mechanics."
                 />
               </FadeIn>
             </div>
+
             <FadeIn delay={400}>
               <div className="flex flex-wrap justify-center gap-2 mt-12">
                 {['Multifamily', 'Industrial', 'Office', 'Retail', 'Self Storage', 'Hospitality', 'Life Science', 'SFR', 'Senior Housing', 'Student Housing', 'NNN', 'Mixed-Use'].map((asset) => (
@@ -198,8 +219,36 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="portal" className="py-12 bg-gray-50 dark:bg-black">
+          <div className="container mx-auto px-4 max-w-5xl text-center">
+            <FadeIn>
+              <h2 className="text-3xl font-bold mb-4 dark:text-white">
+                Client Underwriting Portal
+              </h2>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+                Bring us a deal and we are already up to speed. The models and
+                templates we underwrite on stay built and current, so we start
+                on your deal from day one. Free to browse, and full access comes
+                with working together.
+              </p>
+            </FadeIn>
+            <FadeIn delay={200}>
+              <a
+                href="https://underwriting.sapp.capital"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
+              >
+                See what clients get <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+            </FadeIn>
+          </div>
+        </section>
+
         <section id="about" className="py-12">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
               <h2 className="text-3xl font-bold text-center mb-12 dark:text-white">
                 About the firm
@@ -219,21 +268,16 @@ export default function LandingPage() {
                 <p className="text-lg mb-6 dark:text-gray-300">
                   The firm operates as an extension of your senior team. The
                   principal works every engagement, with an analyst layer for
-                  uniform build-out. The value we deliver is strategic
-                  leverage across the full deal lifecycle (underwriting,
-                  structuring, closing, asset management). We fill the
-                  execution gaps so your senior people stay on the
-                  highest-leverage work, and we absorb overflow when deal
-                  flow exceeds your bench.
+                  uniform build-out, so your senior people stay on the work only
+                  they can do.
                 </p>
               </FadeIn>
               <FadeIn delay={300}>
                 <p className="text-lg dark:text-gray-300">
-                  We work across asset classes (multifamily, retail, industrial,
-                  office, life science, self storage, hospitality, NNN) and
-                  structures (single-asset acquisitions, value-add, ground-up
-                  development, portfolio M&amp;A, REIT-scale corporate models
-                  with tiered waterfalls).
+                  The relationship holds the institutional knowledge and carries
+                  through turnover and rebuilds, and it flexes with your deal
+                  flow, scaling up when volume runs past your bench and back when
+                  your team catches up.
                 </p>
               </FadeIn>
             </div>
@@ -294,38 +338,22 @@ export default function LandingPage() {
   );
 }
 
-interface ServiceCardProps {
-  icon: React.ReactNode;
+function ExpertiseCard({
+  title,
+  description,
+}: {
   title: string;
   description: string;
-  link?: {
-    text: string;
-    href: string;
-  };
-}
-
-function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
+}) {
   return (
-    <div className="h-full flex flex-col p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-blue-500 hover:scale-105 hover:border-blue-600 group">
-      <div className="w-16 h-16 flex items-center justify-center bg-blue-50 dark:bg-blue-900/20 rounded-full mb-6 text-blue-600 dark:text-blue-400 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors duration-300">
-        {icon}
-      </div>
-      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+    <div className="h-full p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border-t-4 border-blue-500">
+      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-300 flex-grow">{description}</p>
-      {link ? (
-        <a
-          href={link.href}
-          className="inline-flex items-center mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-        >
-          → {link.text}
-        </a>
-      ) : (
-        <div className="mt-4 h-6" />
-      )}
+      <p className="text-gray-600 dark:text-gray-400 text-sm">{description}</p>
     </div>
   );
 }
+
 
 
