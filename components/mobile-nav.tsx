@@ -35,7 +35,7 @@ export function MobileNav() {
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
-                    Cases
+                    Underwriting Portal
                   </a>
                 </li>
                 <li>
