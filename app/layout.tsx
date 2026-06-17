@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     images: ['https://sapp.capital/images/SCA%20Logo%20-%20Black%20BG%20Square.png'],
   },
   icons: {
+    // /favicon.ico is served automatically from app/favicon.ico (Next file convention).
     icon: [
-      { url: '/favicon.ico' },
       { url: '/images/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/images/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
