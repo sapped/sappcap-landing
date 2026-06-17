@@ -28,7 +28,7 @@ export function Navbar() {
                   href="https://underwriting.sapp.capital"
                   className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  Underwriting Portal
+                  Client Underwriting Portal
                 </a>
               </li>
               <li>

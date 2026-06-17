@@ -110,7 +110,7 @@ export default function LandingPage() {
               <FadeIn>
                 <div className="space-y-3">
                   <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400">
-                    9+
+                    10+
                   </h3>
                   <p className="text-gray-900 dark:text-gray-100 font-semibold">
                     Years Experience
@@ -228,10 +228,10 @@ export default function LandingPage() {
             </FadeIn>
             <FadeIn delay={100}>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-                Bring us a deal and we are already up to speed. The models and
+                Bring us a deal and we're already up to speed. The models and
                 templates we underwrite on stay built and current, so we start
-                on your deal from day one. Free to browse, and full access comes
-                with working together.
+                from day one. Free to browse, full access comes with working
+                together.
               </p>
             </FadeIn>
             <FadeIn delay={200}>
@@ -241,7 +241,7 @@ export default function LandingPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
               >
-                See what clients get <ArrowRight className="ml-2 w-5 h-5" />
+                Explore the portal <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </FadeIn>
           </div>
@@ -274,10 +274,10 @@ export default function LandingPage() {
               </FadeIn>
               <FadeIn delay={300}>
                 <p className="text-lg dark:text-gray-300">
-                  The relationship holds the institutional knowledge and carries
-                  through turnover and rebuilds, and it flexes with your deal
-                  flow, scaling up when volume runs past your bench and back when
-                  your team catches up.
+                  We become the constant on your side, carrying the context
+                  across your deals so a new hire ramps fast on work already in
+                  motion. And we flex with your deal flow, scaling up when volume
+                  runs past your bench and easing off when your team catches up.
                 </p>
               </FadeIn>
             </div>
