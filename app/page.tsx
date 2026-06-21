@@ -281,13 +281,6 @@ export default function LandingPage() {
                 />
               </FadeIn>
             </div>
-            <FadeIn delay={300}>
-              <p className="text-base text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mt-8">
-                Ongoing support runs as a set number of hours a week. If a week
-                is going to run long, you hear it from us before it does, and we
-                adjust from there.
-              </p>
-            </FadeIn>
             <FadeIn delay={400}>
               <div className="flex justify-center mt-10">
                 <a
@@ -365,7 +358,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm">
-              &copy; 2023-2025 Sapp Capital Advisors LLC. All rights reserved.
+              &copy; 2023-2026 Sapp Capital Advisors LLC. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <a

@@ -41,6 +41,14 @@ export function Navbar() {
               </li>
             </ul>
           </nav>
+          <a
+            href="https://cal.com/sappcapital/client-intro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+          >
+            Talk through a deal
+          </a>
           <MobileNav />
           <div className="hidden md:block">
             <ThemeToggle />

@@ -47,6 +47,17 @@ export function MobileNav() {
                     Blog
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://cal.com/sappcapital/client-intro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleClose}
+                    className="block text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300"
+                  >
+                    Talk through a deal &rarr;
+                  </a>
+                </li>
               </ul>
             </nav>
             <div
