@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
@@ -82,12 +83,12 @@ export default function LandingPage() {
                 A boutique advisory. Special situations, M&amp;A, and institutional underwriting.
               </p>
               <a
-                href="https://cal.com/sappcapital"
+                href="https://cal.com/sappcapital/client-intro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
               >
-                Book a 30-min intro <ArrowRight className="ml-2 w-5 h-5" />
+                Talk through a deal <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
           </div>
@@ -247,6 +248,61 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section
+          id="engagement"
+          className="py-12 border-b border-gray-200 dark:border-gray-800"
+        >
+          <div className="container mx-auto px-4 max-w-5xl">
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-center mb-4 dark:text-white">
+                How an engagement works
+              </h2>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl mx-auto mb-12">
+                Bring a deal, a programmatic strategy, or a specific problem to
+                fix. We scope from what's in front of us and bill one of two
+                ways, depending on how you work.
+              </p>
+            </FadeIn>
+            <div className="grid md:grid-cols-2 gap-6">
+              <FadeIn delay={100}>
+                <EngagementCard
+                  graphic={<FlowGraphic />}
+                  title="Success-based"
+                  description="Run your full deal flow with a senior bench on every look, and pay when a deal closes. For teams screening volume in the market."
+                />
+              </FadeIn>
+              <FadeIn delay={200}>
+                <EngagementCard
+                  graphic={<RefinedGraphic />}
+                  title="Hourly"
+                  description="Principal and analyst time, billed as the work gets done. For structurally involved deals and the relationships that run across a pipeline."
+                />
+              </FadeIn>
+            </div>
+            <FadeIn delay={300}>
+              <p className="text-base text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mt-8">
+                Ongoing support runs as a set number of hours a week. If a week
+                is going to run long, you hear it from us before it does, and we
+                adjust from there.
+              </p>
+            </FadeIn>
+            <FadeIn delay={400}>
+              <div className="flex justify-center mt-10">
+                <a
+                  href="https://cal.com/sappcapital/client-intro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
+                >
+                  Talk through a deal <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+
         <section id="about" className="py-12">
           <div className="container mx-auto px-4 max-w-5xl">
             <FadeIn>
@@ -292,12 +348,12 @@ export default function LandingPage() {
             </p>
             <div className="flex justify-center">
               <a
-                href="https://cal.com/sappcapital"
+                href="https://cal.com/sappcapital/client-intro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
-                Book a 30-min intro
+                Talk through a deal
                 <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </div>
@@ -352,6 +408,139 @@ function ExpertiseCard({
       </h3>
       <p className="text-gray-600 dark:text-gray-400 text-sm">{description}</p>
     </div>
+  );
+}
+
+function EngagementCard({
+  graphic,
+  title,
+  description,
+}: {
+  graphic: ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="h-full p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border-t-4 border-blue-500">
+      <div className="text-blue-600 dark:text-blue-400 mb-5">{graphic}</div>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+        {title}
+      </h3>
+      <p className="text-gray-600 dark:text-gray-400 text-sm">{description}</p>
+    </div>
+  );
+}
+
+// Success-based: many deals fanning through a hub into a single closed deal.
+function FlowGraphic() {
+  return (
+    <svg
+      viewBox="0 0 240 120"
+      fill="none"
+      className="w-full h-auto"
+      aria-hidden="true"
+    >
+      {[14, 35, 56, 77, 98].map((y, i) => (
+        <g key={i}>
+          <rect
+            x="8"
+            y={y}
+            width="44"
+            height="13"
+            rx="3"
+            fill="currentColor"
+            fillOpacity="0.12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <path
+            d={`M52 ${y + 6.5} C 92 ${y + 6.5}, 104 60, 131 60`}
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeOpacity="0.5"
+          />
+        </g>
+      ))}
+      <circle
+        cx="138"
+        cy="60"
+        r="7"
+        fill="currentColor"
+        fillOpacity="0.15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path d="M145 60 H196" stroke="currentColor" strokeWidth="2" />
+      <rect
+        x="198"
+        y="44"
+        width="32"
+        height="32"
+        rx="6"
+        fill="currentColor"
+        fillOpacity="0.2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M206 60 l5 5 l9 -11"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// Hourly: one refined sheet, gridded and inspected up close.
+function RefinedGraphic() {
+  return (
+    <svg
+      viewBox="0 0 240 120"
+      fill="none"
+      className="w-full h-auto"
+      aria-hidden="true"
+    >
+      <rect
+        x="34"
+        y="14"
+        width="150"
+        height="92"
+        rx="6"
+        fill="currentColor"
+        fillOpacity="0.08"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <rect
+        x="46"
+        y="26"
+        width="60"
+        height="8"
+        rx="2"
+        fill="currentColor"
+        fillOpacity="0.35"
+      />
+      <path
+        d="M46 48 H172 M46 60 H172 M46 72 H172 M46 84 H172 M46 96 H172"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeOpacity="0.25"
+      />
+      <rect x="46" y="44" width="34" height="8" rx="2" fill="currentColor" fillOpacity="0.25" />
+      <rect x="46" y="56" width="58" height="8" rx="2" fill="currentColor" fillOpacity="0.45" />
+      <rect x="46" y="68" width="24" height="8" rx="2" fill="currentColor" fillOpacity="0.25" />
+      <rect x="46" y="80" width="46" height="8" rx="2" fill="currentColor" fillOpacity="0.3" />
+      <circle cx="150" cy="78" r="16" stroke="currentColor" strokeWidth="2.5" />
+      <path
+        d="M162 90 l12 12"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <rect x="143" y="73" width="14" height="9" rx="2" fill="currentColor" fillOpacity="0.55" />
+    </svg>
   );
 }
 
