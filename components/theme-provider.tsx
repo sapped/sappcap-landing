@@ -1,47 +1,20 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
-
-type Theme = "dark" | "light"
+import { useEffect } from "react"
 
 type ThemeProviderProps = {
   children: React.ReactNode
 }
 
-const ThemeProviderContext = createContext<{
-  theme: Theme
-  toggleTheme: () => void
-}>({
-  theme: "dark",
-  toggleTheme: () => null,
-})
-
-export function ThemeProvider({
-  children,
-}: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>('dark')
-
+// Dark mode only. The theme switcher was removed, so this provider just
+// guarantees the `dark` class is present on <html> (it's also hardcoded
+// in app/layout.tsx) and never adds `light`.
+export function ThemeProvider({ children }: ThemeProviderProps) {
   useEffect(() => {
     const root = window.document.documentElement
-    root.classList.remove("light", "dark")
-    root.classList.add(theme)
-  }, [theme])
+    root.classList.remove("light")
+    root.classList.add("dark")
+  }, [])
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light")
-  }
-
-  return (
-    <ThemeProviderContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeProviderContext.Provider>
-  )
+  return <>{children}</>
 }
-
-export const useTheme = () => {
-  const context = useContext(ThemeProviderContext)
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider")
-  return context
-}
-
