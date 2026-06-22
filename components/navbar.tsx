@@ -1,4 +1,3 @@
-import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import Link from "next/link";
 import Image from "next/image";
@@ -50,9 +49,6 @@ export function Navbar() {
             Talk through a deal
           </a>
           <MobileNav />
-          <div className="hidden md:block">
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </header>

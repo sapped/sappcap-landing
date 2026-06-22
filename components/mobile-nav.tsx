@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export function MobileNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,12 +59,6 @@ export function MobileNav() {
                 </li>
               </ul>
             </nav>
-            <div
-              className="border-t border-gray-200 dark:border-gray-800 pt-4"
-              onClick={handleClose}
-            >
-              <ThemeToggle />
-            </div>
           </div>
         </div>
       )}
