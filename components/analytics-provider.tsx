@@ -16,19 +16,35 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     logPageView(pathname);
   }, [pathname]);
 
-  // Track clicks on any cal.com booking CTA, anywhere on the site.
+  // Track outbound CTA clicks anywhere on the site:
+  //  - cal.com booking links  -> book_cta_click
+  //  - underwriting portal links -> portal_click (with template slug)
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
-      const link = target?.closest?.(
-        'a[href*="cal.com"]'
-      ) as HTMLAnchorElement | null;
+      const link = target?.closest?.("a") as HTMLAnchorElement | null;
       if (!link) return;
-      logGAEvent("book_cta_click", {
-        link_url: link.href,
-        link_text: (link.textContent || "").trim().slice(0, 100),
-        page_path: window.location.pathname,
-      });
+
+      const href = link.href || "";
+
+      if (href.includes("cal.com")) {
+        logGAEvent("book_cta_click", {
+          link_url: href,
+          link_text: (link.textContent || "").trim().slice(0, 100),
+          page_path: window.location.pathname,
+        });
+        return;
+      }
+
+      if (href.includes("underwriting.sapp.capital")) {
+        logGAEvent("portal_click", {
+          link_url: href,
+          // Set on each template card / CTA; "all" = the generic portal button.
+          template: link.dataset.template || "unknown",
+          link_text: (link.textContent || "").trim().slice(0, 100),
+          page_path: window.location.pathname,
+        });
+      }
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
+import { TemplateCarousel } from "@/components/template-carousel";
 import { HeroVideoCarousel } from "@/components/hero-video-carousel";
 
 const testimonials = [
@@ -56,6 +57,37 @@ const testimonials = [
     url: "https://elmwoodcg.com/",
   },
 ];
+
+// Featured underwriting templates. Each links straight to its summary page in
+// the portal, and carries a `slug` used for GA portal_click tracking.
+const templates = [
+  {
+    title: "Multifamily Acquisition",
+    blurb: "Single-asset buy with optional value-add and mixed-use toggles.",
+    image: "/templates/multifamily.webp",
+    slug: "multifamily",
+  },
+  {
+    title: "Multifamily Development",
+    blurb: "Ground-up build tying timeline, debt draws, returns, and sensitivity into one IC-style view.",
+    image: "/templates/multifamily-development.webp",
+    slug: "multifamily-development",
+  },
+  {
+    title: "NNN Development",
+    blurb: "Build-to-suit with a parcel-lease or land-sale toggle and full waterfall.",
+    image: "/templates/nnn-development.webp",
+    slug: "nnn-development",
+  },
+  {
+    title: "Detailed Leasing",
+    blurb: "Lease-level single-asset acquisition with the full capital stack and returns.",
+    image: "/templates/lease-level.webp",
+    slug: "lease-level",
+  },
+];
+
+const PORTAL_BASE = "https://underwriting.sapp.capital";
 
 export default function LandingPage() {
   return (
@@ -221,29 +253,34 @@ export default function LandingPage() {
         </section>
 
         <section id="portal" className="py-12 bg-gray-50 dark:bg-black">
-          <div className="container mx-auto px-4 max-w-5xl text-center">
+          <div className="container mx-auto px-4 max-w-6xl">
             <FadeIn>
-              <h2 className="text-3xl font-bold mb-4 dark:text-white">
+              <h2 className="text-3xl font-bold mb-4 text-center dark:text-white">
                 Client Underwriting Portal
               </h2>
             </FadeIn>
             <FadeIn delay={100}>
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-                Bring us a deal and we're already up to speed. The models and
-                templates we underwrite on stay built and current, so we start
-                from day one. Free to browse, full access comes with working
-                together.
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 text-center">
+                Bring us a deal and we're already up to speed. These are the
+                models we build on, kept current so we start day one. Preview the
+                summaries here.
               </p>
             </FadeIn>
+            <FadeIn delay={150}>
+              <TemplateCarousel templates={templates} />
+            </FadeIn>
             <FadeIn delay={200}>
-              <a
-                href="https://underwriting.sapp.capital"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
-              >
-                Explore the portal <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
+              <div className="flex justify-center mt-8">
+                <a
+                  href={PORTAL_BASE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-template="all"
+                  className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
+                >
+                  Explore the full portal <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </div>
             </FadeIn>
           </div>
         </section>
