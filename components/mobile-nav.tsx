@@ -31,6 +31,7 @@ export function MobileNav() {
                 <li>
                   <a
                     href="https://underwriting.sapp.capital"
+                    data-template="navbar-mobile"
                     onClick={handleClose}
                     className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   >
