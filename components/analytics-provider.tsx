@@ -3,14 +3,12 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { initGA, logPageView, logGAEvent } from "@/lib/analytics";
-import { initOaiq, logOaiqEvent } from "@/lib/oaiq";
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
     initGA();
-    initOaiq();
   }, []);
 
   // Fire a page view on first load and on every client-side route change.
@@ -35,8 +33,6 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
           link_text: (link.textContent || "").trim().slice(0, 100),
           page_path: window.location.pathname,
         });
-        // ChatGPT Ads conversion: "Talk Through a Deal" booking CTA.
-        logOaiqEvent("appointment_scheduled", { type: "customer_action" });
         return;
       }
 
