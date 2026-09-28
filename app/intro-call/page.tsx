@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { initGA } from "@/lib/analytics";
 
 const CAL_URL = "https://cal.com/sappcapital/client-intro";
 const MEASUREMENT_ID = "G-DPX39ZX3N4";
@@ -25,7 +26,7 @@ function getAnalyticsValue(fieldName: "client_id" | "session_id") {
       return;
     }
 
-    const timeout = window.setTimeout(() => resolve(""), 1200);
+    const timeout = window.setTimeout(() => resolve(""), 2500);
     window.gtag("get", MEASUREMENT_ID, fieldName, (value) => {
       window.clearTimeout(timeout);
       resolve(value || "");
@@ -40,6 +41,8 @@ export default function IntroCallPage() {
     let active = true;
 
     const forwardToCal = async () => {
+      initGA();
+
       const destination = new URL(CAL_URL);
       const current = new URLSearchParams(window.location.search);
 
