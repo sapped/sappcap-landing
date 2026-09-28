@@ -34,6 +34,16 @@ function getAnalyticsValue(fieldName: "client_id" | "session_id") {
   });
 }
 
+function getFallbackClientId() {
+  const storageKey = "sca_attribution_client_id";
+  const existing = window.localStorage.getItem(storageKey);
+  if (existing) return existing;
+
+  const created = window.crypto.randomUUID();
+  window.localStorage.setItem(storageKey, created);
+  return created;
+}
+
 export default function IntroCallPage() {
   const [showFallback, setShowFallback] = useState(false);
 
@@ -52,13 +62,17 @@ export default function IntroCallPage() {
         }
       }
 
-      const [clientId, sessionId] = await Promise.all([
+      const [analyticsClientId, analyticsSessionId] = await Promise.all([
         getAnalyticsValue("client_id"),
         getAnalyticsValue("session_id"),
       ]);
 
-      if (clientId) destination.searchParams.set("ga_client_id", clientId);
-      if (sessionId) destination.searchParams.set("ga_session_id", sessionId);
+      const clientId = analyticsClientId || getFallbackClientId();
+      const sessionId =
+        analyticsSessionId || Math.floor(Date.now() / 1000).toString();
+
+      destination.searchParams.set("ga_client_id", clientId);
+      destination.searchParams.set("ga_session_id", sessionId);
 
       if (active) window.location.replace(destination.toString());
     };
