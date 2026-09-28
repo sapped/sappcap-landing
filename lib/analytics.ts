@@ -5,7 +5,7 @@ let initialized = false;
 export const initGA = () => {
   if (initialized) return;
 
-  const MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const MEASUREMENT_ID = "G-DPX39ZX3N4";
 
   if (MEASUREMENT_ID) {
     ReactGA.initialize(MEASUREMENT_ID, {
