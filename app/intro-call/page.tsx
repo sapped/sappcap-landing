@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const CAL_URL = "https://cal.com/sappcapital/client-intro";
-const MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const MEASUREMENT_ID = "G-DPX39ZX3N4";
 
 type Gtag = (
   command: "get",
