@@ -25,20 +25,23 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
       const link = target?.closest?.("a") as HTMLAnchorElement | null;
       if (!link) return;
 
-      const href = link.href || "";
+      let destination: URL;
+      try { destination = new URL(link.href); } catch { return; }
+      // Never report contact data or attribution IDs carried in destination queries.
+      const safeUrl = destination.origin + destination.pathname;
 
-      if (href.includes("cal.com")) {
+      if (destination.hostname === "cal.com") {
         logGAEvent("book_cta_click", {
-          link_url: href,
+          link_url: safeUrl,
           link_text: (link.textContent || "").trim().slice(0, 100),
           page_path: window.location.pathname,
         });
         return;
       }
 
-      if (href.includes("underwriting.sapp.capital")) {
+      if (destination.hostname === "underwriting.sapp.capital") {
         logGAEvent("portal_click", {
-          link_url: href,
+          link_url: safeUrl,
           // Set on each template card / CTA; "all" = the generic portal button.
           template: link.dataset.template || "unknown",
           link_text: (link.textContent || "").trim().slice(0, 100),

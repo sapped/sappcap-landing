@@ -4,23 +4,27 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
-interface Testimonial {
-  quote: string;
-  name: string;
-  title: string;
-  company: string;
-  logo: string;
-  url: string;
-  invertInDark?: boolean;
-}
+import type { Testimonial } from "@/lib/testimonials";
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
+  compact?: boolean;
+  tone?: "light" | "dark";
+  autoplay?: boolean;
 }
 
-export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) {
+export function TestimonialCarousel({ testimonials, compact = false, tone = "light", autoplay = true }: TestimonialCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isManualMode, setIsManualMode] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(query.matches);
+    update();
+    query.addEventListener("change", update);
+  return () => query.removeEventListener("change", update);
+  }, []);
 
   const goTo = useCallback((index: number) => {
     setCurrentIndex(index);
@@ -38,6 +42,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
 
   // Initial nudge after 3 seconds to show there's more
   useEffect(() => {
+    if (!autoplay || reduceMotion) return;
     const nudgeTimer = setTimeout(() => {
       if (!isManualMode) {
         goNext();
@@ -45,18 +50,52 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
     }, 3000);
 
     return () => clearTimeout(nudgeTimer);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [autoplay, reduceMotion, isManualMode, goNext]);
 
   // Auto-advance every 8 seconds unless in manual mode
   useEffect(() => {
-    if (isManualMode) return;
+    if (isManualMode || !autoplay || reduceMotion) return;
 
     const interval = setInterval(() => {
       goNext();
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [isManualMode, goNext]);
+  }, [isManualMode, goNext, autoplay, reduceMotion]);
+
+  if (compact) {
+    const current = testimonials[currentIndex];
+    const dark = tone === "dark";
+    return (
+      <div className={`rounded-2xl border p-4 sm:p-5 ${dark ? "border-white/15 bg-transparent text-white" : "border-slate-200 bg-white text-slate-950"}`}
+        role="region" aria-roledescription="carousel" aria-label="Client testimonials">
+        <div className="mb-4 grid grid-cols-3 gap-2">
+          {testimonials.map((item, index) => (
+            <button key={item.company} type="button" onClick={() => goTo(index)}
+              aria-label={`View ${item.company} testimonial`} aria-pressed={index === currentIndex}
+              className={`flex min-h-12 items-center justify-center rounded-lg border px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 ${index === currentIndex ? "border-blue-500 bg-slate-900" : "border-slate-700 bg-slate-800 opacity-75"}`}>
+              <Image src={item.logo} alt={item.company} height={40} width={120}
+                className={`h-7 w-auto max-w-full object-contain ${item.invertInDark ? "invert" : ""}`} />
+            </button>
+          ))}
+        </div>
+        <div aria-live="polite" aria-atomic="true">
+          <blockquote className={`text-sm leading-6 ${dark ? "text-slate-300" : "text-slate-700"}`}>&ldquo;{current.quote}&rdquo;</blockquote>
+          <div className={`mt-3 border-t pt-3 ${dark ? "border-white/10" : "border-slate-100"}`}>
+            <p className="text-sm font-semibold">{current.name}</p>
+            <p className={`mt-1 text-xs leading-5 ${dark ? "text-slate-400" : "text-slate-500"}`}>{current.title}, <a href={current.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a></p>
+          </div>
+        </div>
+        <div className="mt-4 flex items-center justify-between">
+          <span className="text-xs text-slate-400">{currentIndex + 1} / {testimonials.length}</span>
+          <div className="flex gap-2">
+            <button type="button" onClick={goPrev} aria-label="Previous testimonial" className={`flex h-11 w-11 items-center justify-center rounded-full border focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 ${dark ? "border-white/20 hover:bg-slate-800" : "border-slate-200 hover:bg-slate-50"}`}><ChevronLeft size={16} /></button>
+            <button type="button" onClick={() => { goNext(); setIsManualMode(true); }} aria-label="Next testimonial" className={`flex h-11 w-11 items-center justify-center rounded-full border focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 ${dark ? "border-white/20 hover:bg-slate-800" : "border-slate-200 hover:bg-slate-50"}`}><ChevronRight size={16} /></button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative max-w-4xl mx-auto px-4">
@@ -90,7 +129,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
       {/* Cards container */}
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-out"
+          className="flex transition-transform duration-500 ease-out motion-reduce:transition-none"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
           }}

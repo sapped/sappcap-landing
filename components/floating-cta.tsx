@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 
 export function FloatingCTA() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -27,7 +29,7 @@ export function FloatingCTA() {
     }
   }, []);
 
-  if (!isVisible) return null;
+  if (!isVisible || pathname.startsWith("/acquisition")) return null;
 
   return (
     <a
