@@ -47,7 +47,7 @@ Source files are stored in OneDrive:
    cp "/Users/Ed/Library/CloudStorage/OneDrive-SharedLibraries-DemographIQ/SCA - Documents/Admin Register/client logos/[logo-file]" public/clients/[client-name]-logo.[ext]
    ```
 
-4. **Append an entry to the `testimonials` array at the top of `app/page.tsx`:**
+4. **Append an entry to the shared `testimonials` array in `lib/testimonials.ts`:**
    ```ts
    {
      quote: "The testimonial quote text",
@@ -58,7 +58,7 @@ Source files are stored in OneDrive:
      url: "https://their-website.com/",
    },
    ```
-   The array is rendered by `<TestimonialCarousel>` — no grid-column or `FadeIn` wrapping needed.
+   The array is rendered by the shared `<TestimonialCarousel>` on the homepage and acquisition funnel. The funnel uses `compact` and `tone="dark"`; update the shared data once.
 
 ## Project Structure
 - Next.js 14 with TypeScript
