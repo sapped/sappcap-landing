@@ -3,7 +3,7 @@
 import { useState, useEffect, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { submitPreviewLead, withAttribution } from "@/lib/acquisition-review-config";
 import { getAnalyticsAttribution, logGAEvent } from "@/lib/analytics";
 import { useAcquisition } from "./acquisition-shell";
@@ -57,7 +57,7 @@ export function WalkthroughSignup({ destination = "/acquisition/review" }: { des
           <label htmlFor="work-email">Work email</label>
           <div className={styles.emailRow}>
             <input id="work-email" type="email" autoComplete="email" inputMode="email" maxLength={254} placeholder="you@company.com" value={email} onChange={(event) => { setEmail(event.target.value); if (error) setError(""); }} aria-required="true" aria-invalid={!!error} aria-describedby={error ? "email-error" : "email-disclosure"} disabled={pending} />
-            <button type="submit" disabled={pending || !ready}>{pending ? <><Loader2 size={17} className={styles.spin} /> Opening walkthrough…</> : <>Continue to walkthrough <ArrowRight size={17} /></>}</button>
+            <button type="submit" disabled={pending || !ready}>{pending ? <><Loader2 size={17} className={styles.spin} /> Opening walkthrough…</> : <>Continue to walkthrough</>}</button>
           </div>
           <p id="email-error" role="alert" className={styles.error}>{error}</p>
           <p id="email-disclosure" className={styles.disclosure}>Get the walkthrough and follow-up emails from Edward. Unsubscribe anytime. <Link href="/privacy">Privacy</Link></p>

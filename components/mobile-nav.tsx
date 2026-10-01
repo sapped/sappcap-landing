@@ -58,7 +58,7 @@ export function MobileNav({ funnel = false }: { funnel?: boolean }) {
                     onClick={handleClose}
                     className="block text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300"
                   >
-                    Talk through a deal &rarr;
+                    Talk through a deal
                   </a>
                 </li>
               </ul>

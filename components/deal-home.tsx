@@ -18,12 +18,12 @@ export function DealHome() {
   <section className={styles.hero}>
    <div className={styles.cityscape} aria-hidden="true"><HeroVideoCarousel /></div>
    <div className={styles.pitch}>
-    <p className={styles.kicker}>DEALS · PORTFOLIOS · CAPITAL STRUCTURES</p>
-    <h1>Understand the numbers.<br /><span>Before you commit.</span></h1>
-    <p className={styles.lede}>Know which assumptions drive your deal’s returns, where the model falls short, and what needs a closer look.</p>
+    <p className={styles.kicker}>COMMERCIAL REAL ESTATE ADVISORY</p>
+    <h1>Complex CRE deals.<br /><span>On short fuses.</span></h1>
+    <p className={styles.lede}>Get the underwriting and model review your team needs to make the next decision. Acquisitions, development, portfolios and complex capital structures.</p>
     <p className={styles.offer}>See two problems we found in real model reviews, and how we worked through them.</p>
     <WalkthroughSignup destination="/deal/review" />
-    <a className={styles.secondary} href="#talk">Already have a deal to discuss? Book an intro ↗</a>
+    <a className={styles.secondary} href="#talk">Already have a deal to discuss? Book an intro</a>
    </div>
    <aside className={styles.proof}>
     <p className={styles.kicker}>WHAT CLIENTS SAY</p>
@@ -40,9 +40,9 @@ export function DealHome() {
   </section>
   <section className={styles.principal}>
    <Image src="/images/edward-linkedin.jpeg" alt="Edward Sapp" width={160} height={160} />
-   <div><p className={styles.kicker}>PRINCIPAL-LED UNDERWRITING & ADVISORY</p><h2>Keep the context<br />across your decisions.</h2><p>Work with a team that can follow the model from acquisition or development through financing, investor reporting and exit. Principal involvement keeps the deal’s context in the work, with analyst support for the build and review.</p><p className={styles.credential}><a href="https://linkedin.com/in/edwardsapp" target="_blank" rel="noopener noreferrer">Edward Sapp · Principal ↗</a><br />10+ years of experience · $40B+ in transaction experience</p></div>
+   <div><p className={styles.kicker}>PRINCIPAL-LED UNDERWRITING & ADVISORY</p><h2>Keep the context<br />across your decisions.</h2><p>Work with a team that can follow the model from acquisition or development through financing, investor reporting and exit. Principal involvement keeps the deal’s context in the work, with analyst support for the build and review.</p><p className={styles.credential}><a href="https://linkedin.com/in/edwardsapp" target="_blank" rel="noopener noreferrer">Edward Sapp · Principal</a><br />10+ years of experience · $40B+ in transaction experience</p></div>
   </section>
-  <section id="talk" className={styles.close}><p className={styles.kicker}>LET’S LOOK AT YOUR DEAL</p><h2>What do you need<br />the model to answer?</h2><BookingCTA placement="bottom" /><p className={styles.note}>The intro is free. Underwriting, model review and corrections are scoped separately.</p><a className={styles.back} href="#email-signup">Start with the walkthrough ↑</a></section>
-  <nav className={styles.links} aria-label="More from Sapp Capital"><a href="https://underwriting.sapp.capital">Client Underwriting Portal ↗</a><a href="https://blog.sapp.capital">Writing ↗</a></nav>
+  <section id="talk" className={styles.close}><p className={styles.kicker}>LET’S LOOK AT YOUR DEAL</p><h2>What do you need<br />the model to answer?</h2><BookingCTA placement="bottom" /><p className={styles.note}>The intro is free. Underwriting, model review and corrections are scoped separately.</p><a className={styles.back} href="#email-signup">Start with the walkthrough</a></section>
+  <nav className={styles.links} aria-label="More from Sapp Capital"><a href="https://underwriting.sapp.capital">Client Underwriting Portal</a><a href="https://blog.sapp.capital">Writing</a></nav>
  </main>;
 }

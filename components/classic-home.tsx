@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { FadeIn } from "@/components/fade-in";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
@@ -70,7 +69,7 @@ export function ClassicHome() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
               >
-                Talk through a deal <ArrowRight className="ml-2 w-5 h-5" />
+                Talk through a deal
               </a>
             </div>
           </div>
@@ -228,7 +227,7 @@ export function ClassicHome() {
                   data-template="all"
                   className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
                 >
-                  Explore the full portal <ArrowRight className="ml-2 w-5 h-5" />
+                  Explore the full portal
                 </a>
               </div>
             </FadeIn>
@@ -276,7 +275,7 @@ export function ClassicHome() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center h-12 px-8 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg"
                 >
-                  Talk through a deal <ArrowRight className="ml-2 w-5 h-5" />
+                  Talk through a deal
                 </a>
               </div>
             </FadeIn>
@@ -334,7 +333,6 @@ export function ClassicHome() {
                 className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
               >
                 Talk through a deal
-                <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </div>
           </div>
