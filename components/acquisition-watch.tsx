@@ -64,7 +64,7 @@ export function AcquisitionWatch({ deal = false }: { deal?: boolean }) {
       </div>
       </section>
       <section className={styles.personalNote}>
-        <Image src="/images/edward_blue.jpeg" alt="Edward Sapp" width={72} height={72} />
+        <Image src="/images/edward-linkedin.jpeg" alt="Edward Sapp" width={72} height={72} />
         <div><h2>Let’s look at what you inherited.</h2><p>I’m Edward Sapp. We can start with the workbook you have, the decision in front of you and the deadline. We’ll agree what needs review, trace the assumptions and formulas, and walk through the findings with your team.</p><p className={styles.smallPrint}>Examples are anonymized; engagements span acquisition and development work. Review scope depends on your deal.</p></div>
       </section>
       <section className={styles.salesProof} aria-label="What clients say"><TestimonialCarousel testimonials={acquisitionTestimonials} compact tone="dark" /></section>
