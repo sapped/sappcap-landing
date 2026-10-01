@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState, type MouseEvent } from "react";
 import { getAnalyticsAttribution } from "@/lib/analytics";
-import { ArrowUpRight } from "lucide-react";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import { acquisitionTestimonials } from "@/lib/testimonials";
 import { withAttribution, CAL_BOOKING_URL } from "@/lib/acquisition-review-config";
@@ -28,7 +27,7 @@ export function BookingCTA({ placement }: { placement: "top" | "bottom" }) {
     window.location.assign(withAttribution(CAL_BOOKING_URL, { ...attribution, ...identity }));
   }
   return <div className={styles.bookingAction}>
-    <a className={styles.primaryButton} href={withAttribution(CAL_BOOKING_URL, attribution)} onClick={openCalendar} aria-busy={opening}>Let’s work through your model <ArrowUpRight size={18} /></a>
+    <a className={styles.primaryButton} href={withAttribution(CAL_BOOKING_URL, attribution)} onClick={openCalendar} aria-busy={opening}>Let’s work through your model</a>
     <p className={styles.smallPrint}>Choose a time on Cal.com · Free 30-minute intro</p>
   </div>;
 }
@@ -58,7 +57,7 @@ export function AcquisitionWatch({ deal = false }: { deal?: boolean }) {
           <div className={styles.caseTop}><span className={styles.caseNumber}>0{index + 1}</span><p className={styles.eyebrow}>{item.label}</p></div>
           <div className={styles.caseMetric}><strong>{item.metric}</strong><span>{item.metricLabel}</span></div>
           <h2>{item.title}</h2><p>{item.body}</p>
-          <div className={styles.causeEffect}><span>{item.before}</span><span aria-hidden="true">→</span><strong>{item.after}</strong></div>
+          <div className={styles.causeEffect}><span>{item.before}</span><span>to</span><strong>{item.after}</strong></div>
           <p className={styles.reviewCheck}>{item.check}</p>
         </article>)}
       </div>
