@@ -15,7 +15,7 @@ const examples = [
   { label: "DOCUMENTED SCENARIO ANALYSIS", metric: "−70%", metricLabel: "in projected promote under an alternate case", title: "The promote depended on the assumptions.", body: "In a platform acquisition review, we tested lower rent premiums, normalized operating margins and adjusted one exit cap rate across a sample portfolio. Projected promote fell by about 70% against management’s case.", check: "A modeled sensitivity, not a realized loss. It showed the buyer how much the acquired economics depended on those assumptions.", before: "Management assumptions", after: "Alternate underwriting case" },
 ];
 
-function BookingCTA({ placement }: { placement: "top" | "bottom" }) {
+export function BookingCTA({ placement }: { placement: "top" | "bottom" }) {
   const { attribution, record, preview } = useAcquisition();
   const [opening, setOpening] = useState(false);
   async function openCalendar(event: MouseEvent<HTMLAnchorElement>) {
@@ -33,11 +33,11 @@ function BookingCTA({ placement }: { placement: "top" | "bottom" }) {
   </div>;
 }
 
-export function AcquisitionWatch() {
+export function AcquisitionWatch({ deal = false }: { deal?: boolean }) {
   return (
     <main className={styles.watchMain}>
       <header className={styles.watchIntro}>
-        <p className={styles.eyebrow}>YOUR ACQUISITION MODEL REVIEW</p>
+        <p className={styles.eyebrow}>{deal ? "YOUR DEAL MODEL REVIEW" : "YOUR ACQUISITION MODEL REVIEW"}</p>
         <h1>Know what you’re<br /><span>taking to IC.</span></h1>
         <p>Let’s work through the model you inherited, the assumptions behind it and the questions you need answered before your decision.</p>
         <BookingCTA placement="top" />
@@ -71,7 +71,7 @@ export function AcquisitionWatch() {
       <section id="calendar" className={styles.bookingClose}>
         <p className={styles.eyebrow}>YOUR NEXT STEP</p>
         <h2>Bring the deal.<br />We’ll talk through the review.</h2>
-        <p>Tell me what you’re buying, when you need an answer and where the model leaves you unsure.</p>
+        <p>Tell me what you’re working on, when you need an answer and where the model leaves you unsure.</p>
         <BookingCTA placement="bottom" />
         <p className={styles.smallPrint}>We’ll agree the scope before requesting your files.<br />The intro is free. Model review and corrections are scoped separately.</p>
       </section>
