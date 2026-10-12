@@ -81,6 +81,8 @@ export async function POST(request: Request) {
     for (const [name, value] of Object.entries(body.attribution)) if (typeof value === "string") params.set(name, value);
   }
   const attribution = readAttribution(params);
+  const funnelAngle = body.funnelAngle ?? "acquisition";
+  if (!["acquisition", "capacity", "ownership"].includes(funnelAngle)) return reply(400, { accepted: false });
   const memberId = createHash("md5").update(email).digest("hex");
   const path = `/lists/${audience}/members/${memberId}`;
   // One deadline covers the entire provider sequence, not 7 seconds per chunk.
@@ -105,7 +107,7 @@ export async function POST(request: Request) {
     // Provider notes carry their own creation timestamps. Keep snapshot content
     // deterministic on retry; a digest distinguishes changed attribution instead
     // of accidentally assembling old and new chunks under the same capture ID.
-    const snapshot = JSON.stringify({ disclosure: DISCLOSURE, consent: true, attribution });
+    const snapshot = JSON.stringify({ disclosure: DISCLOSURE, consent: true, attribution, funnelAngle });
     const digest = createHash("sha256").update(snapshot).digest("hex").slice(0, 16);
     const prefix = `${ACQUISITION_EXPERIMENT}:${captureId}:${digest}:`;
     const notes = await provider("/notes?count=1000&fields=notes.note");
@@ -120,7 +122,7 @@ export async function POST(request: Request) {
     }));
     // The native welcome automation starts only on this tag, after the metadata is saved.
     // Re-applying an active tag does not remove/re-add it or restart the sequence.
-    await provider("/tags", "POST", { tags: [{ name: TAG, status: "active" }] });
+    await provider("/tags", "POST", { tags: [{ name: TAG, status: "active" }, { name: `marketing-angle-${funnelAngle}`, status: "active" }] });
     return reply(200, { accepted: true });
   } catch {
     // Avoid logging provider responses: they can contain emails and account information.

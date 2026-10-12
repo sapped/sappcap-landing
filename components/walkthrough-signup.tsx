@@ -8,8 +8,9 @@ import { submitPreviewLead, withAttribution } from "@/lib/acquisition-review-con
 import { getAnalyticsAttribution, logGAEvent } from "@/lib/analytics";
 import { useAcquisition } from "./acquisition-shell";
 import styles from "./acquisition.module.css";
+import type { CampaignAngle, WalkthroughDestination } from "@/lib/campaign-entry-copy";
 
-export function WalkthroughSignup({ destination = "/acquisition/review" }: { destination?: "/acquisition/review" | "/deal/review" }) {
+export function WalkthroughSignup({ destination = "/acquisition/review", angle = "acquisition" }: { destination?: WalkthroughDestination; angle?: CampaignAngle }) {
   const { preview, email, setEmail, failSubmit, record, attribution } = useAcquisition();
   const [captureId] = useState(() => crypto.randomUUID());
   const [website, setWebsite] = useState("");
@@ -33,7 +34,7 @@ export function WalkthroughSignup({ destination = "/acquisition/review" }: { des
           method: "POST",
           headers: { "Content-Type": "application/json" },
           signal: AbortSignal.timeout(25000),
-          body: JSON.stringify({ email: value, attribution: capturedAttribution, consent: true, website, captureId }),
+          body: JSON.stringify({ email: value, attribution: capturedAttribution, consent: true, website, captureId, funnelAngle: angle }),
         });
         const result = await response.json();
         if (result.code === "confirmation_required") {
@@ -42,9 +43,9 @@ export function WalkthroughSignup({ destination = "/acquisition/review" }: { des
           return;
         }
         if (!response.ok || !result.accepted) throw new Error("Subscription unavailable");
-        logGAEvent("walkthrough_opt_in", { experiment_id: "acquisition_review_v1" });
+        logGAEvent("walkthrough_opt_in", { experiment_id: "acquisition_review_v1", funnel_angle: angle });
       }
-      setEmail(value); record("walkthrough_opt_in", { simulated: String(preview) });
+      setEmail(value); record("walkthrough_opt_in", { simulated: String(preview), funnel_angle: angle });
       router.push(withAttribution(destination, capturedAttribution));
     } catch {
       setError("We couldn't save your email. Please try again.");

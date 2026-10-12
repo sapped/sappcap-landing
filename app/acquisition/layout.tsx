@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { AcquisitionShell } from "@/components/acquisition-shell";
+import { CampaignLayout } from "@/components/campaign-layout";
 
 export const metadata: Metadata = {
   title: "Acquisition Model Review | Sapp Capital Advisors",
@@ -9,8 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AcquisitionLayout({ children }: { children: React.ReactNode }) {
-  // Do not accidentally publish a simulated funnel while production integrations are pending.
-  const live = process.env.ACQUISITION_LIVE === "true";
-  if (process.env.NODE_ENV === "production" && !live) notFound();
-  return <AcquisitionShell preview={!live}>{children}</AcquisitionShell>;
+  return <CampaignLayout>{children}</CampaignLayout>;
 }
