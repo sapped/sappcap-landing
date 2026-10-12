@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { CampaignLanding } from "@/components/campaign-landing";
+import { CampaignEntry } from "@/components/acquisition-entry";
+import { CampaignLayout } from "@/components/campaign-layout";
 
 export const metadata: Metadata = {
   title: "CRE underwriting support | Sapp Capital Advisors",
@@ -7,4 +8,4 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.sapp.capital/underwriting-support" },
 };
 
-export default function Page() { return <CampaignLanding angle="capacity" />; }
+export default function Page() { return <CampaignLayout><CampaignEntry angle="capacity" /></CampaignLayout>; }

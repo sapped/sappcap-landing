@@ -4,15 +4,18 @@ import { acquisitionTestimonials } from "@/lib/testimonials";
 import { WalkthroughSignup } from "./walkthrough-signup";
 import { PressQuote } from "./press-quote";
 import styles from "./acquisition.module.css";
-export function AcquisitionEntry() {
+import { campaignEntryCopy, type CampaignAngle } from "@/lib/campaign-entry-copy";
+export function CampaignEntry({ angle = "acquisition" }: { angle?: CampaignAngle }) {
+ const copy = campaignEntryCopy[angle];
  return <main className={styles.entryMain}>
   <section className={styles.entryHero}>
-   <p className={styles.eyebrow}>FOR ACQUISITION DEAL TEAMS</p>
-   <h1>Inherited a model?<br /><span>Know what’s in it before IC.</span></h1>
-   <p className={styles.heroDescription}>See the hidden assumptions and formula problems we look for, so you can explain the numbers even when the person who built it has moved on.</p>
-   <WalkthroughSignup />
+   <p className={styles.eyebrow}>{copy.eyebrow}</p>
+   <h1>{copy.headline}<br /><span>{copy.emphasis}</span></h1>
+   <p className={styles.heroDescription}>{copy.description}</p>
+   <WalkthroughSignup destination={copy.destination} angle={angle} />
   </section>
   <section className={styles.entryProof} aria-label="What clients say"><TestimonialCarousel testimonials={acquisitionTestimonials} compact tone="dark" /></section>
   <PressQuote />
  </main>;
 }
+export function AcquisitionEntry() { return <CampaignEntry />; }

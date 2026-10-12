@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { AcquisitionShell } from "./acquisition-shell";
 import { BookingCTA } from "./acquisition-watch";
 import { TestimonialCarousel } from "./testimonial-carousel";
-import { testimonials } from "@/lib/testimonials";
+import { acquisitionTestimonials } from "@/lib/testimonials";
 import styles from "./acquisition.module.css";
 
 const content = {
@@ -21,7 +20,6 @@ const content = {
     note: "Bring the question your team needs answered.",
     noteBody: "I’m Edward Sapp. We can start with the deal, the work already done and the next decision. You can work through the analysis with us or delegate a defined scope.",
     closing: "Let’s discuss what needs doing.",
-    proof: [testimonials[0], testimonials[3]],
   },
   ownership: {
     eyebrow: "OWNERSHIP WATERFALL ANALYSIS",
@@ -36,14 +34,12 @@ const content = {
     note: "Bring the terms you need to work through.",
     noteBody: "I’m Edward Sapp. We can start with an existing waterfall or a structure you need to model. The intro defines the question and what further analysis would involve.",
     closing: "Let’s work through your structure.",
-    proof: [testimonials[5], testimonials[3]],
   },
 };
 
-export function CampaignLanding({ angle }: { angle: keyof typeof content }) {
+export function CampaignReview({ angle }: { angle: keyof typeof content }) {
   const page = content[angle];
-  return <AcquisitionShell preview={false}>
-    <main className={styles.watchMain}>
+  return <main className={styles.watchMain}>
       <header className={styles.watchIntro}>
         <p className={styles.eyebrow}>{page.eyebrow}</p>
         <h1>{page.heading}</h1>
@@ -64,7 +60,7 @@ export function CampaignLanding({ angle }: { angle: keyof typeof content }) {
           <p className={styles.reviewCheck}>A corrected allocation, not new profit or cash recovered. This anonymized example describes one review, not a promised result.</p>
         </article>
       </section>}
-      <section className={styles.salesProof} aria-label="What clients say"><TestimonialCarousel testimonials={page.proof} compact tone="dark" /></section>
+      <section className={styles.salesProof} aria-label="What clients say"><TestimonialCarousel testimonials={acquisitionTestimonials} compact tone="dark" /></section>
       <section className={styles.personalNote}>
         <Image src="/images/edward-linkedin.jpeg" alt="Edward Sapp" width={72} height={72} />
         <div><h2>{page.note}</h2><p>{page.noteBody}</p></div>
@@ -76,6 +72,5 @@ export function CampaignLanding({ angle }: { angle: keyof typeof content }) {
         <BookingCTA placement="bottom" label="Book a free 30-minute intro" />
         <p className={styles.smallPrint}>No presentation needed. We agree paid scope before requesting files or starting the analysis.</p>
       </section>
-    </main>
-  </AcquisitionShell>;
+    </main>;
 }
