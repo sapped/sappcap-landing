@@ -14,7 +14,7 @@ const examples = [
   { label: "DOCUMENTED SCENARIO ANALYSIS", metric: "−70%", metricLabel: "in projected promote under an alternate case", title: "The promote depended on the assumptions.", body: "In a platform acquisition review, we tested lower rent premiums, normalized operating margins and adjusted one exit cap rate across a sample portfolio. Projected promote fell by about 70% against management’s case.", check: "A modeled sensitivity, not a realized loss. It showed the buyer how much the acquired economics depended on those assumptions.", before: "Management assumptions", after: "Alternate underwriting case" },
 ];
 
-export function BookingCTA({ placement }: { placement: "top" | "bottom" }) {
+export function BookingCTA({ placement, label = "Let’s work through your model" }: { placement: "top" | "bottom"; label?: string }) {
   const { attribution, record, preview } = useAcquisition();
   const [opening, setOpening] = useState(false);
   async function openCalendar(event: MouseEvent<HTMLAnchorElement>) {
@@ -27,7 +27,7 @@ export function BookingCTA({ placement }: { placement: "top" | "bottom" }) {
     window.location.assign(withAttribution(CAL_BOOKING_URL, { ...attribution, ...identity }));
   }
   return <div className={styles.bookingAction}>
-    <a className={styles.primaryButton} href={withAttribution(CAL_BOOKING_URL, attribution)} onClick={openCalendar} aria-busy={opening}>Let’s work through your model</a>
+    <a className={styles.primaryButton} href={withAttribution(CAL_BOOKING_URL, attribution)} onClick={openCalendar} aria-busy={opening}>{label}</a>
     <p className={styles.smallPrint}>Choose a time on Cal.com · Free 30-minute intro</p>
   </div>;
 }
