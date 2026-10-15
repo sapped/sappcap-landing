@@ -19,8 +19,8 @@ const {validateApplication}=load('lib/application-schema.ts');
 const {storeApplicationEmail,consumeApplicationEmail}=load('lib/application-handoff.ts');
 const {applicationMode}=load('lib/application-experience.ts');
 const {readApplicationRequest}=load('lib/application-request.ts');
-const valid={name:'QA Reviewer',email:'qa@example.test',company:'Review firm',dealSize:'$5M to under $10M',completedDeals:'0',targetDeals:'4',goals:'We need more underwriting capacity.',marketingConsent:false};
-test('application does not require marketing consent or knowledge of future deal counts',()=>assert.deepEqual(validateApplication({...valid,completedDeals:'',targetDeals:''}),{}));
+const valid={name:'QA Reviewer',email:'qa@example.test',company:'Review firm',dealSize:'$5M to under $10M',completedDeals:'0',targetDeals:'4',goals:'We need more underwriting capacity.',marketingConsent:true,consentNoticeVersion:'email-submit-notice-2026-10-15-v1'};
+test('application allows unknown deal counts',()=>assert.deepEqual(validateApplication({...valid,completedDeals:'',targetDeals:''}),{}));
 test('direct application requires a valid email',()=>assert.equal(validateApplication({...valid,email:''}).email,'Enter a valid email address.'));
 test('negative or fractional deal counts are rejected',()=>{assert.ok(validateApplication({...valid,completedDeals:'-1'}).completedDeals);assert.ok(validateApplication({...valid,targetDeals:'1.5'}).targetDeals);});
 test('deal size must be from the shared schema',()=>assert.ok(validateApplication({...valid,dealSize:'unbounded'}).dealSize));
@@ -40,3 +40,6 @@ test('stream body limit rejected without trusting content length',async()=>asser
 test('bounded same-origin JSON accepted',async()=>assert.equal((await readApplicationRequest(request(envelope))).id,envelope.id));
 test('production application endpoint fails closed',async()=>{const previous={...process.env};try{process.env.VERCEL_ENV='production';const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid}));assert.equal(r.status,503);}finally{process.env=previous;}});
 test('hosted preview does not claim durable capture',async()=>{const previous={...process.env};try{process.env.VERCEL_ENV='preview';const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid}));assert.equal(r.status,200);assert.equal((await r.json()).saved,false);}finally{process.env=previous;}});
+
+test('submission without the displayed notice version is rejected',async()=>{const previous={...process.env};try{process.env.VERCEL_ENV='preview';const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid,consentNoticeVersion:'old-version'}));assert.equal(r.status,400);}finally{process.env=previous;}});
+test('submission notice is not recorded when request disagrees',async()=>{const previous={...process.env};try{process.env.VERCEL_ENV='preview';const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid,marketingConsent:false}));assert.equal(r.status,400);}finally{process.env=previous;}});

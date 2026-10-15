@@ -10,7 +10,7 @@ Production release is intentionally disabled. Work is based on staging 5e219ffca
 - `/apply`: One schema and page for everyone. Email is editable, blank on a direct visit, or prefilled via a single-use 30-minute same-tab handoff. Email never enters the URL.
 - `/review-inbox`: Local-only inbox for applications, email captures and template outbox records. Never exposed on Vercel previews or production.
 
-The application asks name, email, company, typical deal size, deals completed in the current year, target deals in the next12months, and business/goals/support context. Deal counts may be blank when unsure. Optional marketing consent is separate. Template requests are recorded at lander capture, not gated by application submission.
+The application asks name, email, company, typical deal size, deals completed in the last12months, target deals in the next12months, and the single biggest12-month business goal, starting point, target and bottleneck. Deal counts may be blank when unsure. Consent uses a visible submission notice under the button, not a checkbox. The receipt stores the notice wording, version and submission-notice method; this is not represented as a checkbox opt-in or a legal compliance determination. Template requests are recorded at lander capture, not gated by application submission.
 
 ## Local review
 
