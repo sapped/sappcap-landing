@@ -18,7 +18,7 @@
 .pressCompact a{font-size:12px}
 @media(max-width:700px){.pressCompact{margin:0 0 24px;padding:0 0 22px}.pressCompact blockquote{font-size:19px}.reviewHero{gap:26px}}
 
-.capacityOffer{font-size:15px;line-height:1.6;color:#c7dcff;margin-top:17px;max-width:440px}
+.capacityOffer{font-size:22px;font-weight:600;line-height:1.4;letter-spacing:-.02em;color:#eff4fb;margin-top:22px;max-width:440px}.close .capacityOffer{margin:20px auto 0}
 .capacityExpertise{grid-template-columns:1fr 1fr}
 .capacityProcess{border-top:1px solid #ffffff22;padding:44px 0 56px;margin:0 0 25px}
 .capacityProcess header{max-width:700px}
@@ -28,4 +28,4 @@
 .capacityProcess h3{font-size:18px;line-height:1.4;font-weight:500;margin:12px 0}
 .capacityProcess li p{font-size:14px;line-height:1.8;color:#b7c8dd}
 .capacityFit{font-size:12px;color:#a9bcd5;line-height:1.6;margin-top:24px}
-@media(max-width:700px){.capacityOffer{font-size:14px;margin-top:13px}.capacityProcess{padding:30px 0 38px}.capacityProcess ol{grid-template-columns:1fr;gap:24px}.capacityProcess h3{margin:7px 0}.capacityProcess h2{font-size:28px}.capacityExpertise{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.capacityOffer{font-size:20px;margin-top:18px}.capacityProcess{padding:30px 0 38px}.capacityProcess ol{grid-template-columns:1fr;gap:24px}.capacityProcess h3{margin:7px 0}.capacityProcess h2{font-size:28px}.capacityExpertise{grid-template-columns:1fr 1fr}}

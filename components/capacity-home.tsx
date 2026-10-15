@@ -65,6 +65,7 @@ export function CapacityHome() {
     <section id="talk" className={styles.close}>
       <p className={styles.kicker}>START A WORKING RELATIONSHIP</p>
       <h2>Bring your goals.<br />Let’s get to work.</h2>
+      <p className={styles.capacityOffer}>Start with five free, one-hour working sessions.</p>
       <BookingCTA placement="bottom" />
       <p className={styles.note}>Tell me about your business and the capacity you need. I’ll review your application and follow up on the next step.</p>
     </section>
