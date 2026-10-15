@@ -10,9 +10,9 @@ import { testimonials } from "@/lib/testimonials";
 import styles from "./deal-home.module.css";
 
 const benefits = [
-  { number: "01", title: "Put more of your pipeline to work.", body: "Add underwriting and execution support when your team’s capacity is holding up the next opportunity." },
-  { number: "02", title: "Work with Edward, backed by a team.", body: "Get principal involvement in the direction and review, with analysts carrying the agreed work forward." },
-  { number: "03", title: "Build a working relationship first.", body: "Start with five free one-hour working sessions. Bring real priorities, make progress together and see whether we’re the right team to support you." },
+  { number: "01", title: "Keep senior judgment where it matters.", body: "Give your investment committee work that has been thought through. Edward stays involved in the analysis and review, with our analysts moving the work forward." },
+  { number: "02", title: "Bring institutional discipline to the work.", body: "We work with the urgency and rigor of an institutional real estate private equity team: responsive communication, thorough analysis and a focus on your investment goals." },
+  { number: "03", title: "Build a team that knows your business.", body: "We learn your firm, your standards and where you want to go. That context carries from one deal to the next, so you spend less time bringing outside help up to speed." },
 ];
 const steps = [
   { title: "Tell me where you want to go.", body: "Apply with your business goals, deal pipeline and the work your team needs help moving forward. I’ll review the fit." },
@@ -25,9 +25,9 @@ export function CapacityHome() {
     <section className={`${styles.hero} ${styles.reviewHero}`}>
       <div className={styles.cityscape} aria-hidden="true"><HeroVideoCarousel /></div>
       <div className={styles.pitch}>
-        <p className={styles.kicker}>FOR CRE INVESTMENT TEAMS</p>
+        <p className={styles.kicker}>PRINCIPAL-LED UNDERWRITING</p>
         <h1>More capacity.<br /><span>For the deals ahead.</span></h1>
-        <p className={styles.lede}>You have the capital and opportunities. Work directly with Edward and our analyst team to move the underwriting forward.</p>
+        <p className={styles.lede}>Your commercial real estate pipeline is growing. Your senior team’s time isn’t. Work directly with Edward and our analysts to move the underwriting forward, so your team can focus on the investment decision.</p>
         <p className={styles.capacityOffer}>Start with five free, one-hour working sessions.</p>
         <CampaignEmailCapture campaign="home" />
       </div>
@@ -40,9 +40,9 @@ export function CapacityHome() {
 
     <section id="expertise" className={styles.work}>
       <div className={styles.sectionHeading}>
-        <p className={styles.kicker}>WHAT YOU GET</p>
+        <p className={styles.kicker}>WORKING ALONGSIDE YOUR TEAM</p>
         <h2>Experienced capacity behind your investment goals.</h2>
-        <p>Work directly with Edward and our analyst team on the deals and priorities your business needs to move forward. We learn your business, take on defined assignments and stay involved as the work develops.</p>
+        <p>You need people who understand how your firm invests and what success looks like for you. We get to know your business and its goals, then work alongside your team as deals and priorities develop.</p>
       </div>
       <div className={styles.outcomes}>{benefits.map(item => <article key={item.number}><span>{item.number}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></article>)}</div>
     </section>
@@ -54,12 +54,12 @@ export function CapacityHome() {
     <section className={styles.capacityProcess} aria-labelledby="capacity-process-title">
       <header><p className={styles.kicker}>HOW WE START</p><h2 id="capacity-process-title">Five working sessions.<br />A chance to build trust through the work.</h2></header>
       <ol>{steps.map((step,index) => <li key={step.title}><span>0{index+1}</span><h3>{step.title}</h3><p>{step.body}</p></li>)}</ol>
-      <p className={styles.capacityFit}>The sessions are for qualified CRE investment teams. Applying does not commit you to paid work.</p>
+      <p className={styles.capacityFit}>The sessions are for qualified commercial real estate investment teams. Applying does not commit you to paid work.</p>
     </section>
 
     <section className={styles.principal}>
       <Image src="/images/edward-linkedin.jpeg" alt="Edward Sapp" width={160} height={160} />
-      <div><p className={styles.kicker}>YOUR PRINCIPAL CONTACT</p><h2>Work with Edward.<br />Backed by a team.</h2><p>I start with your business, your goals and how each assignment fits the broader picture. I stay involved in the direction and review; our analysts carry the agreed work forward.</p><p className={styles.credential}><a href="https://linkedin.com/in/edwardsapp" target="_blank" rel="noopener noreferrer">Edward Sapp · Principal</a><br />10+ years of experience · $40B+ in transaction experience</p></div>
+      <div><p className={styles.kicker}>YOUR PRINCIPAL CONTACT</p><h2>Work with Edward.<br />Backed by a team.</h2><p>I get to know your firm, your goals and the decisions on your desk. I stay close to the work, challenge the assumptions and help your team move toward those goals. Our analysts support that relationship with the capacity to carry the work forward.</p><p className={styles.credential}><a href="https://linkedin.com/in/edwardsapp" target="_blank" rel="noopener noreferrer">Edward Sapp · Principal</a><br />10+ years of experience · $40B+ in transaction experience</p></div>
     </section>
 
     <section id="talk" className={styles.close}>
