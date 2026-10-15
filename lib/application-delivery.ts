@@ -1,18 +1,17 @@
 import { createHash } from "node:crypto";
 import { CONSENT_NOTICE_TEXT, CONSENT_NOTICE_VERSION } from "./consent-notice";
+import { applicationAnswerRows, type ApplicationFields } from "./application-schema";
+import { landingPageName } from "./application-source";
 
-type Intake = { id: string; email: string; kind: "email-capture" | "application"; campaign: string; attribution: Record<string, string>; landingPage?: string; emailPrefilled?: boolean; name?: string; company?: string; dealSize?: string; completedDeals?: string; targetDeals?: string; goals?: string };
+type Intake = Partial<ApplicationFields> & { id: string; email: string; kind: "email-capture" | "application"; campaign: string; attribution: Record<string, string>; landingPage?: string; emailPrefilled?: boolean };
 
 export function intakeNotificationMessage(record: Intake) {
   return [
     `Subject: SCA ${record.kind === "application" ? "application received" : "email signup"}`,
-    `Reference: ${record.id}`, `Email: ${record.email}`, `Name: ${record.name || "Not yet supplied"}`,
-    `Company: ${record.company || "Not yet supplied"}`, `Landing page: ${record.landingPage || "Unknown"}`,
-    `Campaign: ${record.campaign}`, `Email carried from earlier lander: ${record.emailPrefilled ? "Yes" : "No"}`,
-    `Typical deal size: ${record.dealSize || "Not yet supplied"}`,
-    `Deals completed (last 12 months): ${record.completedDeals || "Not supplied"}`,
-    `Target deals (next 12 months): ${record.targetDeals || "Not supplied"}`,
-    `Business goal:\n${record.goals || "Not yet supplied"}`,
+    `Submission reference (website generated): ${record.id}`,
+    `Entry page: ${landingPageName(record.landingPage)}`,
+    `Email collected on: ${landingPageName(record.kind === "email-capture" || record.emailPrefilled ? record.landingPage : "/apply")}`,
+    ...(record.kind === "application" ? applicationAnswerRows(record).map(([label,value]) => `${label}:\n${value}`) : [`Email: ${record.email}`]),
     `Attribution (visitor supplied, not verified):\n${JSON.stringify(record.attribution,null,2)}`,
     `Consent notice (${CONSENT_NOTICE_VERSION}): ${CONSENT_NOTICE_TEXT}`,
   ].join("\n\n");
