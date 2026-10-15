@@ -29,7 +29,7 @@ export function FloatingCTA() {
     }
   }, []);
 
-  if (!isVisible || (pathname === "/" || pathname.startsWith("/acquisition") || pathname.startsWith("/deal") || pathname === "/underwriting-support" || pathname === "/ownership-waterfall")) return null;
+  if (!isVisible || (pathname === "/apply" || pathname === "/templates" || pathname === "/review-inbox" || pathname === "/" || pathname.startsWith("/acquisition") || pathname.startsWith("/deal") || pathname.startsWith("/underwriting-support") || pathname.startsWith("/ownership-waterfall"))) return null;
 
   return (
     <a

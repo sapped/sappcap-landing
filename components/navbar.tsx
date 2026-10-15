@@ -2,7 +2,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import Link from "next/link";
 import Image from "next/image";
 
-export function Navbar({ homeHref = "/", funnel = false }: { homeHref?: string; funnel?: boolean }) {
+export function Navbar({ homeHref = "/", funnel = false, applicationFunnel = false }: { homeHref?: string; funnel?: boolean; applicationFunnel?: boolean }) {
   return (
     <header className={funnel ? "sticky top-0 z-50 w-full bg-[#0d1929]/80 backdrop-blur-xl text-white border-b border-white/10 shadow-sm" : "fixed w-full top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800"}>
       <div className="container mx-auto px-4 h-16 flex justify-between items-center">
@@ -43,14 +43,14 @@ export function Navbar({ homeHref = "/", funnel = false }: { homeHref?: string; 
             </ul>
           </nav>
           <a
-            href={funnel ? "#talk" : "https://cal.com/sappcapital/client-intro"}
-            target={funnel ? undefined : "_blank"}
+            href={applicationFunnel ? "/apply" : funnel ? "#talk" : "https://cal.com/sappcapital/client-intro"}
+            target={applicationFunnel || funnel ? undefined : "_blank"}
             rel="noopener noreferrer"
             className="hidden md:inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
           >
-            Talk through a deal
+            {applicationFunnel ? "Apply to work with SCA" : "Talk through a deal"}
           </a>
-          <MobileNav funnel={funnel} />
+          <MobileNav funnel={funnel} applicationFunnel={applicationFunnel} />
         </div>
       </div>
     </header>

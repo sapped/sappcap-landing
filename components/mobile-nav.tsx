@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-export function MobileNav({ funnel = false }: { funnel?: boolean }) {
+export function MobileNav({ funnel = false, applicationFunnel = false }: { funnel?: boolean; applicationFunnel?: boolean }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleClose = () => {
@@ -52,13 +52,13 @@ export function MobileNav({ funnel = false }: { funnel?: boolean }) {
                 </li>
                 <li>
                   <a
-                    href={funnel ? "#talk" : "https://cal.com/sappcapital/client-intro"}
-                    target={funnel ? undefined : "_blank"}
+                    href={applicationFunnel ? "/apply" : funnel ? "#talk" : "https://cal.com/sappcapital/client-intro"}
+                    target={applicationFunnel || funnel ? undefined : "_blank"}
                     rel="noopener noreferrer"
                     onClick={handleClose}
                     className="block text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300"
                   >
-                    Talk through a deal
+                    {applicationFunnel ? "Apply to work with SCA" : "Talk through a deal"}
                   </a>
                 </li>
               </ul>

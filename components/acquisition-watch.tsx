@@ -15,7 +15,7 @@ const examples = [
 ];
 
 export function BookingCTA({ placement, label = "Let’s work through your model" }: { placement: "top" | "bottom"; label?: string }) {
-  const { attribution, record, preview } = useAcquisition();
+  const { attribution, record, preview, applicationFunnel } = useAcquisition();
   const [opening, setOpening] = useState(false);
   async function openCalendar(event: MouseEvent<HTMLAnchorElement>) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
@@ -26,6 +26,7 @@ export function BookingCTA({ placement, label = "Let’s work through your model
     const identity = await getAnalyticsAttribution();
     window.location.assign(withAttribution(CAL_BOOKING_URL, { ...attribution, ...identity }));
   }
+  if (applicationFunnel) return <div className={styles.bookingAction}><a className={styles.primaryButton} href={withAttribution("/apply", attribution)}>Apply to work with SCA</a><p className={styles.smallPrint}>Tell Edward about your business and the work you have in mind.</p></div>;
   return <div className={styles.bookingAction}>
     <a className={styles.primaryButton} href={withAttribution(CAL_BOOKING_URL, attribution)} onClick={openCalendar} aria-busy={opening}>{label}</a>
     <p className={styles.smallPrint}>Choose a time on Cal.com · Free 30-minute intro</p>
