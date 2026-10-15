@@ -1,5 +1,6 @@
 "use client";
 import { useAcquisition } from "./acquisition-shell";
+import { CapacityHome } from "./capacity-home";
 import Image from "next/image";
 import { HeroVideoCarousel } from "./hero-video-carousel";
 import { WalkthroughSignup } from "./walkthrough-signup";
@@ -16,6 +17,7 @@ const outcomes = [
 ];
 export function DealHome() {
  const { applicationFunnel } = useAcquisition();
+ if (applicationFunnel) return <CapacityHome />;
  return <main className={styles.main}>
   <section className={`${styles.hero} ${applicationFunnel ? styles.reviewHero : ""}`}>
    <div className={styles.cityscape} aria-hidden="true"><HeroVideoCarousel /></div>
