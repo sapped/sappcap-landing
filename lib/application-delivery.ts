@@ -21,6 +21,26 @@ export function intakeNotificationMessage(record: Intake) {
 // No raw email, application answers or provider response bodies in server logs.
 // Existing opt-outs are never overridden, and legacy welcome tags are untouched.
 export async function deliverApplicationIntake(record: Intake) {
+  try { return await deliverMailchimpIntake(record); }
+  catch {
+    // A Mailchimp outage must not discard a service application if Formspree can retain it.
+    if(await sendIntakeNotification(record)) {
+      console.error("Mailchimp intake unavailable; request retained by Formspree.");
+      return {marketingSubscribed:false,notificationSent:true};
+    }
+    throw new Error("intake_unavailable");
+  }
+}
+
+async function sendIntakeNotification(record: Intake) {
+  if(process.env.FORMSPREE_NOTIFICATIONS_ENABLED !== "true")return false;
+  try {
+    const receipt=await fetch("https://formspree.io/f/xyyrjeav",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},signal:AbortSignal.timeout(5000),body:JSON.stringify({email:record.email,message:intakeNotificationMessage(record)})});
+    return receipt.ok;
+  }catch{return false;}
+}
+
+async function deliverMailchimpIntake(record: Intake) {
   const key = process.env.MAILCHIMP_API_KEY;
   const audience = process.env.MAILCHIMP_AUDIENCE_ID;
   const dc = key?.match(/-(us\d+)$/)?.[1];
@@ -51,8 +71,7 @@ export async function deliverApplicationIntake(record: Intake) {
     notificationSent=markers.has(notificationMarker);
     if(!notificationSent) {
       try {
-        const receipt=await fetch("https://formspree.io/f/xyyrjeav",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},signal:AbortSignal.timeout(5000),body:JSON.stringify({email:record.email,message:intakeNotificationMessage(record)})});
-        notificationSent=receipt.ok;
+        notificationSent=await sendIntakeNotification(record);
         if(notificationSent)await provider("/notes","POST",{note:notificationMarker});
       }catch { /* The full application is already saved in Mailchimp. */ }
       if(!notificationSent)console.error("Formspree notification failed; intake remains saved in Mailchimp.");
