@@ -27,7 +27,7 @@ export function CapacityHome() {
       <div className={styles.pitch}>
         <p className={styles.kicker}>PRINCIPAL-LED UNDERWRITING</p>
         <h1>More capacity.<br /><span>For the deals ahead.</span></h1>
-        <p className={styles.lede}>Your commercial real estate pipeline is growing. Your senior team’s time isn’t. Work directly with Edward and our analysts to move the underwriting forward, so your team can focus on the investment decision.</p>
+        <p className={styles.lede}>You have commercial real estate opportunities ready to move. When your senior team’s capacity is constrained, work directly with Edward and our analysts to move deals through investment committee.</p>
         <p className={styles.capacityOffer}>Start with five free, one-hour working sessions.</p>
         <CampaignEmailCapture campaign="home" />
       </div>
