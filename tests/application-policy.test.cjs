@@ -65,3 +65,16 @@ test('provider outage never reports a saved application',async()=>{
  const previous={...process.env},oldFetch=global.fetch;
  try{process.env.VERCEL_ENV='production';process.env.APPLICATION_FUNNEL_LIVE='true';process.env.MAILCHIMP_API_KEY='fixture-us21';process.env.MAILCHIMP_AUDIENCE_ID='fixture';global.fetch=async()=>new Response('{}',{status:503});const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid}));assert.equal(r.status,503);assert.equal((await r.json()).accepted,false);}finally{process.env=previous;global.fetch=oldFetch;}
 });
+
+test('Formspree retains requests if Mailchimp is unavailable, using one message with source details',async()=>{
+ const previous={...process.env},oldFetch=global.fetch;let notification;
+ try{
+  process.env.FORMSPREE_NOTIFICATIONS_ENABLED='true';process.env.MAILCHIMP_API_KEY='fixture-us21';process.env.MAILCHIMP_AUDIENCE_ID='fixture';
+  global.fetch=async(url,init)=>{if(url.startsWith('https://formspree.io/')){notification=JSON.parse(init.body);return new Response('{}',{status:200});}return new Response('{}',{status:503});};
+  const {deliverApplicationIntake}=load('lib/application-delivery.ts');
+  const result=await deliverApplicationIntake({kind:'application',id:envelope.id,email:valid.email,campaign:'application',goals:valid.goals,landingPage:'/acquisition',emailPrefilled:true,attribution:{utm_source:'linkedin'}});
+  assert.equal(result.notificationSent,true);assert.equal(result.marketingSubscribed,false);
+  assert.deepEqual(Object.keys(notification),['email','message']);
+  for(const part of ['Subject:','/acquisition','linkedin','earlier lander: Yes',valid.goals])assert.ok(notification.message.includes(part));
+ }finally{process.env=previous;global.fetch=oldFetch;}
+});
