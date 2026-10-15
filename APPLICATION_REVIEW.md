@@ -1,27 +1,41 @@
-# Application funnel review, 2026-10-15
+# Shared application funnel implementation
 
-Production release is intentionally disabled. Work is based on staging 5e219ffcace772c5b75411a044c913d8196ea294 and preserves the unrelated disabled booking-suppression work.
+Updated October 15, 2026. The homepage and shared application are live. Earlier review-only implementation notes are retained in `old/`; they are not current release instructions.
 
-## Review routes
+## Routes and operating modes
 
-- `/`: Main homepage, explicitly a general lander.
-- `/acquisition`, `/underwriting-support`, `/ownership-waterfall`: Existing angle pages, shared email capture and application CTA in review mode.
-- `/templates`: Template-specific promise/capture. No template/service selector.
-- `/apply`: One schema and page for everyone. Email is editable, blank on a direct visit, or prefilled via a single-use 30-minute same-tab handoff. Email never enters the URL.
-- `/review-inbox`: Local-only inbox for applications, email captures and template outbox records. Never exposed on Vercel previews or production.
+- `/`: Main homepage. Hero and footer reuse `CampaignEmailCapture`; nav jumps to footer capture.
+- `/acquisition`, `/underwriting-support`, `/ownership-waterfall`: Idle legacy landers. Their shared `WalkthroughSignup` uses `CampaignEmailCapture` when the application funnel is active. Ads remain paused.
+- `/apply`: One application and schema for everyone. Email stays editable; direct visits start blank. The form requires name, email and a sponsor-equity range (including Not sure yet). Company, phone and deal counts are optional.
+- `/templates`: Review-only template request concept, unavailable in production until fulfillment/access is implemented. Production homepage library links lead to the existing underwriting portal. This release grants no template access.
+- `/review-inbox`: Local-only journal viewer. Never expose it on hosted previews or production.
 
-The application asks name, email, company, typical deal size, deals completed in the last12months, target deals in the next12months, and the single biggest12-month business goal, starting point, target and bottleneck. Deal counts may be blank when unsure. Consent uses a visible submission notice under the button, not a checkbox. The receipt stores the notice wording, version and submission-notice method; this is not represented as a checkbox opt-in or a legal compliance determination. Template requests are recorded at lander capture, not gated by application submission.
+`applicationMode()` permits production intake only with `APPLICATION_FUNNEL_LIVE=true`. Hosted previews simulate; local `LOCAL_REVIEW=true` writes `.local-data/funnel-review.jsonl` and sends nothing. Keep preview/local provider writes disabled.
 
-## Local review
+## Canonical fields and complete receipts
 
-Use Node20+ and the repository's existing dependencies. `LOCAL_REVIEW=true` and `ACQUISITION_LIVE=true` go in an uncommitted `.env.local`. On Windows run `node node_modules/next/dist/bin/next build`, then `node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3015`. On macOS/Linux the normal npm scripts also work with their existing configured port.
+`lib/application-schema.ts` owns validation, the sponsor-equity ranges and the answer labels used by BOTH the confirmation screen and Formspree message. The label map is type checked against every application answer field. New fields must be represented there, not independently added to one receipt.
 
-Local submissions append to `.local-data/funnel-review.jsonl`, excluded from git. The inbox shows receipt evidence, including no email sent. This file is review storage only, not a production persistence strategy. Hosted Vercel previews only simulate submission and explicitly say nothing was saved. No Mailchimp enrollment/send, Cal booking, Clerk entitlement or asset permission changes.
+`sponsorEquity` means the firm's own equity investment per deal, excluding outside LP/co-GP capital. It is distinct from the historical `dealSize` metric; never relabel old total-deal-size records as sponsor equity. Cell phone is optional for application follow-up; this does not subscribe anyone to SMS. Confirmation renders the exact submitted snapshot, including zero counts, blank-option labels and multiline goals.
 
-## Before production
+## Automatic source handoff for new landers
 
-Wire and verify durable application intake/Edward notification plus an approved resource email/release path. The template request/outbox is not delivery. Do not put a preview success screen into live operation. Enforce marketing consent and preserve opt-outs. Review desktop/mobile, direct arrival, handoff, edited email, validation/failure, independent resource request and attribution. Approve the exact public resource set before any access expansion.
+Reuse `CampaignEmailCapture` for landing-page capture. It reads the actual pathname automatically, saves source context with the email, and continues to `/apply` without email in the URL. Its direct application link preserves source even when no email is supplied. Do not add campaign-specific application pages or remember source paths in a hand-maintained allowlist.
 
-`applicationMode()` hard-disables replacement experiences whenever VERCEL_ENV=production, even if LOCAL_REVIEW is accidentally configured. Remove that hard release gate only in a separately reviewed production implementation. Existing live main behavior remains unchanged until then.
+`lib/application-handoff.ts` uses a single-use, same-tab, 30-minute handoff. Absent/expired context gives a blank email and direct-application source. `lib/application-source.ts` normalizes safe relative paths, supplies known names such as Homepage and Acquisition lander, and derives a readable fallback for future route names. Queries, external URLs and email-bearing paths are not stored as landing paths. Source/UTMs are visitor supplied evidence, not trusted identity or permissions.
 
-No public prices, five-call entitlement, new ad or guarantee is introduced. Native policy tests: `node --test tests/application-policy.test.cjs`.
+Notification source labels say Entry page and Email collected on with named paths, rather than an unhelpful yes/no or Campaign: application. The submission reference is a website/browser UUID used for correlation and retries, not a Mailchimp ID.
+
+## Production delivery
+
+`/api/funnel/capture` handles email capture; `/api/applications` validates and accepts completed applications. Both use `lib/application-delivery.ts`. Mailchimp stores the contact and full answers/consent/source snapshot in member notes. It preserves opt-outs and applies separate application-funnel tags, without restarting the legacy acquisition welcome flow. Application answers are notes, not audience merge-field columns.
+
+Formspree reuses the existing contact form: email plus ONE readable message containing all answers, source, allowed attribution and consent wording/version. Its configured notification recipient remains help@sapp.capital. Edward approved CAPTCHA off on that shared form; Formshield remains on. No paid upgrade or native Mailchimp plugin is required. The shared free account quota was 50 submissions/month when inspected; a signup and completed application use separate submissions.
+
+Either provider can retain a request if the other is unavailable. Both failing returns an error for visitor retry. This is not an automatic durable retry queue; an accepted notification is not proof of inbox delivery. Server logs omit emails, application answers and provider response bodies. No server credentials belong in public variables or commits.
+
+## Verification and release
+
+Run `node --test tests/application-policy.test.cjs` and the Next build (includes lint/types). Use local or simulated hosted submissions for field/source/receipt checks, including company/phone omitted, zero counts, multiline goals, homepage/acquisition/direct arrival and a future route. Local QA fixtures are excluded from leads. No extra real signup/send/appointment is implied by a copy or schema change.
+
+Work on staging, verify its hosted build, then merge the reviewed commit to main when authorized; retain staging. Keep `APPLICATION_FUNNEL_LIVE` and `FORMSPREE_NOTIFICATIONS_ENABLED` scoped to production. Mailchimp credentials are server-only existing Vercel settings. No ads, automatic template entitlements, public pricing, new nurture sequence or booking-suppression activation is part of this release.

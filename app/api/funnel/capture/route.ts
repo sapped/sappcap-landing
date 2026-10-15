@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       const delivery=await deliverApplicationIntake({kind:"email-capture",id:String(body.id),email:body.email.trim().toLowerCase(),campaign:String(body.campaign),attribution,...readEntryContext(body)});
       return response(200,{accepted:true,saved:true,mode,...delivery});
     }
-    if (mode === "local-review") await saveReviewRecord({ kind: body.campaign === "templates" ? "template-request" : "email-capture", id: body.id, email: body.email.trim().toLowerCase(), campaign: body.campaign, marketingConsent: body.marketingConsent, consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT, attribution, ...(body.campaign === "templates" ? { fulfillment: "local-outbox-only", resource: "template-library", applicationRequired: false } : {}) });
+    if (mode === "local-review") await saveReviewRecord({ kind: body.campaign === "templates" ? "template-request" : "email-capture", id: body.id, email: body.email.trim().toLowerCase(), campaign: body.campaign, marketingConsent: body.marketingConsent, consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT, attribution, ...readEntryContext(body), ...(body.campaign === "templates" ? { fulfillment: "local-outbox-only", resource: "template-library", applicationRequired: false } : {}) });
     return response(200, { accepted: true, saved: mode === "local-review", mode, emailSent: false });
   } catch { return response(503, { accepted: false }); }
 }

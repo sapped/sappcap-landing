@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import { normalizeLandingPath } from "./application-source";
 export const response = (status: number, body: Record<string, unknown>) => NextResponse.json(body, { status, headers: { "Cache-Control": "no-store" } });
 export function readEntryContext(body: Record<string, unknown>) {
-  const paths=["/","/apply","/templates","/acquisition","/underwriting-support","/ownership-waterfall"];
-  return {landingPage:paths.includes(String(body.landingPage))?String(body.landingPage):"/apply",emailPrefilled:body.emailPrefilled===true};
+  return {landingPage:normalizeLandingPath(body.landingPage),emailPrefilled:body.emailPrefilled===true};
 }
 export async function readApplicationRequest(request: Request): Promise<Record<string, unknown> | null> {
   // Next can expose an internal localhost URL even when the browser uses 127.0.0.1.
