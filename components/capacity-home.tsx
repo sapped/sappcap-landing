@@ -4,7 +4,6 @@ import Link from "next/link";
 import { HeroVideoCarousel } from "./hero-video-carousel";
 import { CampaignEmailCapture } from "./campaign-email-capture";
 import { PressQuote } from "./press-quote";
-import { BookingCTA } from "./acquisition-watch";
 import { TestimonialCarousel } from "./testimonial-carousel";
 import { testimonials } from "@/lib/testimonials";
 import styles from "./deal-home.module.css";
@@ -66,7 +65,7 @@ export function CapacityHome() {
       <p className={styles.kicker}>START A WORKING RELATIONSHIP</p>
       <h2>Bring your goals.<br />Let’s get to work.</h2>
       <p className={styles.capacityOffer}>Start with five free, one-hour working sessions.</p>
-      <BookingCTA placement="bottom" />
+      <CampaignEmailCapture campaign="home" id="footer-email-signup" />
       <p className={styles.note}>Tell me about your business and the capacity you need. I’ll review your application and follow up on the next step.</p>
     </section>
     <nav className={styles.links} aria-label="More from Sapp Capital"><a href="https://underwriting.sapp.capital">Client Underwriting Portal</a><a href="https://blog.sapp.capital">Writing</a><Link href="/templates">Template library</Link></nav>

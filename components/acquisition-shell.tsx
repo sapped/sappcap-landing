@@ -53,7 +53,7 @@ export function AcquisitionShell({ children, preview = true, navigation = false,
     <FunnelContext.Provider value={{ preview, applicationFunnel, attribution, email, setEmail, failSubmit, setFailSubmit, record }}>
       <div className={styles.shell}>
         {preview && <div className={styles.previewBar}><span><span className={styles.previewDot} /> {applicationFunnel ? "REVIEW BUILD" : "LOCAL PREVIEW"} <span className={styles.previewDetail}>{applicationFunnel ? " · No emails sent or template access granted" : " · Email signup is simulated"}</span></span><button type="button" onClick={reset}><RotateCcw size={12} /> Start over</button></div>}
-        {navigation ? <Navbar funnel applicationFunnel={applicationFunnel} /> : <header className={styles.header}>
+        {navigation ? <Navbar funnel applicationFunnel={applicationFunnel} applicationCtaHref={pathname === "/" ? "#talk" : "/apply"} /> : <header className={styles.header}>
           <Link href="/" className={styles.brand} aria-label="Sapp Capital Advisors home"><Image src="/images/SCA Logo - Black BG Square no Text.png" alt="" width={42} height={42} /><span>Sapp Capital<span className={styles.brandSecond}> Advisors</span></span></Link>
 
         </header>}
