@@ -62,6 +62,11 @@ test('source paths reject URLs, queries, email addresses and oversized input',()
  for(const path of ['https://example.test','//example','/apply?email=qa@example.test','/qa@example.test','/x'.repeat(100)])assert.equal(normalizeLandingPath(path),'/apply');
  assert.equal(normalizeLandingPath('/new-angle/'),'/new-angle');
 });
+test('direct application link from a lander preserves source without inventing an email',()=>{
+ const {storeApplicationEntry,consumeApplicationHandoff}=load('lib/application-handoff.ts');
+ storeApplicationEntry('/new-campaign');assert.deepEqual(consumeApplicationHandoff(),{email:'',landingPage:'/new-campaign'});
+ assert.deepEqual(consumeApplicationHandoff(),{email:'',landingPage:'/apply'});
+});
 test('production stays disabled even with local review flag',()=>{const previous={...process.env};try{process.env.VERCEL_ENV='production';process.env.LOCAL_REVIEW='true';assert.equal(applicationMode(),'disabled');}finally{process.env=previous;}});
 test('hosted staging is preview only',()=>{const previous={...process.env};try{process.env.VERCEL_ENV='preview';process.env.LOCAL_REVIEW='true';assert.equal(applicationMode(),'staging-preview');}finally{process.env=previous;}});
 function request(body,origin='https://review.example.test'){return new Request('https://review.example.test/api/applications',{method:'POST',headers:{'content-type':'application/json',origin},body:JSON.stringify(body)});}
