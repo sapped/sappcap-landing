@@ -7,5 +7,5 @@ export function CampaignLayout({ children }: { children: ReactNode }) {
   const applicationFunnel = applicationMode() !== "disabled";
   const live = process.env.ACQUISITION_LIVE === "true";
   if (process.env.NODE_ENV === "production" && !live && !applicationFunnel) notFound();
-  return <AcquisitionShell preview={applicationFunnel || !live} applicationFunnel={applicationFunnel}>{children}</AcquisitionShell>;
+  return <AcquisitionShell preview={applicationMode() !== "live" && (applicationFunnel || !live)} applicationFunnel={applicationFunnel}>{children}</AcquisitionShell>;
 }

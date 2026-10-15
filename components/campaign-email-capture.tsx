@@ -3,7 +3,7 @@ import { ConsentNotice } from "./consent-notice";
 import { CONSENT_NOTICE_VERSION } from "@/lib/consent-notice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { storeApplicationEmail } from "@/lib/application-handoff";
 import { isEmail } from "@/lib/application-schema";
 import { withAttribution } from "@/lib/acquisition-review-config";
@@ -12,6 +12,7 @@ import styles from "./acquisition.module.css";
 import formStyles from "./application-form.module.css";
 export function CampaignEmailCapture({ campaign = "home", id = "email-signup" }: { campaign?: "home" | "acquisition" | "capacity" | "ownership" | "templates"; id?: string }) {
   const fieldId = useId();
+  const capture = useRef({email:"",id:""});
   const { email, setEmail, attribution } = useAcquisition(); const router = useRouter();
   const [pending,setPending] = useState(false); const [error,setError] = useState(""); const [website,setWebsite] = useState("");
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -19,7 +20,8 @@ export function CampaignEmailCapture({ campaign = "home", id = "email-signup" }:
     if(!isEmail(email.trim())) { setError("Enter a valid email address."); return; }
     setPending(true);setError("");
     try {
-      const result=await fetch("/api/funnel/capture",{method:"POST",headers:{"Content-Type":"application/json"},signal:AbortSignal.timeout(12000),body:JSON.stringify({id:crypto.randomUUID(),email:email.trim(),campaign,marketingConsent:true,consentNoticeVersion:CONSENT_NOTICE_VERSION,website,attribution})});
+      if(capture.current.email!==email.trim().toLowerCase())capture.current={email:email.trim().toLowerCase(),id:crypto.randomUUID()};
+      const result=await fetch("/api/funnel/capture",{method:"POST",headers:{"Content-Type":"application/json"},signal:AbortSignal.timeout(25000),body:JSON.stringify({id:capture.current.id,email:email.trim(),campaign,marketingConsent:true,consentNoticeVersion:CONSENT_NOTICE_VERSION,website,attribution})});
       const body=await result.json();if(!result.ok||!body.accepted)throw new Error("capture failed");
       storeApplicationEmail(email); router.push(withAttribution("/apply",attribution));
     } catch {setError("We couldn't save your email. Please try again.");setPending(false);}

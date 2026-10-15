@@ -43,3 +43,25 @@ test('hosted preview does not claim durable capture',async()=>{const previous={.
 
 test('submission without the displayed notice version is rejected',async()=>{const previous={...process.env};try{process.env.VERCEL_ENV='preview';const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid,consentNoticeVersion:'old-version'}));assert.equal(r.status,400);}finally{process.env=previous;}});
 test('submission notice is not recorded when request disagrees',async()=>{const previous={...process.env};try{process.env.VERCEL_ENV='preview';const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid,marketingConsent:false}));assert.equal(r.status,400);}finally{process.env=previous;}});
+
+test('production intake requires explicit activation',()=>{const previous={...process.env};try{process.env.VERCEL_ENV='production';process.env.APPLICATION_FUNNEL_LIVE='true';assert.equal(applicationMode(),'live');delete process.env.APPLICATION_FUNNEL_LIVE;assert.equal(applicationMode(),'disabled');}finally{process.env=previous;}});
+
+test('live delivery preserves opt-outs and stores complete application without starting legacy flow',async()=>{
+ const previous={...process.env},oldFetch=global.fetch;const calls=[];
+ try{
+  process.env.MAILCHIMP_API_KEY='fixture-us21';process.env.MAILCHIMP_AUDIENCE_ID='fixture';
+  global.fetch=async(url,init)=>{calls.push({url,method:init.method,body:init.body?JSON.parse(init.body):null});return new Response(JSON.stringify(init.method==='PUT'?{status:'unsubscribed'}:url.includes('/notes?')?{notes:[]}:{}),{status:200});};
+  const {deliverApplicationIntake}=load('lib/application-delivery.ts');
+  const result=await deliverApplicationIntake({kind:'application',id:envelope.id,email:valid.email,campaign:'application',name:valid.name,company:valid.company,goals:valid.goals,attribution:{}});
+  assert.equal(result.marketingSubscribed,false);assert.equal(result.notificationSent,false);
+  assert.equal(calls[0].body.status_if_new,'subscribed');assert.equal(calls[0].body.status,undefined);
+  assert.ok(calls.some(c=>c.body?.note?.includes(valid.goals)));
+  assert.ok(!JSON.stringify(calls).includes('acquisition-review-v1'));
+  assert.ok(JSON.stringify(calls).includes('submission-notice'));
+ }finally{process.env=previous;global.fetch=oldFetch;}
+});
+
+test('provider outage never reports a saved application',async()=>{
+ const previous={...process.env},oldFetch=global.fetch;
+ try{process.env.VERCEL_ENV='production';process.env.APPLICATION_FUNNEL_LIVE='true';process.env.MAILCHIMP_API_KEY='fixture-us21';process.env.MAILCHIMP_AUDIENCE_ID='fixture';global.fetch=async()=>new Response('{}',{status:503});const {POST}=load('app/api/applications/route.ts');const r=await POST(request({...envelope,...valid}));assert.equal(r.status,503);assert.equal((await r.json()).accepted,false);}finally{process.env=previous;global.fetch=oldFetch;}
+});

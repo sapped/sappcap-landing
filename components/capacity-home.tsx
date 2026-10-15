@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import { useAcquisition } from "./acquisition-shell";
 import { HeroVideoCarousel } from "./hero-video-carousel";
 import { CampaignEmailCapture } from "./campaign-email-capture";
 import { PressQuote } from "./press-quote";
@@ -20,6 +20,7 @@ const steps = [
 ];
 
 export function CapacityHome() {
+  const { preview } = useAcquisition();
   return <main className={styles.main}>
     <section className={`${styles.hero} ${styles.reviewHero}`}>
       <div className={styles.cityscape} aria-hidden="true"><HeroVideoCarousel /></div>
@@ -68,6 +69,6 @@ export function CapacityHome() {
       <CampaignEmailCapture campaign="home" id="footer-email-signup" />
       <p className={styles.note}>Tell me about your business and the capacity you need. I’ll review your application and follow up on the next step.</p>
     </section>
-    <nav className={styles.links} aria-label="More from Sapp Capital"><a href="https://underwriting.sapp.capital">Client Underwriting Portal</a><a href="https://blog.sapp.capital">Writing</a><Link href="/templates">Template library</Link></nav>
+    <nav className={styles.links} aria-label="More from Sapp Capital"><a href="https://underwriting.sapp.capital">Client Underwriting Portal</a><a href="https://blog.sapp.capital">Writing</a><a href={preview ? "/templates" : "https://underwriting.sapp.capital"}>Template library</a></nav>
   </main>;
 }

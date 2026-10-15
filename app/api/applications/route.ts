@@ -4,7 +4,9 @@ import { validateApplication, type ApplicationFields } from "@/lib/application-s
 import { readApplicationRequest, response } from "@/lib/application-request";
 import { saveReviewRecord } from "@/lib/application-review-store";
 import { readAttribution } from "@/lib/acquisition-review-config";
+import { deliverApplicationIntake, intakeRateAllowed } from "@/lib/application-delivery";
 export const runtime = "nodejs";
+export const maxDuration = 30;
 export async function POST(request: Request) {
   const mode = applicationMode();
   if (mode === "disabled") return response(503, { accepted: false });
@@ -18,6 +20,11 @@ export async function POST(request: Request) {
     const errors = validateApplication(fields);
     if (Object.keys(errors).length) return response(400, { accepted: false, errors });
     const attribution = readAttribution(new URLSearchParams(typeof body.attribution === "object" && body.attribution ? body.attribution as Record<string, string> : {}));
+    if(mode === "live"){
+      if(!intakeRateAllowed(request))return response(429,{accepted:false});
+      const delivery=await deliverApplicationIntake({kind:"application",id:String(body.id),...fields,campaign:"application",attribution});
+      return response(200,{accepted:true,id:body.id,saved:true,mode,...delivery});
+    }
     if (mode === "local-review") await saveReviewRecord({ kind: "application", id: body.id, ...fields, attribution, consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT });
     return response(200, { accepted: true, id: body.id, saved: mode === "local-review", mode });
   } catch { return response(503, { accepted: false }); }
