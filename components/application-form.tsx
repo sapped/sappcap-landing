@@ -3,7 +3,7 @@ import { ConsentNotice } from "./consent-notice";
 import { CONSENT_NOTICE_VERSION } from "@/lib/consent-notice";
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { consumeApplicationEmail } from "@/lib/application-handoff";
+import { consumeApplicationHandoff } from "@/lib/application-handoff";
 import { DEAL_SIZE_OPTIONS, validateApplication, type ApplicationFields, type ApplicationErrors } from "@/lib/application-schema";
 import { readAttribution, ATTRIBUTION_STORAGE_KEY } from "@/lib/acquisition-review-config";
 import type { ApplicationMode } from "@/lib/application-experience";
@@ -14,8 +14,9 @@ export function ApplicationForm({ mode }: { mode: ApplicationMode }) {
   const [errors, setErrors] = useState<ApplicationErrors>({});
   const [busy, setBusy] = useState(false); const [failure, setFailure] = useState(""); const [receipt, setReceipt] = useState("");
   const [website, setWebsite] = useState("");
+  const entry = useRef({landingPage:"/apply",emailPrefilled:false});
   const id = useRef(""); const initialized = useRef(false);
-  useEffect(() => { if (initialized.current) return; initialized.current = true; id.current = crypto.randomUUID(); const email = consumeApplicationEmail(); if (email) setFields(current => ({ ...current, email })); }, []);
+  useEffect(() => { if (initialized.current) return; initialized.current = true; id.current = crypto.randomUUID(); const handoff = consumeApplicationHandoff(); entry.current={landingPage:handoff.landingPage,emailPrefilled:!!handoff.email}; if (handoff.email) setFields(current => ({ ...current, email:handoff.email })); }, []);
   function update(key: keyof ApplicationFields, value: string | boolean) { setFields(current => ({ ...current, [key]: value })); setErrors(current => ({ ...current, [key]: undefined })); }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); if (busy) return;
@@ -26,7 +27,7 @@ export function ApplicationForm({ mode }: { mode: ApplicationMode }) {
       let source = {};
       try { source = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}"); } catch { /* Attribution must not block an application. */ }
       const attribution = { ...readAttribution(new URLSearchParams(source)), ...readAttribution(new URLSearchParams(window.location.search)) };
-      const result = await fetch("/api/applications", { method: "POST", headers: { "Content-Type": "application/json" }, signal: AbortSignal.timeout(25000), body: JSON.stringify({ ...fields, marketingConsent: true, consentNoticeVersion: CONSENT_NOTICE_VERSION, id: id.current, website, attribution }) });
+      const result = await fetch("/api/applications", { method: "POST", headers: { "Content-Type": "application/json" }, signal: AbortSignal.timeout(25000), body: JSON.stringify({ ...fields, marketingConsent: true, consentNoticeVersion: CONSENT_NOTICE_VERSION, id: id.current, website, attribution, ...entry.current }) });
       const body = await result.json();
       if (!result.ok || !body.accepted) { if (body.errors) setErrors(body.errors); throw new Error("not saved"); }
       setReceipt(body.id);

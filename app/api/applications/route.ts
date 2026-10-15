@@ -1,7 +1,7 @@
 import { CONSENT_NOTICE_VERSION, CONSENT_NOTICE_TEXT } from "@/lib/consent-notice";
 import { applicationMode } from "@/lib/application-experience";
 import { validateApplication, type ApplicationFields } from "@/lib/application-schema";
-import { readApplicationRequest, response } from "@/lib/application-request";
+import { readApplicationRequest, readEntryContext, response } from "@/lib/application-request";
 import { saveReviewRecord } from "@/lib/application-review-store";
 import { readAttribution } from "@/lib/acquisition-review-config";
 import { deliverApplicationIntake, intakeRateAllowed } from "@/lib/application-delivery";
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const attribution = readAttribution(new URLSearchParams(typeof body.attribution === "object" && body.attribution ? body.attribution as Record<string, string> : {}));
     if(mode === "live"){
       if(!intakeRateAllowed(request))return response(429,{accepted:false});
-      const delivery=await deliverApplicationIntake({kind:"application",id:String(body.id),...fields,campaign:"application",attribution});
+      const delivery=await deliverApplicationIntake({kind:"application",id:String(body.id),...fields,campaign:"application",attribution,...readEntryContext(body)});
       return response(200,{accepted:true,id:body.id,saved:true,mode,...delivery});
     }
     if (mode === "local-review") await saveReviewRecord({ kind: "application", id: body.id, ...fields, attribution, consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT });

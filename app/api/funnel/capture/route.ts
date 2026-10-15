@@ -1,7 +1,7 @@
 import { CONSENT_NOTICE_VERSION, CONSENT_NOTICE_TEXT } from "@/lib/consent-notice";
 import { applicationMode } from "@/lib/application-experience";
 import { isEmail } from "@/lib/application-schema";
-import { readApplicationRequest, response } from "@/lib/application-request";
+import { readApplicationRequest, readEntryContext, response } from "@/lib/application-request";
 import { saveReviewRecord } from "@/lib/application-review-store";
 import { readAttribution } from "@/lib/acquisition-review-config";
 import { deliverApplicationIntake, intakeRateAllowed } from "@/lib/application-delivery";
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     if (mode === "live") {
       if(body.campaign === "templates")return response(503,{accepted:false});
       if(!intakeRateAllowed(request))return response(429,{accepted:false});
-      const delivery=await deliverApplicationIntake({kind:"email-capture",id:String(body.id),email:body.email.trim().toLowerCase(),campaign:String(body.campaign),attribution});
+      const delivery=await deliverApplicationIntake({kind:"email-capture",id:String(body.id),email:body.email.trim().toLowerCase(),campaign:String(body.campaign),attribution,...readEntryContext(body)});
       return response(200,{accepted:true,saved:true,mode,...delivery});
     }
     if (mode === "local-review") await saveReviewRecord({ kind: body.campaign === "templates" ? "template-request" : "email-capture", id: body.id, email: body.email.trim().toLowerCase(), campaign: body.campaign, marketingConsent: body.marketingConsent, consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT, attribution, ...(body.campaign === "templates" ? { fulfillment: "local-outbox-only", resource: "template-library", applicationRequired: false } : {}) });
