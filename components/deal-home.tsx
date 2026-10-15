@@ -25,7 +25,7 @@ export function DealHome() {
     <p className={styles.lede}>Get the underwriting and model review your team needs to make the next decision. Acquisitions, development, portfolios and complex capital structures.</p>
     <p className={styles.offer}>{applicationFunnel ? "Put experienced underwriting capacity behind your pipeline. Start by telling me about your business and goals." : "See two problems we found in real model reviews, and how we worked through them."}</p>
     <WalkthroughSignup destination="/deal/review" />
-    <a className={styles.secondary} href={applicationFunnel ? "/apply" : "#talk"}>{applicationFunnel ? "Ready to talk about your business? Apply directly" : "Already have a deal to discuss? Book an intro"}</a>
+    {!applicationFunnel && <a className={styles.secondary} href="#talk">Already have a deal to discuss? Book an intro</a>}
    </div>
    <aside className={styles.proof}>
     <p className={styles.kicker}>WHAT CLIENTS SAY</p>
