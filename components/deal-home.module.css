@@ -8,3 +8,12 @@
 
 /* Leave headings clear of the sticky navigation when following page links. */
 .work,.close,.pitch form{scroll-margin-top:88px}
+
+/* Review homepage: short promise on the left, press and client proof on the right. */
+.reviewHero{align-items:start}
+.pressCompact{margin:0 0 24px;padding:0 0 22px;border-top:0}
+.pressCompact .pressLabel{font-size:10px;flex-wrap:wrap;gap:8px 12px}
+.pressCompact .pressLabel span{font-size:27px}
+.pressCompact blockquote{font-size:19px;line-height:1.5;margin:16px 0 12px;max-width:none}
+.pressCompact a{font-size:12px}
+@media(max-width:700px){.pressCompact{margin:0 0 24px;padding:0 0 22px}.pressCompact blockquote{font-size:19px}.reviewHero{gap:26px}}

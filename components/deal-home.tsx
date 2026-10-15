@@ -17,22 +17,23 @@ const outcomes = [
 export function DealHome() {
  const { applicationFunnel } = useAcquisition();
  return <main className={styles.main}>
-  <section className={styles.hero}>
+  <section className={`${styles.hero} ${applicationFunnel ? styles.reviewHero : ""}`}>
    <div className={styles.cityscape} aria-hidden="true"><HeroVideoCarousel /></div>
    <div className={styles.pitch}>
     <p className={styles.kicker}>COMMERCIAL REAL ESTATE ADVISORY</p>
     <h1>Complex CRE deals.<br /><span>On short fuses.</span></h1>
-    <p className={styles.lede}>Get the underwriting and model review your team needs to make the next decision. Acquisitions, development, portfolios and complex capital structures.</p>
-    <p className={styles.offer}>{applicationFunnel ? "Put experienced underwriting capacity behind your pipeline. Start by telling me about your business and goals." : "See two problems we found in real model reviews, and how we worked through them."}</p>
+    <p className={styles.lede}>{applicationFunnel ? "Principal-led underwriting and model review to keep your deals moving." : "Get the underwriting and model review your team needs to make the next decision. Acquisitions, development, portfolios and complex capital structures."}</p>
+    {!applicationFunnel && <p className={styles.offer}>See two problems we found in real model reviews, and how we worked through them.</p>}
     <WalkthroughSignup destination="/deal/review" />
     {!applicationFunnel && <a className={styles.secondary} href="#talk">Already have a deal to discuss? Book an intro</a>}
    </div>
    <aside className={styles.proof}>
+    {applicationFunnel && <PressQuote compact />}
     <p className={styles.kicker}>WHAT CLIENTS SAY</p>
     <TestimonialCarousel testimonials={testimonials} compact tone="dark" />
    </aside>
   </section>
-  <PressQuote />
+  {!applicationFunnel && <PressQuote />}
   <section id="expertise" className={styles.work}>
    <div className={styles.sectionHeading}><p className={styles.kicker}>WHAT YOU GET</p><h2>A model you can<br />explain and work with.</h2><p>Underwrite a purchase, plan a development, restructure the debt or track a portfolio. We build and review the models your team uses to make those decisions.</p></div>
    <div className={styles.outcomes}>{outcomes.map(item=><article key={item.n}><span>{item.n}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></article>)}</div>
