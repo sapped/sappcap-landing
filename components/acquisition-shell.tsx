@@ -12,6 +12,7 @@ import { Navbar } from "./navbar";
 type PreviewEvent = { name: string; time: string; metadata: Record<string, string | number> };
 type FunnelState = {
   preview: boolean;
+  applicationFunnel: boolean;
   attribution: Attribution;
   email: string; setEmail: (email: string) => void;
   failSubmit: boolean; setFailSubmit: (fail: boolean) => void;
@@ -24,7 +25,7 @@ export function useAcquisition() {
   return state;
 }
 
-export function AcquisitionShell({ children, preview = true, navigation = false }: { children: ReactNode; preview?: boolean; navigation?: boolean }) {
+export function AcquisitionShell({ children, preview = true, navigation = false, applicationFunnel = false }: { children: ReactNode; preview?: boolean; navigation?: boolean; applicationFunnel?: boolean }) {
   const [email, setEmail] = useState("");
   const [failSubmit, setFailSubmit] = useState(false);
   const [events, setEvents] = useState<PreviewEvent[]>([]);
@@ -49,16 +50,16 @@ export function AcquisitionShell({ children, preview = true, navigation = false 
     router.push(pathname.startsWith("/acquisition") ? "/acquisition" : "/"); router.refresh();
   }
   return (
-    <FunnelContext.Provider value={{ preview, attribution, email, setEmail, failSubmit, setFailSubmit, record }}>
+    <FunnelContext.Provider value={{ preview, applicationFunnel, attribution, email, setEmail, failSubmit, setFailSubmit, record }}>
       <div className={styles.shell}>
-        {preview && <div className={styles.previewBar}><span><span className={styles.previewDot} /> LOCAL PREVIEW <span className={styles.previewDetail}> · Email signup is simulated</span></span><button type="button" onClick={reset}><RotateCcw size={12} /> Start over</button></div>}
-        {navigation ? <Navbar funnel /> : <header className={styles.header}>
+        {preview && <div className={styles.previewBar}><span><span className={styles.previewDot} /> {applicationFunnel ? "REVIEW BUILD" : "LOCAL PREVIEW"} <span className={styles.previewDetail}>{applicationFunnel ? " · No emails sent or template access granted" : " · Email signup is simulated"}</span></span><button type="button" onClick={reset}><RotateCcw size={12} /> Start over</button></div>}
+        {navigation ? <Navbar funnel applicationFunnel={applicationFunnel} applicationCtaHref={pathname === "/" ? "#talk" : "/apply"} /> : <header className={styles.header}>
           <Link href="/" className={styles.brand} aria-label="Sapp Capital Advisors home"><Image src="/images/SCA Logo - Black BG Square no Text.png" alt="" width={42} height={42} /><span>Sapp Capital<span className={styles.brandSecond}> Advisors</span></span></Link>
 
         </header>}
         {children}
         <footer className={styles.footer}><span>© {new Date().getFullYear()} Sapp Capital Advisors</span><div><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div></footer>
-        {preview && <details className={styles.inspector}>
+        {preview && !applicationFunnel && <details className={styles.inspector}>
           <summary>Preview controls & activity <ChevronDown size={14} /></summary>
           <div className={styles.inspectorBody}>
             <label><input type="checkbox" checked={failSubmit} onChange={(event) => setFailSubmit(event.target.checked)} /> Simulate an email-submission error</label>

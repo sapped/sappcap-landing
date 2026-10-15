@@ -64,7 +64,6 @@ export function TestimonialCarousel({ testimonials, compact = false, tone = "lig
   }, [isManualMode, goNext, autoplay, reduceMotion]);
 
   if (compact) {
-    const current = testimonials[currentIndex];
     const dark = tone === "dark";
     return (
       <div className={`rounded-2xl border p-4 sm:p-5 ${dark ? "border-white/15 bg-transparent text-white" : "border-slate-200 bg-white text-slate-950"}`}
@@ -79,12 +78,18 @@ export function TestimonialCarousel({ testimonials, compact = false, tone = "lig
             </button>
           ))}
         </div>
-        <div aria-live="polite" aria-atomic="true">
-          <blockquote className={`text-sm leading-6 ${dark ? "text-slate-300" : "text-slate-700"}`}>&ldquo;{current.quote}&rdquo;</blockquote>
-          <div className={`mt-3 border-t pt-3 ${dark ? "border-white/10" : "border-slate-100"}`}>
-            <p className="text-sm font-semibold">{current.name}</p>
-            <p className={`mt-1 text-xs leading-5 ${dark ? "text-slate-400" : "text-slate-500"}`}>{current.title}, <a href={current.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a></p>
-          </div>
+        <div className="grid" aria-live="polite" aria-atomic="true">
+          {/* Overlapping slides reserve the tallest quote's space at every width. */}
+          {testimonials.map((item, index) => (
+            <div key={item.company} aria-hidden={index !== currentIndex}
+              className={`col-start-1 row-start-1 flex flex-col ${index === currentIndex ? "visible" : "invisible"}`}>
+              <blockquote className={`flex-1 text-sm leading-6 ${dark ? "text-slate-300" : "text-slate-700"}`}>&ldquo;{item.quote}&rdquo;</blockquote>
+              <div className={`mt-3 border-t pt-3 ${dark ? "border-white/10" : "border-slate-100"}`}>
+                <p className="text-sm font-semibold">{item.name}</p>
+                <p className={`mt-1 text-xs leading-5 ${dark ? "text-slate-400" : "text-slate-500"}`}>{item.title}, <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{item.company}</a></p>
+              </div>
+            </div>
+          ))}
         </div>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-slate-400">{currentIndex + 1} / {testimonials.length}</span>

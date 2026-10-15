@@ -1,5 +1,6 @@
 "use client";
 
+import { CampaignEmailCapture } from "./campaign-email-capture";
 import { useState, useEffect, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,7 +11,7 @@ import { useAcquisition } from "./acquisition-shell";
 import styles from "./acquisition.module.css";
 import type { CampaignAngle, WalkthroughDestination } from "@/lib/campaign-entry-copy";
 
-export function WalkthroughSignup({ destination = "/acquisition/review", angle = "acquisition" }: { destination?: WalkthroughDestination; angle?: CampaignAngle }) {
+function LegacyWalkthroughSignup({ destination = "/acquisition/review", angle = "acquisition" }: { destination?: WalkthroughDestination; angle?: CampaignAngle }) {
   const { preview, email, setEmail, failSubmit, record, attribution } = useAcquisition();
   const [captureId] = useState(() => crypto.randomUUID());
   const [website, setWebsite] = useState("");
@@ -64,4 +65,10 @@ export function WalkthroughSignup({ destination = "/acquisition/review", angle =
           <p id="email-disclosure" className={styles.disclosure}>Get the walkthrough and follow-up emails from Edward. Unsubscribe anytime. <Link href="/privacy">Privacy</Link></p>
         </form>
   );
+}
+
+export function WalkthroughSignup(props: { destination?: WalkthroughDestination; angle?: CampaignAngle }) {
+  const { applicationFunnel } = useAcquisition();
+  if (applicationFunnel) return <CampaignEmailCapture campaign={props.destination === "/deal/review" ? "home" : props.angle ?? "acquisition"} />;
+  return <LegacyWalkthroughSignup {...props} />;
 }

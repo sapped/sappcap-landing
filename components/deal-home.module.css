@@ -8,3 +8,24 @@
 
 /* Leave headings clear of the sticky navigation when following page links. */
 .work,.close,.pitch form{scroll-margin-top:88px}
+
+/* Review homepage: short promise on the left, press and client proof on the right. */
+.reviewHero{align-items:start}
+.pressCompact{margin:0 0 24px;padding:0 0 22px;border-top:0}
+.pressCompact .pressLabel{font-size:10px;flex-wrap:wrap;gap:8px 12px}
+.pressCompact .pressLabel span{font-size:27px}
+.pressCompact blockquote{font-size:19px;line-height:1.5;margin:16px 0 12px;max-width:none}
+.pressCompact a{font-size:12px}
+@media(max-width:700px){.pressCompact{margin:0 0 24px;padding:0 0 22px}.pressCompact blockquote{font-size:19px}.reviewHero{gap:26px}}
+
+.capacityOffer{font-size:22px;font-weight:600;line-height:1.4;letter-spacing:-.02em;color:#eff4fb;margin-top:22px;max-width:440px}.close .capacityOffer{margin:20px auto 0}
+.capacityExpertise{grid-template-columns:1fr 1fr}
+.capacityProcess{border-top:1px solid #ffffff22;padding:44px 0 56px;margin:0 0 25px}
+.capacityProcess header{max-width:700px}
+.capacityProcess h2{font-size:clamp(28px,3vw,38px);line-height:1.2;letter-spacing:-.035em;font-weight:500;margin:16px 0 30px}
+.capacityProcess ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;list-style:none;padding:0}
+.capacityProcess li>span{font-size:12px;color:#8eb8f5}
+.capacityProcess h3{font-size:18px;line-height:1.4;font-weight:500;margin:12px 0}
+.capacityProcess li p{font-size:14px;line-height:1.8;color:#b7c8dd}
+.capacityFit{font-size:12px;color:#a9bcd5;line-height:1.6;margin-top:24px}
+@media(max-width:700px){.capacityOffer{font-size:20px;margin-top:18px}.capacityProcess{padding:30px 0 38px}.capacityProcess ol{grid-template-columns:1fr;gap:24px}.capacityProcess h3{margin:7px 0}.capacityProcess h2{font-size:28px}.capacityExpertise{grid-template-columns:1fr 1fr}}
