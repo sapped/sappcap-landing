@@ -15,7 +15,7 @@ const benefits = [
 ];
 const steps = [
   { title: "Tell me where you want to go.", body: "Apply with your business goals, deal pipeline and the work your team needs help moving forward. I’ll review the fit." },
-  { title: "Work through real priorities.", body: "For teams we’re a fit for, we start with five free one-hour sessions. Work through a live underwriting question, review a model or develop your team’s approach." },
+  { title: "Work through real priorities.", body: "We discuss your live priorities, the decisions ahead and where your team needs support. That gives us a practical starting point for working together." },
   { title: "Define the support you need.", body: "If working together makes sense, we define the assignments, responsibilities and fee before paid work begins. Add capacity as your priorities develop." },
 ];
 
@@ -28,7 +28,7 @@ export function CapacityHome() {
         <p className={styles.kicker}>PRINCIPAL-LED UNDERWRITING</p>
         <h1>More capacity.<br /><span>For the deals ahead.</span></h1>
         <p className={styles.lede}>You have commercial real estate opportunities ready to move. When your senior team’s capacity is constrained, work directly with Edward and our analysts to move deals through investment committee.</p>
-        <p className={styles.capacityOffer}>Start with five free, one-hour working sessions.</p>
+        <p className={styles.capacityOffer}>Work directly with Edward, backed by our analyst team.</p>
         <CampaignEmailCapture campaign="home" />
       </div>
       <aside className={styles.proof}>
@@ -52,9 +52,9 @@ export function CapacityHome() {
     </section>
 
     <section className={styles.capacityProcess} aria-labelledby="capacity-process-title">
-      <header><p className={styles.kicker}>HOW WE START</p><h2 id="capacity-process-title">Five working sessions.<br />A chance to build trust through the work.</h2></header>
+      <header><p className={styles.kicker}>HOW WE START</p><h2 id="capacity-process-title">Your priorities.<br />A working relationship built around them.</h2></header>
       <ol>{steps.map((step,index) => <li key={step.title}><span>0{index+1}</span><h3>{step.title}</h3><p>{step.body}</p></li>)}</ol>
-      <p className={styles.capacityFit}>The sessions are for qualified commercial real estate investment teams. Applying does not commit you to paid work.</p>
+      <p className={styles.capacityFit}>Applying does not commit you to paid work. We agree the scope, responsibilities and fee before work begins.</p>
     </section>
 
     <section className={styles.principal}>
@@ -65,7 +65,7 @@ export function CapacityHome() {
     <section id="talk" className={styles.close}>
       <p className={styles.kicker}>START A WORKING RELATIONSHIP</p>
       <h2>Bring your goals.<br />Let’s get to work.</h2>
-      <p className={styles.capacityOffer}>Start with five free, one-hour working sessions.</p>
+      <p className={styles.capacityOffer}>Work directly with Edward, backed by our analyst team.</p>
       <CampaignEmailCapture campaign="home" id="footer-email-signup" />
       <p className={styles.note}>Tell me about your business and the capacity you need. I’ll review your application and follow up on the next step.</p>
     </section>
