@@ -20,6 +20,23 @@ const {storeApplicationEmail,consumeApplicationEmail}=load('lib/application-hand
 const {applicationMode}=load('lib/application-experience.ts');
 const {readApplicationRequest}=load('lib/application-request.ts');
 const valid={name:'QA Reviewer',email:'qa@example.test',company:'Review firm',phone:'',sponsorEquity:'$250,000 to under $500,000',completedDeals:'0',targetDeals:'4',goals:'We need more underwriting capacity.',marketingConsent:true,consentNoticeVersion:'email-submit-notice-2026-10-15-v2'};
+
+test('resource capture schedules fulfillment without simultaneous common nurture; completed application never starts another welcome',async()=>{
+ const previous={...process.env},oldFetch=global.fetch;
+ try {
+  process.env.MAILCHIMP_API_KEY='fixture-us21';process.env.MAILCHIMP_AUDIENCE_ID='fixture';delete process.env.FORMSPREE_NOTIFICATIONS_ENABLED;
+  const {deliverApplicationIntake}=load('lib/application-delivery.ts');
+  for(const [kind,campaign,expected,excluded] of [
+   ['email-capture','website-starter','sca-website-starter-v1','sca-application-funnel-v1'],
+   ['email-capture','home','sca-application-funnel-v1','sca-website-starter-v1'],
+   ['application','application','sca-application-submitted','sca-application-funnel-v1']]){
+   let tags=[];
+   global.fetch=async(url,init)=>{const body=init.body?JSON.parse(init.body):{};if(url.endsWith('/tags'))tags=body.tags.map(t=>t.name);return new Response(JSON.stringify(init.method==='PUT'?{status:'subscribed'}:url.includes('/notes?')?{notes:[]}:{}),{status:200});};
+   await deliverApplicationIntake({kind,campaign,id:'fixture',email:valid.email,attribution:{utm_campaign:'website-starter'}});
+   assert.ok(tags.includes(expected));assert.ok(!tags.includes(excluded));
+  }
+ } finally {process.env=previous;global.fetch=oldFetch;}
+});
 test('application allows unknown deal counts',()=>assert.deepEqual(validateApplication({...valid,completedDeals:'',targetDeals:''}),{}));
 test('direct application requires a valid email',()=>assert.equal(validateApplication({...valid,email:''}).email,'Enter a valid email address.'));
 test('negative or fractional deal counts are rejected',()=>{assert.ok(validateApplication({...valid,completedDeals:'-1'}).completedDeals);assert.ok(validateApplication({...valid,targetDeals:'1.5'}).targetDeals);});

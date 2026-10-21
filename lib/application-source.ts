@@ -9,7 +9,7 @@ export function landingPageName(value: unknown): string {
   const known: Record<string, string> = {
     "/": "Homepage", "/apply": "Direct application", "/acquisition": "Acquisition lander",
     "/underwriting-support": "Underwriting support lander", "/ownership-waterfall": "Ownership waterfall lander",
-    "/templates": "Template library lander",
+    "/templates": "Template library lander", "/website-starter": "Website starter lander",
   };
   const generic = path.slice(1).split("/").map(part => part.replace(/[-_]/g, " ")).join(" / ");
   return `${known[path] || generic.charAt(0).toUpperCase() + generic.slice(1) + " lander"} (${path})`;

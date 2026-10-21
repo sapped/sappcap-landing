@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   if (mode === "disabled") return response(503, { accepted: false });
   try {
     const body = await readApplicationRequest(request);
-    if (!body || typeof body.email !== "string" || !isEmail(body.email.trim()) || !["home", "acquisition", "capacity", "ownership", "templates"].includes(String(body.campaign)) || body.marketingConsent !== true || body.consentNoticeVersion !== CONSENT_NOTICE_VERSION) return response(400, { accepted: false });
+    if (!body || typeof body.email !== "string" || !isEmail(body.email.trim()) || !["home", "acquisition", "capacity", "ownership", "templates", "website-starter"].includes(String(body.campaign)) || body.marketingConsent !== true || body.consentNoticeVersion !== CONSENT_NOTICE_VERSION) return response(400, { accepted: false });
     const attribution = readAttribution(new URLSearchParams(typeof body.attribution === "object" && body.attribution ? body.attribution as Record<string, string> : {}));
     if (mode === "live") {
       if(body.campaign === "templates")return response(503,{accepted:false});

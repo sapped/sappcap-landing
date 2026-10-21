@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { intakeTags } from "./intake-tags";
 import { CONSENT_NOTICE_TEXT, CONSENT_NOTICE_VERSION } from "./consent-notice";
 import { applicationAnswerRows, type ApplicationFields } from "./application-schema";
 import { landingPageName } from "./application-source";
@@ -63,7 +64,7 @@ async function deliverMailchimpIntake(record: Intake) {
     const marker = `${prefix}${index+1}/${chunks.length}`;
     if (!markers.has(marker)) await provider("/notes", "POST", { note: `${marker}\n${chunk}` });
   }));
-  await provider("/tags", "POST", { tags: [{name:"sca-application-funnel-v1",status:"active"},{name:`sca-source-${record.campaign}`,status:"active"},...(record.kind === "application" ? [{name:"sca-application-submitted",status:"active"}] : [])] });
+  await provider("/tags", "POST", { tags: intakeTags(record.kind, record.campaign) });
   let notificationSent=false;
   const notificationMarker=prefix+"notification-sent";
   if(process.env.FORMSPREE_NOTIFICATIONS_ENABLED === "true") {
