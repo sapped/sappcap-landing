@@ -1,3 +1,4 @@
+import { PrivacyControls } from "@/components/privacy-controls";
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AnalyticsProvider } from "@/components/analytics-provider"
@@ -60,6 +61,7 @@ export default function RootLayout({
             <SmoothScroll />
             <FloatingCTA />
             {children}
+            <PrivacyControls />
           </AnalyticsProvider>
         </ThemeProvider>
       </body>

@@ -1,3 +1,4 @@
+import { optionalTrackingAllowed } from "./privacy-consent";
 import ReactGA from "react-ga4";
 import type { Attribution } from "@/lib/acquisition-review-config";
 
@@ -6,6 +7,7 @@ let initialized = false;
 
 // Preview deployments and local tests must never pollute the live property.
 export const analyticsAllowed = () => typeof window !== "undefined"
+  && optionalTrackingAllowed("analytics")
   && process.env.NODE_ENV === "production"
   && ["sapp.capital", "www.sapp.capital"].includes(window.location.hostname);
 
