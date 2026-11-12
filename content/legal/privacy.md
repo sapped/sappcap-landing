@@ -28,7 +28,7 @@ We share information with providers and contractors as needed to operate our bus
 
 - **GoHighLevel:** contact management, email delivery, and marketing workflows. [HighLevel Privacy Policy](https://www.gohighlevel.com/privacy-policy).
 - **Mailchimp:** existing contact records, website email intake, and email marketing. [Intuit/Mailchimp Privacy Statement](https://www.intuit.com/privacy/statement/).
-- **Closers.io and other authorized marketing contractors:** campaign setup, lead management, and support for SCA's marketing operations, with access limited to the work they perform for us. [Closers.io Privacy Policy](https://closers.io/privacy-policy/).
+- **Authorized marketing contractors:** campaign setup, lead management, and support for SCA's marketing operations, with access limited to the work they perform for us.
 - **Meta (Facebook and Instagram):** lead forms, campaign measurement, advertising, and remarketing. [Meta Privacy Policy](https://www.facebook.com/privacy/policy/).
 - **Google Analytics:** website usage measurement when permitted by your website choices. [Google Privacy Policy](https://policies.google.com/privacy).
 - **Vercel, Cal.com, Clerk, and Formspree:** website hosting and security, scheduling, client authentication where enabled, and form notifications where enabled. [Vercel](https://vercel.com/legal/privacy-policy), [Cal.com](https://cal.com/privacy), [Clerk](https://clerk.com/legal/privacy), [Formspree](https://formspree.io/legal/privacy-policy/).
