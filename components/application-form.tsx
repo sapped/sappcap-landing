@@ -2,13 +2,14 @@
 import { ConsentNotice } from "./consent-notice";
 import { CONSENT_NOTICE_VERSION } from "@/lib/consent-notice";
 import Link from "next/link";
+import { SMS_CONSENT_VERSION, SMS_SERVICE_DISCLOSURE, SMS_MARKETING_DISCLOSURE } from "@/lib/sms-consent";
 import { Fragment, useEffect, useRef, useState, type FormEvent } from "react";
 import { consumeApplicationHandoff } from "@/lib/application-handoff";
 import { SPONSOR_EQUITY_OPTIONS, SPONSOR_EQUITY_LABEL, SPONSOR_EQUITY_HELP, applicationAnswerRows, validateApplication, type ApplicationFields, type ApplicationErrors } from "@/lib/application-schema";
 import { readAttribution, ATTRIBUTION_STORAGE_KEY } from "@/lib/acquisition-review-config";
 import type { ApplicationMode } from "@/lib/application-experience";
 import styles from "./application-form.module.css";
-const empty: ApplicationFields = { name: "", email: "", company: "", phone: "", sponsorEquity: "", completedDeals: "", targetDeals: "", goals: "", marketingConsent: true };
+const empty: ApplicationFields = { name: "", email: "", company: "", phone: "", sponsorEquity: "", completedDeals: "", targetDeals: "", goals: "", marketingConsent: true, smsServiceConsent: false, smsMarketingConsent: false };
 export function ApplicationForm({ mode }: { mode: ApplicationMode }) {
   const [fields, setFields] = useState<ApplicationFields>(empty);
   const [errors, setErrors] = useState<ApplicationErrors>({});
@@ -17,7 +18,7 @@ export function ApplicationForm({ mode }: { mode: ApplicationMode }) {
   const entry = useRef({landingPage:"/apply",emailPrefilled:false});
   const id = useRef(""); const initialized = useRef(false);
   useEffect(() => { if (initialized.current) return; initialized.current = true; id.current = crypto.randomUUID(); const handoff = consumeApplicationHandoff(); entry.current={landingPage:handoff.landingPage,emailPrefilled:!!handoff.email}; if (handoff.email) setFields(current => ({ ...current, email:handoff.email })); }, []);
-  function update(key: keyof ApplicationFields, value: string | boolean) { setFields(current => ({ ...current, [key]: value })); setErrors(current => ({ ...current, [key]: undefined })); }
+  function update(key: keyof ApplicationFields, value: string | boolean) { id.current = crypto.randomUUID(); setFields(current => ({ ...current, [key]: value })); setErrors(current => ({ ...current, [key]: undefined })); }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); if (busy) return;
     const next = validateApplication(fields); setErrors(next); setFailure("");
@@ -27,7 +28,7 @@ export function ApplicationForm({ mode }: { mode: ApplicationMode }) {
       let source = {};
       try { source = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}"); } catch { /* Attribution must not block an application. */ }
       const attribution = { ...readAttribution(new URLSearchParams(source)), ...readAttribution(new URLSearchParams(window.location.search)) };
-      const result = await fetch("/api/applications", { method: "POST", headers: { "Content-Type": "application/json" }, signal: AbortSignal.timeout(25000), body: JSON.stringify({ ...fields, marketingConsent: true, consentNoticeVersion: CONSENT_NOTICE_VERSION, id: id.current, website, attribution, ...entry.current }) });
+      const result = await fetch("/api/applications", { method: "POST", headers: { "Content-Type": "application/json" }, signal: AbortSignal.timeout(25000), body: JSON.stringify({ ...fields, marketingConsent: true, consentNoticeVersion: CONSENT_NOTICE_VERSION, smsConsentVersion: SMS_CONSENT_VERSION, id: id.current, website, attribution, ...entry.current }) });
       const body = await result.json();
       if (!result.ok || !body.accepted) { if (body.errors) setErrors(body.errors); throw new Error("not saved"); }
       setReceipt({id:body.id,fields:{...fields}});
@@ -41,6 +42,14 @@ export function ApplicationForm({ mode }: { mode: ApplicationMode }) {
     <section className={styles.section}><h2>01 / Your business</h2><div className={styles.grid}>{textField("name", "Your name", "name")}{textField("email", "Email", "email")}{textField("company", "Company (optional)", "organization")}{textField("phone", "Cell phone (optional)", "tel")}</div></section>
     <section className={styles.section}><h2>02 / Your deal pipeline</h2><div className={styles.grid}><div className={`${styles.field} ${styles.full}`}><label htmlFor="apply-sponsorEquity">{SPONSOR_EQUITY_LABEL}</label><select id="apply-sponsorEquity" value={fields.sponsorEquity} onChange={e => update("sponsorEquity", e.target.value)} required aria-invalid={!!errors.sponsorEquity} aria-describedby="equity-help error-sponsorEquity" disabled={busy}><option value="">Select a range</option>{SPONSOR_EQUITY_OPTIONS.map(size => <option key={size}>{size}</option>)}</select><p id="equity-help" className={styles.help}>{SPONSOR_EQUITY_HELP}</p><p id="error-sponsorEquity" className={styles.error}>{errors.sponsorEquity}</p></div>{([['completedDeals', "Deals completed in the last 12 months"], ['targetDeals', 'Target deals in the next 12 months']] as const).map(([key,label]) => <div className={styles.field} key={key}><label htmlFor={`apply-${key}`}>{label}</label><input id={`apply-${key}`} inputMode="numeric" type="number" disabled={busy} min="0" max="10000" step="1" placeholder="Leave blank if unsure" value={fields[key]} onChange={e => update(key,e.target.value)} aria-invalid={!!errors[key]} aria-describedby={`error-${key}`} /><p id={`error-${key}`} className={styles.error}>{errors[key]}</p></div>)}</div></section>
     <section className={styles.section}><h2>03 / What you're working toward</h2><div className={styles.field}><label htmlFor="apply-goals">What single business goal would make the biggest difference over the next 12 months?</label><textarea disabled={busy} id="apply-goals" value={fields.goals} onChange={e => update("goals", e.target.value)} placeholder="Where are you today, what's the target, and what's holding you back?" maxLength={2500} required aria-invalid={!!errors.goals} aria-describedby="error-goals" /><p id="error-goals" className={styles.error}>{errors.goals}</p></div></section>
+    <fieldset className={styles.sms} disabled={busy}>
+      <legend>Text messages (optional)</legend>
+      <p className={styles.help}>Choose either, both, or neither. Providing a phone number alone does not authorize texts. You can submit this application without opting in.</p>
+      <label className={styles.check} htmlFor="apply-smsServiceConsent"><input id="apply-smsServiceConsent" name="smsServiceConsent" type="checkbox" checked={fields.smsServiceConsent === true} onChange={e => update("smsServiceConsent", e.target.checked)} /><span>{SMS_SERVICE_DISCLOSURE}</span></label>
+      <label className={styles.check} htmlFor="apply-smsMarketingConsent"><input id="apply-smsMarketingConsent" name="smsMarketingConsent" type="checkbox" checked={fields.smsMarketingConsent === true} onChange={e => update("smsMarketingConsent", e.target.checked)} /><span>{SMS_MARKETING_DISCLOSURE}</span></label>
+      <p className={styles.fine}>See our <Link href="/privacy">Privacy Policy</Link> and <Link href="/terms">Terms of Use</Link>. For help, email <a href="mailto:help@sapp.capital">help@sapp.capital</a>.</p>
+    </fieldset>
+    <address className={styles.contact}>Sapp Capital Advisors LLC<br />447 Broadway, 2nd Floor Suite #2133, New York, NY 10013, United States<br /><a href="mailto:help@sapp.capital">help@sapp.capital</a> · <a href="tel:+13365686359">+1 336-568-6359</a></address>
     <button className={styles.button} disabled={busy} type="submit">{busy ? "Submitting…" : "Submit application"}</button><ConsentNotice /><p role="alert" className={styles.error}>{failure}</p>
     <p className={styles.fine}>Edward reviews the business and the work you have in mind before recommending a next step. Submitting an application does not commit you to paid work. <Link href="/privacy">Privacy</Link></p>
   </form>;
