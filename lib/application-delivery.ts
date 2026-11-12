@@ -1,4 +1,3 @@
-import { deliverGhlIntake } from "./ghl-intake";
 import type { SmsConsentEvidence } from "./sms-consent";
 import { createHash } from "node:crypto";
 import { CONSENT_NOTICE_TEXT, CONSENT_NOTICE_VERSION } from "./consent-notice";
@@ -23,8 +22,6 @@ export function intakeNotificationMessage(record: Intake) {
 // No raw email, application answers or provider response bodies in server logs.
 // Existing opt-outs are never overridden, and legacy welcome tags are untouched.
 export async function deliverApplicationIntake(record: Intake) {
-  if (process.env.APPLICATION_INTAKE_PROVIDER === "ghl") return deliverGhlIntake(record);
-  if (process.env.APPLICATION_INTAKE_PROVIDER && process.env.APPLICATION_INTAKE_PROVIDER !== "mailchimp") throw new Error("intake_configuration");
   try { return await deliverMailchimpIntake(record); }
   catch {
     // A Mailchimp outage must not discard a service application if Formspree can retain it.
