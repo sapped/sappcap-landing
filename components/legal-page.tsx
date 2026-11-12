@@ -7,7 +7,7 @@ import styles from "./legal-page.module.css";
 function inline(text: string) {
   return text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g).map((part, index) => {
     const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-    if (link && /^(https:\/\/|mailto:)/.test(link[2])) return <a key={index} href={link[2]}>{link[1]}</a>;
+    if (link && /^(https:\/\/|mailto:|tel:\+[\d-]+$)/.test(link[2])) return <a key={index} href={link[2]}>{link[1]}</a>;
     if (part.startsWith("**") && part.endsWith("**")) return <strong key={index}>{part.slice(2,-2)}</strong>;
     return <Fragment key={index}>{part}</Fragment>;
   });
