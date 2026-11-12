@@ -1,3 +1,4 @@
+import { readSmsConsent } from "@/lib/sms-consent";
 import { CONSENT_NOTICE_VERSION, CONSENT_NOTICE_TEXT } from "@/lib/consent-notice";
 import { applicationMode } from "@/lib/application-experience";
 import { validateApplication, type ApplicationFields } from "@/lib/application-schema";
@@ -13,19 +14,22 @@ export async function POST(request: Request) {
   try {
     const body = await readApplicationRequest(request);
     if (!body || body.marketingConsent !== true || body.consentNoticeVersion !== CONSENT_NOTICE_VERSION) return response(400, { accepted: false });
+    const smsConsent = readSmsConsent(body);
+    if (smsConsent === false) return response(400, { accepted: false, errors: { phone: "Please check your phone number and text preferences, then try again." } });
     const fields: ApplicationFields = {
       name: String(body.name ?? "").trim(), email: String(body.email ?? "").trim().toLowerCase(), company: String(body.company ?? "").trim(),
       phone: String(body.phone ?? "").trim(), sponsorEquity: String(body.sponsorEquity ?? ""), completedDeals: String(body.completedDeals ?? ""), targetDeals: String(body.targetDeals ?? ""), goals: String(body.goals ?? "").trim(), marketingConsent: body.marketingConsent as boolean,
+      ...(smsConsent ? { smsServiceConsent: smsConsent.service, smsMarketingConsent: smsConsent.marketing } : {}),
     };
     const errors = validateApplication(fields);
     if (Object.keys(errors).length) return response(400, { accepted: false, errors });
     const attribution = readAttribution(new URLSearchParams(typeof body.attribution === "object" && body.attribution ? body.attribution as Record<string, string> : {}));
     if(mode === "live"){
       if(!intakeRateAllowed(request))return response(429,{accepted:false});
-      const delivery=await deliverApplicationIntake({kind:"application",id:String(body.id),...fields,campaign:"application",attribution,...readEntryContext(body)});
+      const delivery=await deliverApplicationIntake({kind:"application",id:String(body.id),...fields,campaign:"application",smsConsent,attribution,...readEntryContext(body)});
       return response(200,{accepted:true,id:body.id,saved:true,mode,...delivery});
     }
-    if (mode === "local-review") await saveReviewRecord({ kind: "application", id: body.id, ...fields, attribution, ...readEntryContext(body), consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT });
+    if (mode === "local-review") await saveReviewRecord({ kind: "application", id: body.id, ...fields, smsConsent, attribution, ...readEntryContext(body), consentMethod: "submission-notice", consentNoticeVersion: CONSENT_NOTICE_VERSION, consentNoticeText: CONSENT_NOTICE_TEXT });
     return response(200, { accepted: true, id: body.id, saved: mode === "local-review", mode });
   } catch { return response(503, { accepted: false }); }
 }

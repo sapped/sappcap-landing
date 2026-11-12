@@ -1,9 +1,10 @@
+import type { SmsConsentEvidence } from "./sms-consent";
 import { createHash } from "node:crypto";
 import { CONSENT_NOTICE_TEXT, CONSENT_NOTICE_VERSION } from "./consent-notice";
 import { applicationAnswerRows, type ApplicationFields } from "./application-schema";
 import { landingPageName } from "./application-source";
 
-type Intake = Partial<ApplicationFields> & { id: string; email: string; kind: "email-capture" | "application"; campaign: string; attribution: Record<string, string>; landingPage?: string; emailPrefilled?: boolean };
+export type Intake = Partial<ApplicationFields> & { id: string; email: string; kind: "email-capture" | "application"; campaign: string; smsConsent?: SmsConsentEvidence | null; attribution: Record<string, string>; landingPage?: string; emailPrefilled?: boolean };
 
 export function intakeNotificationMessage(record: Intake) {
   return [
@@ -12,6 +13,7 @@ export function intakeNotificationMessage(record: Intake) {
     `Entry page: ${landingPageName(record.landingPage)}`,
     `Email collected on: ${landingPageName(record.kind === "email-capture" || record.emailPrefilled ? record.landingPage : "/apply")}`,
     ...(record.kind === "application" ? applicationAnswerRows(record).map(([label,value]) => `${label}:\n${value}`) : [`Email: ${record.email}`]),
+    ...(record.smsConsent ? [`SMS preferences and disclosure record:\n${JSON.stringify(record.smsConsent, null, 2)}`] : []),
     `Attribution (visitor supplied, not verified):\n${JSON.stringify(record.attribution,null,2)}`,
     `Consent notice (${CONSENT_NOTICE_VERSION}): ${CONSENT_NOTICE_TEXT}`,
   ].join("\n\n");

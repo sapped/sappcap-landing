@@ -6,7 +6,7 @@ Last updated: November 12, 2026
 
 These terms govern access to sapp.capital, www.sapp.capital, underwriting.sapp.capital, and SCA pages that link to these terms. They are provided by Sapp Capital Advisors LLC (SCA, we, us, or our). Our sites are intended for adults who can enter into an agreement for themselves or the business they represent.
 
-Questions: [help@sapp.capital](mailto:help@sapp.capital). Mailing address: Sapp Capital Advisors LLC, 447 Broadway, 2nd Floor Suite #2133, New York, NY 10013, United States.
+Questions: [help@sapp.capital](mailto:help@sapp.capital) or [+1 336-568-6359](tel:+13365686359). Mailing address: Sapp Capital Advisors LLC, 447 Broadway, 2nd Floor Suite #2133, New York, NY 10013, United States.
 
 ## Inquiries and paid engagements
 
@@ -37,6 +37,16 @@ Do not misuse the sites, interfere with their operation, introduce malicious cod
 ## Third-party services and privacy
 
 Our sites link to or use services for scheduling, email, authentication, hosting, analytics, and marketing. Those providers may have their own terms and privacy notices. We do not control external websites. Our [Privacy Policy](https://www.sapp.capital/privacy) and [Cookie Policy](https://www.sapp.capital/cookies) explain SCA's practices. Email marketing choices are separate from acceptance of website terms.
+
+## SCA text-message program
+
+Sapp Capital Advisors LLC provides optional SMS communications for people who request them through our [website form](https://www.sapp.capital/apply). The service-text option covers inquiry follow-up, appointment confirmations and reminders, and updates about requested services. The separate marketing-text option covers promotional service updates, educational resources, and offers. Messages may be sent using automated technology. Your selections determine which categories you request; an email subscription or a phone number alone does not authorize texts.
+
+Both text choices are optional and initially unchecked. You may submit a form or purchase services without consenting to marketing texts. Message frequency varies with your requests, appointments, and selected updates. Your wireless provider may charge message and data rates for incoming and outgoing messages; ask your provider about your plan.
+
+Reply STOP to a text from us to unsubscribe. You may receive a single confirmation of your opt-out, after which further program texts stop. To request enrollment again, use the website form; a new request does not automatically override an existing carrier or provider block. Reply HELP for assistance, email [help@sapp.capital](mailto:help@sapp.capital), or call [+1 336-568-6359](tel:+13365686359).
+
+Carriers are not liable for delayed or undelivered messages. Delivery depends on your carrier and device and is not guaranteed. Our [Privacy Policy](https://www.sapp.capital/privacy) describes how we handle mobile information and consent records.
 
 ## Availability, disclaimers, and liability
 
