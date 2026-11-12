@@ -37,3 +37,7 @@ next-env.d.ts
 
 # Local application review data must never be committed.
 .local-data/
+
+# Shareable resource bundles are hosted in Mailchimp Content Studio.
+*.zip
+
