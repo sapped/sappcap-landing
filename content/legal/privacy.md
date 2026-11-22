@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Last updated: November 12, 2026
+Last updated: November 22, 2026
 
 ## Who we are and what this covers
 
@@ -26,9 +26,11 @@ When you opt in, including by submitting a form that clearly explains the email 
 
 Sapp Capital Advisors LLC offers separate, optional text-message choices for appointment and service communications and for marketing. We send appointment confirmations, reminders, inquiry follow-up, and requested service updates only when you select the service-text option. We send promotional service updates, educational resources, and offers only when you select the marketing-text option. Either, both, or neither may be selected. Providing a phone number, subscribing to emails, booking a call, or submitting an application by itself does not give SMS consent. SMS marketing consent is not required to purchase services or submit a form.
 
+You opt in to texts from Sapp Capital Advisors LLC by checking the optional SMS consent box on our application form. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for help, or contact [help@sapp.capital](mailto:help@sapp.capital) or [+1 336-568-6359](tel:+13365686359).
+
 We retain each submitted text preference, the phone number, disclosure wording and version, source form address, submission reference, and server-recorded time to document your choices. An unchecked option does not grant permission for that category. We also keep opt-out and suppression records. Reply STOP to unsubscribe from texts and HELP for assistance, or contact help@sapp.capital. Further details appear in our [Terms of Use](https://www.sapp.capital/terms).
 
-No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. We do not sell, rent, or use SMS opt-in records or consent for advertising audiences. Those records are excluded from the other marketing-sharing descriptions in this policy. We disclose mobile information and SMS consent records only to providers and support subcontractors that need them to operate our messaging service for us, or where disclosure is legally required. We do not provide that information to another party for its own marketing.
+No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. Information sharing to subcontractors in support services, such as customer service, is permitted. All other use case categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
 
 ## Providers and sharing
 
